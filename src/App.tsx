@@ -1,165 +1,106 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
-  Code2,
   FileSearch,
-  Menu,
-  Sparkles,
-  X,
   Loader2,
-  Mail,
-  ExternalLink,
+  Sparkles,
 } from 'lucide-react';
-import LeadForm from './components/LeadForm';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
+import { CARE_PLAN_PRICE_LABEL, SPRINT_PRICE_LABEL, SPRINT_REVISION_ROUNDS } from '../shared/concept';
+import { CONTACT_EMAIL, SEO_URL, setPageMeta, startUrl, track } from './lib/site';
 
-
-const APP_URL = 'https://app.zyvibe.com/?utm_source=zyvibe_home&utm_medium=';
-const SEO_URL = 'https://seo.zyvibe.com/?utm_source=zyvibe_home&utm_medium=';
-const AFFILIATE_URL = 'https://zyvibe.com/affiliates';
-const BLOG_URL = 'https://blog.zyvibe.com';
 type SubmitStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+const steps = [
+  { title: 'Tell us about your business', body: 'Fill in a short intake form. No discovery call.' },
+  { title: 'Get your free concept', body: 'We generate an AI-assisted landing page concept from your answers.' },
+  { title: 'Review it privately', body: 'We email you a private preview link to look over on your own time.' },
+  { title: 'Build it or adjust it', body: `Pay ${SPRINT_PRICE_LABEL} once to start your sprint, or request changes first.` },
+  { title: 'Launch, then decide', body: 'After launch you can add the optional Care Plan. Nothing is automatic.' },
+];
+
+const included = [
+  'Design and build of your website, starting from your approved concept',
+  'A 2-week sprint from kickoff',
+  `${SPRINT_REVISION_ROUNDS} revision rounds`,
+  'Launch on your domain',
+  'You work directly with the founder building it',
+];
 
 const faqs = [
   {
-    question: 'What does Zyvibe do?',
-    answer:
-      'Zyvibe gives solo founders two focused tools: an AI website builder at app.zyvibe.com and an SEO audit product at seo.zyvibe.com. Each is designed to move a launch or optimization task forward quickly.',
+    question: 'Do I need a discovery call?',
+    answer: 'No. Fill in the intake form and we email you a private link to your concept. You can ask questions by replying to that email.',
   },
   {
-    question: 'Which product should I start with?',
-    answer:
-      'Start with the Website Builder when you need a new page or site. Start with the SEO Auditor when you already have a site and want to identify visibility, architecture, and conversion opportunities.',
+    question: 'What is the free concept?',
+    answer: 'An AI-assisted landing page draft based on your answers: headline, sections, and copy in your chosen visual direction. It shows a possible direction. It is not the final production website.',
   },
   {
-    question: 'Do I need an enterprise software stack?',
-    answer:
-      'No. Zyvibe is positioned for founders and creators who want direct workflows rather than a large collection of disconnected tools.',
+    question: `Is the ${SPRINT_PRICE_LABEL} a subscription?`,
+    answer: `No. The Website Sprint is one ${SPRINT_PRICE_LABEL} payment for one 2-week sprint. It never renews.`,
   },
   {
-    question: 'Where can I find guides and updates?',
-    answer:
-      'The Zyvibe Playbooks hub at blog.zyvibe.com contains practical resources. You can also join the email list below for product updates and creator-focused workflows.',
+    question: 'What is the Care Plan?',
+    answer: `An optional ${CARE_PLAN_PRICE_LABEL} plan for ongoing care with a defined monthly scope. It is offered only after launch, paid separately, and never added automatically.`,
+  },
+  {
+    question: 'How many revisions do I get?',
+    answer: `${SPRINT_REVISION_ROUNDS} revision rounds during the sprint.`,
+  },
+  {
+    question: 'What if I change my mind?',
+    answer: 'You get a full refund if you ask before kickoff. Once the sprint has started, the payment is non-refundable.',
+  },
+  {
+    question: 'Do you guarantee rankings or traffic?',
+    answer: 'No. We build a clear, well-structured site. We do not promise rankings, traffic, or revenue.',
   },
   {
     question: 'How can I contact Zyvibe?',
-    answer:
-      'Email support@zyvibe.co for product help, hello@zyvibe.co for general questions, or press@zyvibe.co for media requests.',
+    answer: `Email ${CONTACT_EMAIL}.`,
   },
 ];
 
-
-function track(eventName: string, parameters: Record<string, string>) {
-  if (typeof window === 'undefined') return;
-
-
-  const gtag = (window as unknown as { gtag?: (command: string, event: string, params: Record<string, string>) => void }).gtag;
-  if (typeof gtag === 'function') {
-    gtag('event', eventName, parameters);
-  }
-}
-
-
 export default function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterStatus, setNewsletterStatus] = useState<SubmitStatus>('idle');
   const [affiliateEmail, setAffiliateEmail] = useState('');
   const [affiliateStatus, setAffiliateStatus] = useState<SubmitStatus>('idle');
 
-
-  const closeMobileMenu = () => setMobileMenuOpen(false);
-
-
-  const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!newsletterEmail) return;
-
-
-    setNewsletterStatus('submitting');
-    track('newsletter_signup_unavailable', { source: 'zyvibe_home_footer' });
-    setNewsletterStatus('error');
-  };
-
+  useEffect(() => {
+    setPageMeta('Zyvibe — Website Sprint for Founders | $2,999 Flat Fee');
+  }, []);
 
   const handleAffiliateSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!affiliateEmail) return;
-
-
     setAffiliateStatus('submitting');
-    track('affiliate_interest_signup_unavailable', { source: 'zyvibe_home_affiliates' });
-    setAffiliateStatus('error');
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: affiliateEmail.trim(), source_page: 'affiliate' }),
+      });
+      const data = (await res.json()) as { success: boolean };
+      if (data.success) {
+        track('affiliate_interest_signup', { source: 'zyvibe_home_affiliates' });
+        setAffiliateStatus('success');
+      } else {
+        setAffiliateStatus('error');
+      }
+    } catch {
+      setAffiliateStatus('error');
+    }
   };
-
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-bg-main text-slate-300 bg-grid-premium">
-      <header className="sticky top-0 z-50 border-b border-white/[0.08] bg-bg-main/85 px-5 py-4 backdrop-blur-xl md:px-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5">
-          <a href="https://zyvibe.com" aria-label="Zyvibe home" className="flex items-center gap-2 text-white">
-            <span className="text-2xl font-extrabold tracking-[-0.06em]">Zyvibe</span>
-          </a>
-
-
-          <nav aria-label="Primary navigation" className="hidden items-center gap-7 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400 lg:flex">
-            <a href={`${APP_URL}header`} className="transition-colors hover:text-white">Website Builder</a>
-            <a href={`${SEO_URL}header`} className="transition-colors hover:text-white">SEO Auditor</a>
-            <a href={BLOG_URL} className="transition-colors hover:text-white">Playbooks</a>
-            <a href={AFFILIATE_URL} className="transition-colors hover:text-white">Affiliate Program</a>
-          </nav>
-
-
-          <div className="flex items-center gap-3">
-            <a
-              href={`${APP_URL}header_cta`}
-              onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'website_builder_header' })}
-              className="hidden rounded-lg bg-[#7c3aed] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_20px_rgba(124,58,237,0.35)] transition-all hover:bg-[#6d28d9] sm:inline-flex"
-            >
-              Start Free Trial
-            </a>
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-navigation"
-              aria-label="Toggle navigation menu"
-              className="rounded-lg p-2 text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white lg:hidden"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-
-
-        <AnimatePresence initial={false}>
-          {mobileMenuOpen && (
-            <motion.nav
-              id="mobile-navigation"
-              aria-label="Mobile navigation"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="mx-auto mt-4 max-w-7xl overflow-hidden border-t border-white/[0.08] lg:hidden"
-            >
-              <div className="flex flex-col gap-1 py-4 text-sm font-semibold text-slate-300">
-                <a href={`${APP_URL}header_mobile`} onClick={closeMobileMenu} className="rounded-lg px-3 py-3 hover:bg-white/[0.05] hover:text-white">Website Builder</a>
-                <a href={`${SEO_URL}header_mobile`} onClick={closeMobileMenu} className="rounded-lg px-3 py-3 hover:bg-white/[0.05] hover:text-white">SEO Auditor</a>
-                <a href={BLOG_URL} onClick={closeMobileMenu} className="rounded-lg px-3 py-3 hover:bg-white/[0.05] hover:text-white">Playbooks</a>
-                <a href={AFFILIATE_URL} onClick={closeMobileMenu} className="rounded-lg px-3 py-3 hover:bg-white/[0.05] hover:text-white">Affiliate Program</a>
-                <a href={`${APP_URL}header_cta_mobile`} onClick={() => { closeMobileMenu(); track('select_content', { content_type: 'product_cta', item_id: 'website_builder_header_mobile' }); }} className="mt-2 rounded-lg bg-[#7c3aed] px-3 py-3 text-center text-xs font-bold uppercase tracking-widest text-white">Start Free Trial</a>
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
-      </header>
-
+      <SiteHeader />
 
       <main>
         <section className="relative isolate px-5 pb-20 pt-16 md:px-8 md:pb-32 md:pt-24">
@@ -171,128 +112,127 @@ export default function App() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
               <p className="mb-7 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-violet-300">
                 <Sparkles className="h-3.5 w-3.5" />
-                Built for solo founders &amp; digital creators
+                Founder-led design &amp; development
               </p>
               <h1 className="max-w-4xl text-5xl font-extrabold leading-[0.98] tracking-[-0.065em] text-white md:text-7xl lg:text-8xl">
-                Build an AI Website. <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Automate SEO.</span> 60 Seconds.
+                Build your dream. <span className="bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">Grow your vibe.</span>
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl">
-                Stop wrestling with bloated tools. Launch a production-ready AI website or expose every SEO revenue leak—both in under 60 seconds. No agency. No stack. Just results.
+                Zyvibe designs and builds your website in one 2-week sprint for a flat {SPRINT_PRICE_LABEL}. Start with a free AI-assisted landing page concept. No discovery call, no subscription.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href={`${APP_URL}hero_cta`}
-                  onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'website_builder_hero' })}
+                  href={startUrl('hero')}
+                  onClick={() => track('select_content', { content_type: 'sprint_cta', item_id: 'hero' })}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#7c3aed] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-[0_7px_30px_rgba(124,58,237,0.38)] transition hover:-translate-y-0.5 hover:bg-[#6d28d9]"
                 >
-                  Build a Site in 60s <ArrowRight className="h-4 w-4" />
+                  Get My Free Concept <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
-                  href={`${SEO_URL}hero_cta`}
-                  onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'seo_audit_hero' })}
+                  href="#how-it-works"
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
                 >
-                  Audit SEO in 60s <FileSearch className="h-4 w-4" />
+                  See How It Works
                 </a>
               </div>
-              <p className="mt-5 text-sm text-slate-500">Choose the engine that removes your next growth bottleneck.</p>
-              <div className="mt-10 w-full max-w-md">
-                <div className="rounded-2xl border border-violet-500/30 bg-gradient-to-br from-violet-500/[0.12] via-white/[0.02] to-indigo-500/[0.12] p-6 shadow-[0_0_60px_rgba(124,58,237,0.18)] ring-1 ring-white/[0.06]">
-                  <p className="text-sm font-bold text-white mb-0.5">Start Free — No credit card required</p>
-                  <p className="text-xs text-slate-400 mb-5">Instant access to the Website Builder and SEO Auditor.</p>
-                  <LeadForm />
-                </div>
-              </div>
+              <p className="mt-5 text-sm text-slate-500">One-time {SPRINT_PRICE_LABEL}. Pay only if you want us to build it.</p>
             </motion.div>
 
-
-            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.08 }} className="grid gap-4">
-              <div className="bento-card relative overflow-hidden p-7 md:p-8">
+            <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.08 }}>
+              <div className="bento-card relative overflow-hidden p-7 md:p-9">
                 <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-violet-500/15 blur-3xl" />
-                <div className="relative flex items-start justify-between gap-5">
-                  <div>
-                    <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300"><Code2 className="h-5 w-5" /></span>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-violet-300">Engine 01</p>
-                    <h2 className="mt-2 text-2xl font-bold tracking-tight text-white">Website Builder</h2>
-                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">Turn a clear idea into a launch-ready website workflow at app.zyvibe.com.</p>
-                  </div>
-                  <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-xs font-bold text-violet-200">60s</span>
-                </div>
-              </div>
-              <div className="bento-card relative overflow-hidden p-7 md:p-8">
-                <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-indigo-500/15 blur-3xl" />
-                <div className="relative flex items-start justify-between gap-5">
-                  <div>
-                    <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300"><FileSearch className="h-5 w-5" /></span>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-300">Engine 02</p>
-                    <h2 className="mt-2 text-2xl font-bold tracking-tight text-white">SEO Auditor</h2>
-                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">Find technical, structural, and revenue-focused SEO opportunities at seo.zyvibe.com.</p>
-                  </div>
-                  <span className="rounded-full border border-indigo-400/20 bg-indigo-400/10 px-3 py-1 text-xs font-bold text-indigo-200">60s</span>
-                </div>
+                <p className="relative text-xs font-bold uppercase tracking-[0.18em] text-violet-300">Website Sprint</p>
+                <p className="relative mt-3 text-6xl font-extrabold tracking-[-0.06em] text-white">{SPRINT_PRICE_LABEL}</p>
+                <p className="relative mt-1 text-sm text-slate-400">One-time payment. Never a subscription.</p>
+                <ul className="relative mt-7 space-y-3 text-sm text-slate-300">
+                  {included.map((item) => (
+                    <li key={item} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-violet-300" />{item}</li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           </div>
         </section>
 
+        <section id="how-it-works" className="scroll-mt-20 border-y border-white/[0.07] bg-white/[0.015] px-5 py-20 md:px-8 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">How it works</p>
+            <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">From a short form to a live site. No call needed.</h2>
+            <ol className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+              {steps.map((step, index) => (
+                <li key={step.title} className="bento-card p-6">
+                  <span className="text-sm font-bold text-violet-300">0{index + 1}</span>
+                  <h3 className="mt-3 text-lg font-bold text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
 
-        <section id="website-builder" className="border-y border-white/[0.07] bg-white/[0.015] px-5 py-20 md:px-8 md:py-28">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="bento-card p-8 md:p-10">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300"><Code2 className="h-6 w-6" /></span>
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Website Builder</p>
-              <p className="mt-3 text-5xl font-extrabold tracking-[-0.06em] text-white">60s</p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">From concept to an actionable website-building workflow.</p>
-            </div>
-            <div>
-              <h2 className="text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">Vibe Code Your Startup in 60 Seconds.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">Don&apos;t let your launch get bogged down by drag-and-drop builders. Describe your vision in plain English, and Zyvibe&apos;s AI instantly generates a live, high-converting landing page.</p>
-              <a href={`${APP_URL}website_builder_section`} onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'website_builder_section' })} className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-violet-300 transition-colors hover:text-white">
-                Enter the Builder <ArrowRight className="h-4 w-4" />
-              </a>
+        <section id="pricing" className="scroll-mt-20 px-5 py-20 md:px-8 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Pricing</p>
+            <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">One flat fee to launch. One optional plan after.</h2>
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+              <div className="bento-card border-violet-500/30 p-8 md:p-10">
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Website Sprint</h3>
+                <p className="mt-4 text-5xl font-extrabold tracking-[-0.05em] text-white">{SPRINT_PRICE_LABEL} <span className="text-base font-semibold text-slate-400">one-time</span></p>
+                <p className="mt-4 text-sm leading-relaxed text-slate-400">Required to start the real build. A 2-week sprint with {SPRINT_REVISION_ROUNDS} revision rounds. Full refund if you cancel before kickoff.</p>
+                <a
+                  href={startUrl('pricing')}
+                  onClick={() => track('select_content', { content_type: 'sprint_cta', item_id: 'pricing' })}
+                  className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#7c3aed] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#6d28d9]"
+                >
+                  Get My Free Concept <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              <div className="bento-card p-8 md:p-10">
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Care Plan · optional</h3>
+                <p className="mt-4 text-5xl font-extrabold tracking-[-0.05em] text-white">{CARE_PLAN_PRICE_LABEL.replace('/month', '')} <span className="text-base font-semibold text-slate-400">/month</span></p>
+                <p className="mt-4 text-sm leading-relaxed text-slate-400">Ongoing care with a defined monthly scope, offered only after your site launches. Paid separately. Never added automatically, and never &ldquo;unlimited&rdquo;.</p>
+                <p className="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Available after launch</p>
+              </div>
             </div>
           </div>
         </section>
 
-
-        <section id="seo-auditor" className="px-5 py-20 md:px-8 md:py-28">
+        <section id="seo-audit" className="border-y border-white/[0.07] bg-white/[0.015] px-5 py-20 md:px-8 md:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <h2 className="text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">Audit Your Revenue Leaks in 60 Seconds.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">A fast website is useless if nobody sees it. Instantly reverse-engineer your competitors, spot broken funnels, and optimize your architecture for AI crawlers.</p>
-              <a href={`${SEO_URL}seo_auditor_section`} onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'seo_auditor_section' })} className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-indigo-300 transition-colors hover:text-white">
-                Run Your Free Audit <ArrowRight className="h-4 w-4" />
+              <h2 className="text-4xl font-bold tracking-[-0.05em] text-white md:text-5xl">Already have a site?</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">Check what is holding it back in search with the Zyvibe SEO audit.</p>
+              <a href={`${SEO_URL}seo_audit_section`} onClick={() => track('select_content', { content_type: 'product_cta', item_id: 'seo_audit_section' })} className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-indigo-300 transition-colors hover:text-white">
+                Go to the SEO audit <ArrowRight className="h-4 w-4" />
               </a>
             </div>
             <div className="bento-card p-8 md:p-10">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-500/15 text-indigo-300"><FileSearch className="h-6 w-6" /></span>
-              <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-indigo-300">SEO Auditor</p>
-              <p className="mt-3 text-5xl font-extrabold tracking-[-0.06em] text-white">60s</p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">A direct starting point for visibility and revenue-focused SEO work.</p>
+              <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-indigo-300">seo.zyvibe.com</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">Technical, content, and visibility checks for an existing website.</p>
             </div>
           </div>
         </section>
 
-
-        <section id="affiliates" className="border-y border-white/[0.07] bg-gradient-to-br from-violet-500/[0.10] via-transparent to-indigo-500/[0.10] px-5 py-20 md:px-8 md:py-28">
+        <section id="affiliates" className="scroll-mt-20 px-5 py-20 md:px-8 md:py-28">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Partner with Zyvibe</p>
-              <h2 className="mt-4 text-4xl font-bold tracking-[-0.05em] text-white md:text-6xl">Share tools built for founders who move fast.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">Publish creator, startup, or SEO content? Join the Zyvibe affiliate interest list to receive programme details, launch assets, and partner updates through the existing Zyvibe email workflow.</p>
+              <h2 className="mt-4 text-4xl font-bold tracking-[-0.05em] text-white md:text-5xl">Know founders who need a site?</h2>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">Join the Zyvibe partner list and we&apos;ll email you program details when they&apos;re ready.</p>
             </div>
             <div className="bento-card p-7 md:p-8">
               {affiliateStatus === 'success' ? (
                 <div className="flex min-h-[190px] flex-col justify-center text-center">
                   <CheckCircle2 className="mx-auto h-9 w-9 text-emerald-400" />
                   <h3 className="mt-4 text-xl font-bold text-white">You&apos;re on the partner list.</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">We&apos;ll use this address for Zyvibe affiliate programme updates.</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-400">We&apos;ll use this address for Zyvibe partner updates.</p>
                 </div>
               ) : (
                 <form onSubmit={handleAffiliateSubmit} className="space-y-4">
                   <label htmlFor="affiliate-email" className="block text-xs font-bold uppercase tracking-[0.16em] text-white">Partner email</label>
-                  <input id="affiliate-email" type="email" required value={affiliateEmail} onChange={(event) => setAffiliateEmail(event.target.value)} disabled={affiliateStatus === 'submitting'} placeholder="you@company.com" className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-violet-400/60 disabled:cursor-not-allowed disabled:opacity-60" />
-                  {affiliateStatus === 'error' && <p className="text-sm text-red-300">Submission temporarily unavailable. Lead capture is coming online shortly.</p>}
+                  <input id="affiliate-email" type="email" required value={affiliateEmail} onChange={(event) => setAffiliateEmail(event.target.value)} disabled={affiliateStatus === 'submitting'} placeholder="you@yourbusiness.com" className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-violet-400/60 disabled:cursor-not-allowed disabled:opacity-60" />
+                  {affiliateStatus === 'error' && <p className="text-sm text-red-300">That didn&apos;t go through. Please try again.</p>}
                   <button type="submit" disabled={affiliateStatus === 'submitting'} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7c3aed] px-5 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white transition hover:bg-[#6d28d9] disabled:cursor-not-allowed disabled:opacity-60">
                     {affiliateStatus === 'submitting' ? <><Loader2 className="h-4 w-4 animate-spin" /> Joining</> : <>Join the Partner List <ArrowRight className="h-4 w-4" /></>}
                   </button>
@@ -302,11 +242,10 @@ export default function App() {
           </div>
         </section>
 
-
-        <section className="px-5 py-20 md:px-8 md:py-28">
+        <section className="border-t border-white/[0.07] px-5 py-20 md:px-8 md:py-28">
           <div className="mx-auto max-w-4xl">
             <div className="text-center">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Product questions</p>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-violet-300">Questions</p>
               <h2 className="mt-4 text-4xl font-bold tracking-[-0.05em] text-white md:text-5xl">Frequently Asked Questions</h2>
             </div>
             <div className="mt-12 space-y-3">
@@ -329,58 +268,20 @@ export default function App() {
                 );
               })}
             </div>
+            <div className="mt-14 text-center">
+              <a
+                href={startUrl('faq')}
+                onClick={() => track('select_content', { content_type: 'sprint_cta', item_id: 'faq' })}
+                className="inline-flex items-center gap-2 rounded-lg bg-[#7c3aed] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#6d28d9]"
+              >
+                Get My Free Concept <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </section>
       </main>
 
-
-      <footer className="border-t border-white/[0.07] bg-[#09090d] px-5 py-16 md:px-8">
-        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <a href="https://zyvibe.com" className="text-2xl font-extrabold tracking-[-0.06em] text-white">Zyvibe</a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">Two focused growth engines for solo developers, creators, and indie founders.</p>
-          </div>
-          <div>
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white">Products</h2>
-            <ul className="mt-5 space-y-3 text-sm text-slate-400">
-              <li><a href={`${APP_URL}footer_cta`} className="transition hover:text-white">Website Builder</a></li>
-              <li><a href={`${SEO_URL}footer_cta`} className="transition hover:text-white">SEO Audit</a></li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white">Ecosystem</h2>
-            <ul className="mt-5 space-y-3 text-sm text-slate-400">
-              <li><a href={AFFILIATE_URL} className="transition hover:text-white">Partner / Affiliate Portal</a></li>
-              <li><a href={BLOG_URL} className="transition hover:text-white">Read the Blog</a></li>
-            </ul>
-          </div>
-          <div id="newsletter">
-            <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-white">Stay in the loop</h2>
-            <p className="mt-5 text-sm leading-relaxed text-slate-400">Get Zyvibe product updates and practical founder playbooks.</p>
-            {newsletterStatus === 'success' ? (
-              <div className="mt-5 flex items-center gap-2 rounded-lg border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200"><CheckCircle2 className="h-4 w-4 shrink-0" /> You&apos;re on the list.</div>
-            ) : (
-              <form onSubmit={handleNewsletterSubmit} className="mt-5 space-y-3">
-                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-                <input id="newsletter-email" type="email" required value={newsletterEmail} onChange={(event) => setNewsletterEmail(event.target.value)} disabled={newsletterStatus === 'submitting'} placeholder="you@example.com" className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-violet-400/60 disabled:cursor-not-allowed disabled:opacity-60" />
-                {newsletterStatus === 'error' && <p className="text-sm text-red-300">Submission temporarily unavailable. Lead capture is coming online shortly.</p>}
-                <button type="submit" disabled={newsletterStatus === 'submitting'} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-4 py-3 text-xs font-bold uppercase tracking-[0.15em] text-black transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-60">
-                  {newsletterStatus === 'submitting' ? <><Loader2 className="h-4 w-4 animate-spin" /> Joining</> : <>Join Now <ArrowRight className="h-4 w-4" /></>}
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-        <div className="mx-auto mt-14 flex max-w-7xl flex-col gap-4 border-t border-white/[0.06] pt-7 text-xs font-medium text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 Zyvibe. Built for the Solo Developer.</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <a href="mailto:hello@zyvibe.co" className="inline-flex items-center gap-1.5 transition hover:text-white"><Mail className="h-3.5 w-3.5" /> hello@zyvibe.co</a>
-            <a href="mailto:support@zyvibe.co" className="transition hover:text-white">Support</a>
-            <a href="mailto:press@zyvibe.co" className="transition hover:text-white">Press</a>
-            <a href={BLOG_URL} className="inline-flex items-center gap-1.5 transition hover:text-white">Playbooks <ExternalLink className="h-3.5 w-3.5" /></a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

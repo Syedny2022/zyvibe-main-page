@@ -1,7 +1,7 @@
 /**
  * Cloudflare Pages Function — POST /api/lead
  *
- * Accepts: { name: string, email: string, source_page?: string }
+ * Accepts: { name?: string, email: string, source_page?: string }
  * Inserts a row into the D1 `leads` table.
  * Binding: ZYVIBE_LEADS  (see wrangler.toml)
  */
@@ -41,9 +41,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const source_page =
     typeof body.source_page === 'string' ? body.source_page.trim().slice(0, 64) : 'hero';
 
-  // Validate
-  if (!name || name.length < 2) {
-    return json({ success: false, error: 'Name is required (min 2 chars)' }, 422);
+  // Validate (name is optional so email-only forms such as the newsletter can use this endpoint)
+  if (name && name.length < 2) {
+    return json({ success: false, error: 'Name must be at least 2 characters' }, 422);
   }
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email || !emailRe.test(email)) {

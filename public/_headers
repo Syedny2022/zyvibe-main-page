@@ -1,0 +1,7 @@
+/preview/*
+  X-Robots-Tag: noindex, nofollow
+/thanks
+  X-Robots-Tag: noindex, nofollow
+/api/*
+  X-Robots-Tag: noindex
+  Cache-Control: no-store

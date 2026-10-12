@@ -1,9 +1,17 @@
-# Cloudflare Pages project configuration
-# Bind the D1 database so Pages Functions can insert leads.
-# Run `wrangler d1 execute zyvibe_leads --file=./schema.sql` once to create the table.
-
+# Cloudflare Pages configuration for zyvibe.com.
+# `name` must stay "zyvibe-landing-page": it is the Cloudflare Pages project name (fixed at creation),
+# even though the GitHub repository is now called zyvibe-main-page.
 name = "zyvibe-landing-page"
 compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[vars]
+FROM_EMAIL = "ZYVIBE <hello@mail.zyvibe.com>"
+REPLY_TO_EMAIL = "contact@zyvibe.com"
+WEBSITE_URL = "https://zyvibe.com"
+
+# Secrets (set in Cloudflare Pages > Settings > Variables and Secrets, never committed):
+#   RESEND_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 [[d1_databases]]
 binding = "ZYVIBE_LEADS"

@@ -1,0 +1,94 @@
+      <section class="pt-16 pb-24 md:pt-24">
+        <div class="container grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+          <div>
+            <p class="eyebrow">Website Sprint · $1,999 one-time</p>
+            <h1 class="mt-6 !text-5xl md:!text-6xl">Tell us what you're building.</h1>
+            <p class="lead mt-6">Share a few details about your business. Within 24 hours you'll receive a private link to a custom website preview. No payment is required to see it.</p>
+            <ul class="check-list mt-10 space-y-4">
+              <li>Custom website, built in two weeks</li>
+              <li>Two revision rounds included</li>
+              <li>Full refund before kickoff</li>
+              <li>Pay only if you decide to go ahead</li>
+            </ul>
+            <p class="muted mt-10 text-sm">Prefer email? Write to <a class="underline underline-offset-4" href="mailto:{{contactEmail}}">{{contactEmail}}</a>.</p>
+          </div>
+
+          <div class="card !p-6 md:!p-10">
+            <form id="sprint-form" novalidate>
+              <div class="flex items-center gap-2" aria-hidden="true">
+                <span class="step-dot active" data-step-dot="1"></span>
+                <span class="step-dot" data-step-dot="2"></span>
+              </div>
+              <p class="muted mt-3 text-sm" data-step-label>Step 1 of 2 · About your business</p>
+
+              <div class="hp-field" aria-hidden="true">
+                <label for="company_website">Leave this field empty</label>
+                <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <fieldset class="mt-8 space-y-6" data-step="1">
+                <legend class="sr-only">About your business</legend>
+                <div class="grid gap-6 sm:grid-cols-2">
+                  <div class="field">
+                    <label for="name">Full name <span class="req">*</span></label>
+                    <input class="input" id="name" name="name" type="text" autocomplete="name" maxlength="100" required />
+                  </div>
+                  <div class="field">
+                    <label for="email">Email <span class="req">*</span></label>
+                    <input class="input" id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
+                  </div>
+                </div>
+                <div class="grid gap-6 sm:grid-cols-2">
+                  <div class="field">
+                    <label for="businessName">Business name <span class="req">*</span></label>
+                    <input class="input" id="businessName" name="businessName" type="text" autocomplete="organization" maxlength="120" required />
+                  </div>
+                  <div class="field">
+                    <label for="industry">Industry <span class="req">*</span></label>
+                    <input class="input" id="industry" name="industry" type="text" maxlength="100" placeholder="e.g. Plumbing, Consulting, Fitness" required />
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="description">Describe your business <span class="req">*</span></label>
+                  <textarea class="input" id="description" name="description" maxlength="2000" placeholder="What you do, who you serve and what makes you different." required></textarea>
+                </div>
+                <div class="field">
+                  <label for="requirements">What do you need? <span class="req">*</span></label>
+                  <textarea class="input" id="requirements" name="requirements" maxlength="2000" placeholder="New website, redesign, pages you have in mind, anything important to you." required></textarea>
+                </div>
+                <button class="btn btn-primary w-full sm:w-auto" type="button" data-next>Continue</button>
+              </fieldset>
+
+              <fieldset class="mt-8 space-y-6" data-step="2" hidden>
+                <legend class="sr-only">Optional details</legend>
+                <p class="text-ink font-medium">A few optional details. Skip any you like.</p>
+                <div class="grid gap-6 sm:grid-cols-2">
+                  <div class="field">
+                    <label for="phone">Phone</label>
+                    <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" />
+                  </div>
+                  <div class="field">
+                    <label for="website">Current website</label>
+                    <input class="input" id="website" name="website" type="text" inputmode="url" autocomplete="url" maxlength="300" placeholder="yourbusiness.com" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="targetCustomers">Target customers</label>
+                  <textarea class="input" id="targetCustomers" name="targetCustomers" maxlength="1000" placeholder="Who do you want the website to reach?"></textarea>
+                </div>
+                <div class="field">
+                  <label for="notes">Additional notes</label>
+                  <textarea class="input" id="notes" name="notes" maxlength="2000" placeholder="Timeline, examples you like, anything else."></textarea>
+                </div>
+                <p class="form-alert" role="alert" data-form-error hidden></p>
+                <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center">
+                  <button class="btn btn-secondary" type="button" data-back>Back</button>
+                  <button class="btn btn-primary" type="submit" data-submit>Send my request</button>
+                </div>
+                <p class="muted text-sm">No payment now. We'll email you a confirmation right away.</p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </section>
+      <script src="/assets/js/form.js" defer></script>

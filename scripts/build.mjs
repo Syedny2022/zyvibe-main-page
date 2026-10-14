@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const SITE = 'https://zyvibe.com';
-const CONTACT_EMAIL = 'contact@zyvibe.com';
+const CONTACT_EMAIL = 'hello@mail.zyvibe.com';
 const read = (path) => readFileSync(join(root, path), 'utf8');
 
 const organization = {
@@ -93,6 +93,15 @@ const pages = [
     faqSchema: true,
   },
   {
+    src: 'work.html',
+    out: 'work.html',
+    path: '/work',
+    title: 'Selected Website Work | Zyvibe',
+    ogTitle: 'Selected Website Work | Zyvibe',
+    description: 'Browse websites built by Zyvibe during two-week Website Sprints.',
+    schema: [organization],
+  },
+  {
     src: 'thank-you.html',
     out: 'thank-you.html',
     path: '/thank-you',
@@ -168,16 +177,7 @@ for (const page of pages) {
     robots: page.noindex ? 'noindex, nofollow' : 'index, follow',
     jsonLd: safeJson({ '@context': 'https://schema.org', '@graph': graph }),
   });
-  const html = `<!doctype html>
-<html lang="en">
-  <head>
-${headHtml}  </head>
-  <body data-page="${page.path}">
-${header}    <main id="main">
-${fill(body, { contactEmail: CONTACT_EMAIL })}    </main>
-${fill(footer, { contactEmail: CONTACT_EMAIL, year })}  </body>
-</html>
-`;
+  const html = `<!doctype html>\n<html lang="en">\n  <head>\n${headHtml}  </head>\n  <body data-page="${page.path}">\n${header}    <main id="main">\n${fill(body, { contactEmail: CONTACT_EMAIL })}    </main>\n${fill(footer, { contactEmail: CONTACT_EMAIL, year })}  </body>\n</html>\n`;
   const outPath = join(dist, page.out);
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, html);

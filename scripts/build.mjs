@@ -177,7 +177,16 @@ for (const page of pages) {
     robots: page.noindex ? 'noindex, nofollow' : 'index, follow',
     jsonLd: safeJson({ '@context': 'https://schema.org', '@graph': graph }),
   });
-  const html = `<!doctype html>\n<html lang="en">\n  <head>\n${headHtml}  </head>\n  <body data-page="${page.path}">\n${header}    <main id="main">\n${fill(body, { contactEmail: CONTACT_EMAIL })}    </main>\n${fill(footer, { contactEmail: CONTACT_EMAIL, year })}  </body>\n</html>\n`;
+  const html = `<!doctype html>
+<html lang="en">
+  <head>
+${headHtml}  </head>
+  <body data-page="${page.path}">
+${header}    <main id="main">
+${fill(body, { contactEmail: CONTACT_EMAIL })}    </main>
+${fill(footer, { contactEmail: CONTACT_EMAIL, year })}  </body>
+</html>
+`;
   const outPath = join(dist, page.out);
   mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, html);

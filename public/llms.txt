@@ -1,0 +1,20 @@
+# Zyvibe
+
+> Zyvibe is a website design and front-end development studio. It designs and builds high-end websites, landing pages and product front-ends for businesses.
+
+## How it works
+1. Book a free spot at https://zyvibe.com/#book by answering five questions (name, email, company, what you are building, existing website or projects).
+2. Within 24 hours, Zyvibe emails a private link to a working sample landing page built for that business.
+3. To launch, a one-time setup fee of $1,999 USD finishes the site and puts it live on the client's domain. A $499 USD per month growth plan starts the month after launch.
+
+## Services
+- Landing pages
+- Marketing websites
+- Product and SaaS front-ends
+- Website redesigns
+- SEO foundations (metadata, structured data, sitemaps)
+- Ongoing growth: new pages, campaign landing pages, design updates, performance care
+
+## Contact
+- General: hello@zyvibe.co
+- Support: support@zyvibe.co

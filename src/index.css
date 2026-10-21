@@ -1,48 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-brand-purple: #7c3aed;
-  --color-brand-indigo: #4f46e5;
-  --color-bg-main: #030014;
-  --color-slate-400: #94a3b8;
-}
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --color-ink: #050817;
+  --color-navy-950: #070B1D;
+  --color-navy-900: #0A1128;
+  --color-navy-800: #0F1736;
+  --color-navy-700: #172150;
+  --color-line: #1D2856;
+  --color-line-strong: #2C3A73;
+  --color-body: #A7B1CE;
+  --color-muted: #7A86AB;
+  --color-accent: #7C3AED;
+  --color-accent-strong: #6D28D9;
+  --color-accent-soft: #B69CFB;
+  --color-danger: #FCA5A5;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both;
 
-@layer base {
-  body {
-    @apply bg-bg-main text-slate-400 antialiased selection:bg-brand-purple/30;
-    font-family: var(--font-sans);
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes rise {
+    from { transform: translateY(14px); }
+    to { transform: translateY(0); }
   }
 }
 
-.bg-grid-premium {
-  background-image: 
-    linear-gradient(to right, rgba(128, 128, 128, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(128, 128, 128, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-navy-900 text-body antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3 {
+    @apply text-white;
+    text-wrap: balance;
+  }
+  ::selection {
+    @apply bg-accent/50 text-white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-soft);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  }
 }
 
-.light-leak-left {
-  background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.15), transparent 50%);
-}
-
-.light-leak-right {
-  background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.15), transparent 50%);
-}
-
-.bento-card {
-  @apply bg-white/[0.02] backdrop-blur-md border border-white/10 border-t-white/20 rounded-xl overflow-hidden transition-all duration-300;
-}
-
-.btn-premium {
-  @apply px-6 py-2.5 bg-brand-purple text-white font-semibold rounded-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)];
-}
-
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-purple to-brand-indigo;
-}
-
-.tracking-tightest {
-  letter-spacing: -0.05em;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-10;
+  }
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-accent-soft;
+  }
+  .display {
+    @apply font-bold tracking-[-0.04em] text-white;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line-strong px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-accent-soft;
+  }
+  .field {
+    @apply w-full border-0 border-b border-line-strong bg-transparent px-0 py-3 text-base text-white placeholder:text-muted/70 transition-colors focus:border-accent-soft focus:outline-none focus:ring-0;
+  }
+  .field[aria-invalid="true"] {
+    @apply border-danger;
+  }
+  .grain {
+    background-image:
+      radial-gradient(60rem 40rem at 85% -10%, rgb(124 58 237 / 0.22), transparent 60%),
+      radial-gradient(40rem 30rem at -10% 110%, rgb(79 70 229 / 0.14), transparent 60%);
+  }
+  .rule-grid {
+    background-image: linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: calc(100% / 12) 100%;
+  }
 }

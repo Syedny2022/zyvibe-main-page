@@ -1,20 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# zyvibe.com
 
-# Run and deploy your AI Studio app
+Source for the Zyvibe website: high-end website design and development, with a free sample site within 24 hours of booking.
 
-This contains everything you need to run your app locally.
+## Run locally
+1. `npm install`
+2. `npm run dev`
 
-View your app in AI Studio: https://ai.studio/apps/e820e252-3f5a-4fad-88f6-3f5ef689baf5
+To test the booking endpoint locally, run `npm run build` then `npx wrangler pages dev dist` with a `.dev.vars` file (see `.env.example`).
 
-## Run Locally
+## Deploy
+Cloudflare Pages builds with `npm run build` and serves `dist/`.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The `bookings` table must exist once in D1:
+`npx wrangler d1 execute zyvibe_leads --remote --file=./migrations/0001_bookings.sql`

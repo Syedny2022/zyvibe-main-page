@@ -3,12 +3,15 @@ import { normalizeBooking, validateBooking, type BookingInput } from '../../src/
 interface Env {
   ZYVIBE_LEADS: D1Database;
   LEAD_WEBHOOK_URL?: string;
+  TELEGRAM_BOT_TOKEN?: string;
+  TELEGRAM_CHAT_ID?: string;
   RESEND_API_KEY?: string;
   EMAIL_FROM?: string;
   NOTIFY_EMAIL?: string;
 }
 
 const MIN_FILL_MS = 2500;
+const DEFAULT_FROM = 'Zyvibe <studio@mail.zyvibe.com>';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': 'https://zyvibe.com',
@@ -27,13 +30,27 @@ function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 }
 
-async function notifyChat(url: string, b: BookingInput): Promise<void> {
-  const text = [
+function alertText(b: BookingInput): string {
+  return [
     `New Zyvibe booking: ${b.name} (${b.company})`,
     `Email: ${b.email}`,
     `Building: ${b.building}`,
     `Existing: ${b.existing}`,
+    'Sample site due within 24 hours.',
   ].join('\n');
+}
+
+async function notifyTelegram(token: string, chatId: string, b: BookingInput): Promise<void> {
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: chatId, text: alertText(b), disable_web_page_preview: true }),
+  });
+  if (!res.ok) throw new Error(`telegram ${res.status}`);
+}
+
+async function notifyChat(url: string, b: BookingInput): Promise<void> {
+  const text = alertText(b);
   // Slack reads `text`, Discord reads `content`; each ignores the other.
   const res = await fetch(url, {
     method: 'POST',
@@ -47,7 +64,7 @@ async function sendEmail(env: Env, to: string, subject: string, html: string, re
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env.EMAIL_FROM, to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+    body: JSON.stringify({ from: env.EMAIL_FROM || DEFAULT_FROM, to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
   });
   if (!res.ok) throw new Error(`resend ${res.status}: ${await res.text()}`);
 }
@@ -103,8 +120,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
 
   const tasks: Promise<void>[] = [];
   if (env.LEAD_WEBHOOK_URL) tasks.push(notifyChat(env.LEAD_WEBHOOK_URL, booking));
-  if (env.RESEND_API_KEY && env.EMAIL_FROM) {
-    tasks.push(sendEmail(env, booking.email, 'Your free Zyvibe spot is booked', confirmationHtml(booking)));
+  if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) tasks.push(notifyTelegram(env.TELEGRAM_BOT_TOKEN, env.TELEGRAM_CHAT_ID, booking));
+  if (env.RESEND_API_KEY) {
+    tasks.push(sendEmail(env, booking.email, 'Your free Zyvibe spot is booked', confirmationHtml(booking), env.NOTIFY_EMAIL));
     if (env.NOTIFY_EMAIL) {
       tasks.push(sendEmail(env, env.NOTIFY_EMAIL, `New booking: ${booking.company}`, ownerHtml(booking), booking.email));
     }

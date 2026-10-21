@@ -2,148 +2,134 @@ export const CTA_LABEL = 'Book Spot Free';
 export const CTA_HREF = '#book';
 
 export const nav = [
+  { label: 'Process', href: '#process' },
   { label: 'Services', href: '#services' },
-  { label: 'How it works', href: '#process' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'FAQ', href: '#faq' },
 ];
 
 export const hero = {
   eyebrow: 'Website design & development studio',
-  title: 'High-end websites, designed and built for you.',
+  titleLines: ['Build your dream.', 'Give your vibe a voice.'],
   lead:
-    'Book a free spot and get a working sample landing page for your business within 24 hours. Like where it is going? We launch it, then keep growing it with you every month.',
-  note: 'No payment to book. One sample site per business.',
+    'High-end websites and landing pages, designed and built for your business. Book a free spot and we send you a working sample site within 24 hours. You decide what happens next.',
+  note: 'Free. No payment details. One sample per business.',
+};
+
+export const marquee = [
+  'Landing pages',
+  'Marketing websites',
+  'SaaS front-ends',
+  'Redesigns',
+  'Launch pages',
+  'Portfolio sites',
+  'Campaign pages',
+];
+
+export const process = {
+  eyebrow: 'Process',
+  title: 'We build first. You decide after.',
+  body: 'Most studios ask for a deposit before you see anything. We do the opposite: you get a real, working page for your business before any conversation about money.',
+  steps: [
+    {
+      mark: 'Hour 0',
+      title: 'Book your spot',
+      body: 'Five short questions about your business and what you want to build. About two minutes.',
+    },
+    {
+      mark: 'Within 24 hours',
+      title: 'Your sample site arrives',
+      body: 'A working landing page designed for your business, sent to your inbox as a private link.',
+    },
+    {
+      mark: 'When you are ready',
+      title: 'Launch and grow',
+      body: 'Like where it is going? We finish it, launch it on your domain, and keep improving it every month.',
+    },
+  ],
 };
 
 export const services = [
   {
     title: 'Landing pages',
-    body: 'Single-purpose pages built to turn visitors into enquiries, sign-ups or sales.',
+    body: 'Single-purpose pages built around one action: an enquiry, a sign-up, a booking or a sale.',
   },
   {
     title: 'Marketing websites',
-    body: 'Multi-page company sites with clear structure, fast load times and room to grow.',
+    body: 'Multi-page company sites with a clear story, fast load times and room to add pages as you grow.',
   },
   {
-    title: 'Product and SaaS front-ends',
-    body: 'Polished interfaces for apps, dashboards and digital products, ready for your developers or ours.',
+    title: 'SaaS and product front-ends',
+    body: 'Marketing sites and interfaces for software products, written in clean, modern front-end code.',
   },
   {
     title: 'Redesigns',
-    body: 'Your existing site rebuilt with a sharper look, cleaner copy structure and modern code.',
+    body: 'Your current site rebuilt with a sharper look, a clearer structure and faster pages.',
   },
   {
-    title: 'SEO foundations',
-    body: 'Semantic markup, metadata, structured data and sitemaps set up from the first build.',
-  },
-  {
-    title: 'Ongoing growth',
-    body: 'New pages, campaign landing pages, design updates and performance care every month.',
-  },
-];
-
-export const steps = [
-  {
-    title: 'Book your free spot',
-    body: 'Answer five short questions about your business and what you want to build. It takes about two minutes.',
-  },
-  {
-    title: 'Get your sample site in 24 hours',
-    body: 'We design a working sample landing page for you and email you a private link to review it.',
-  },
-  {
-    title: 'Launch and grow',
-    body: 'If you want to go further, a one-time setup takes it live on your domain. The monthly growth plan starts the following month.',
-  },
-];
-
-export const benefits = [
-  {
-    title: 'See it before you pay',
-    body: 'You review a real, working page first. You decide whether to continue after seeing it.',
-  },
-  {
-    title: 'Designed from scratch',
-    body: 'No recycled templates. Every layout is made for your business and your customers.',
-  },
-  {
-    title: 'Built to be found',
-    body: 'Clean code, fast pages and search-ready structure for Google, Bing and AI assistants.',
-  },
-  {
-    title: 'One clear price',
-    body: 'A fixed setup fee and a flat monthly plan. No hourly billing and no surprise invoices.',
+    title: 'Search-ready from day one',
+    body: 'Semantic markup, metadata, structured data and sitemaps, so Google, Bing and AI assistants can read your site.',
   },
 ];
 
 export const work = [
-  { label: 'Case study coming soon', kind: 'Landing page' },
-  { label: 'Case study coming soon', kind: 'Marketing website' },
-  { label: 'Case study coming soon', kind: 'Product front-end' },
+  { kind: 'Landing page', status: 'Case study in progress' },
+  { kind: 'Marketing website', status: 'Case study in progress' },
+  { kind: 'Product front-end', status: 'Case study in progress' },
 ];
 
 export const pricing = {
-  setup: {
-    name: 'Launch setup',
-    price: '$1,999',
-    cadence: 'one-time',
-    items: [
-      'Your sample site refined into a finished website',
-      'Launch on your own domain',
-      'Mobile, tablet and desktop layouts',
-      'SEO metadata, structured data and sitemap',
-      'Analytics and lead form connected',
-    ],
-  },
-  growth: {
-    name: 'Growth plan',
-    price: '$499',
-    cadence: 'per month, starting the month after launch',
-    items: [
-      'New pages and campaign landing pages',
-      'Design and copy updates',
-      'Speed, SEO and accessibility care',
-      'Hosting and technical upkeep handled',
-      'Priority email support',
-    ],
-  },
-  footnote: 'Booking your spot and receiving the sample site is free.',
+  eyebrow: 'Pricing',
+  title: 'One clear price. Nothing hidden.',
+  body: 'You only pay once you have seen your sample site and decided to launch.',
+  lines: [
+    { when: 'Today', what: 'Your sample site', price: '$0', note: 'Free, no payment details' },
+    { when: 'At launch', what: 'Launch setup', price: '$1,999', note: 'One-time' },
+    { when: 'From the next month', what: 'Growth plan', price: '$499', note: 'Per month' },
+  ],
+  setupIncludes: [
+    'Your sample refined into a finished website',
+    'Launched on your own domain',
+    'Designed for phone, tablet and desktop',
+    'SEO metadata, structured data and sitemap',
+    'Booking or contact form connected',
+  ],
+  growthIncludes: [
+    'New pages and campaign landing pages',
+    'Design and content updates',
+    'Ongoing speed and SEO improvements',
+    'Continued development as your business grows',
+  ],
 };
 
 export const faqs = [
   {
     q: 'Is the sample site really free?',
-    a: 'Yes. Booking a spot and receiving your sample landing page costs nothing and requires no payment details.',
+    a: 'Yes. Booking a spot and receiving your sample landing page costs nothing and needs no payment details.',
   },
   {
     q: 'How fast will I get my sample site?',
-    a: 'Within 24 hours of booking, we email you a private link to a working sample landing page built for your business.',
+    a: 'Within 24 hours of booking, you receive an email with a private link to a working sample landing page built for your business.',
   },
   {
     q: 'What does it cost to launch?',
-    a: 'A one-time setup fee of $1,999 turns the sample into your finished, live website. The growth plan is $499 per month and starts the month after launch.',
+    a: 'A one-time setup fee of $1,999 turns your sample into a finished, live website. The growth plan is $499 per month and starts the month after launch.',
   },
   {
-    q: 'What is included in the $499 growth plan?',
-    a: 'Ongoing design work such as new pages, campaign landing pages and updates, plus speed, SEO and accessibility care and technical upkeep.',
+    q: 'What is the growth plan for?',
+    a: 'Ongoing design and development after launch: new pages and landing pages, design and content updates, and continued speed and SEO improvements.',
   },
   {
-    q: 'What do I need to provide?',
-    a: 'Your name, email, company, what you are building, and your current website or project links. We can start from that alone.',
+    q: 'What do I need to send you?',
+    a: 'Your name, email, company, what you are building, and your current website or project links. That is enough for us to start.',
   },
   {
-    q: 'Do I own my website?',
-    a: 'Yes. The design and code we build for your launched site belong to you.',
+    q: 'What kind of businesses do you work with?',
+    a: 'Founders, startups and established businesses that want a website that looks premium and turns visitors into enquiries.',
   },
 ];
 
 export const finalCta = {
   title: 'Your sample site could be in your inbox tomorrow.',
-  body: 'Five questions. No payment. A real page built for your business within 24 hours.',
-};
-
-export const contact = {
-  general: 'hello@zyvibe.co',
-  support: 'support@zyvibe.co',
+  body: 'Five questions. No payment. A real page designed for your business within 24 hours.',
 };

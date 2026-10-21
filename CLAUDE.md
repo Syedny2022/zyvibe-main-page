@@ -15,4 +15,5 @@ Marketing site for zyvibe.com: React 19 + Vite + Tailwind v4, deployed on Cloudf
 ## Content rules
 - All page copy lives in `src/content/site.ts`; the FAQ there also feeds the FAQPage structured data.
 - Do not invent clients, testimonials, statistics or results.
+- Never publish or send from root-domain addresses (no hello@zyvibe.com). Transactional email sends from `mail.zyvibe.com` via Resend.
 - Keep the canonical URL, Google site verification, GTM `GT-NNXKN8VR`, GA4 `G-N0FVGWQKJN` and the Cloudflare beacon in `index.html`.

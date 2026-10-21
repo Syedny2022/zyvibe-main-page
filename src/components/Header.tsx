@@ -8,8 +8,8 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-navy-900/90 text-white backdrop-blur">
-      <div className="container-x flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-40 border-b border-line/60 bg-navy-900/80 text-white backdrop-blur-md">
+      <div className="container-x flex h-[72px] items-center justify-between">
         <a href="/" className="text-xl font-bold tracking-tight">zyvibe</a>
 
         <nav aria-label="Main" className="hidden items-center gap-8 text-sm text-body md:flex">

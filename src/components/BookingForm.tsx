@@ -75,7 +75,7 @@ export default function BookingForm() {
 
   if (status === 'success') {
     return (
-      <div role="status" className="flex flex-col items-start gap-4 rounded-lg border border-line bg-navy-800 p-8">
+      <div role="status" className="flex flex-col items-start gap-4 rounded-2xl border border-line-strong bg-navy-950/85 p-10">
         <CheckCircle2 className="h-9 w-9 text-accent-soft" strokeWidth={1.5} aria-hidden="true" />
         <h3 className="text-xl font-semibold">Your spot is booked.</h3>
         <p className="max-w-md leading-relaxed">
@@ -86,7 +86,11 @@ export default function BookingForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="relative grid gap-5 rounded-lg border border-line bg-navy-800 p-6 md:p-8" aria-describedby="book-status">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="relative grid gap-7 rounded-2xl border border-line-strong bg-navy-950/85 p-7 shadow-2xl shadow-black/40 backdrop-blur md:p-10" aria-describedby="book-status">
+      <div className="flex items-center justify-between border-b border-line pb-5">
+        <p className="label">Project brief</p>
+        <p className="font-mono text-[11px] text-muted">5 questions · 2 min</p>
+      </div>
       {FIELDS.map((f) => {
         const id = `book-${f.key}`;
         const err = touched[f.key] ? errors[f.key] : undefined;
@@ -104,10 +108,10 @@ export default function BookingForm() {
           className: 'field',
         };
         return (
-          <div key={f.key} className="grid gap-2">
-            <label htmlFor={id} className="text-sm font-medium text-white">{f.label}</label>
+          <div key={f.key} className="grid gap-1">
+            <label htmlFor={id} className="text-sm font-semibold text-white">{f.label}</label>
             {f.multiline ? (
-              <textarea {...common} rows={4} onChange={(e) => update(f.key, e.target.value)} />
+              <textarea {...common} rows={3} onChange={(e) => update(f.key, e.target.value)} />
             ) : (
               <input {...common} type={f.type ?? 'text'} autoComplete={f.autoComplete} onChange={(e) => update(f.key, e.target.value)} />
             )}
@@ -121,7 +125,7 @@ export default function BookingForm() {
         <input id="website_url" name="website_url" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
 
-      <button type="submit" className="btn-primary w-full py-3.5" disabled={status === 'submitting'}>
+      <button type="submit" className="btn-primary mt-2 w-full py-4" disabled={status === 'submitting'}>
         {status === 'submitting' ? (<><Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> Booking your spot…</>) : CTA_LABEL}
       </button>
 

@@ -1,0 +1,16 @@
+{
+  "slug": "zyvibe-command-center",
+  "name": "Zyvibe Command Center",
+  "tagline": "Personal local agent dashboard coordinating daily tasks and dev workflows",
+  "description": "An open, modular personal command center built with Claude Code and Next.js that runs on a local desktop to orchestrate daily file sorting, RSS feeds, and automated pull requests.",
+  "builderName": "Syed M.",
+  "builderHandle": "@Syedny2022",
+  "builderGithub": "https://github.com/Syedny2022",
+  "builderWebsite": "https://zyvibe.me",
+  "agentStack": ["Claude Code", "Next.js", "Tailwind CSS"],
+  "websiteUrl": "https://zyvibe.com",
+  "category": "Developer Tools",
+  "metrics": "Used daily to coordinate 5 personal projects",
+  "featured": true,
+  "createdAt": "2026-11-19T18:00:00Z"
+}

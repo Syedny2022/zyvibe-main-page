@@ -1,0 +1,18 @@
+{
+  "slug": "autonomous-devops-solo",
+  "name": "CloudOps Solo Studio",
+  "title": "Remote Senior DevOps & Cloud Infrastructure Engineer",
+  "oneLiner": "Zero-downtime CI/CD pipelines, Docker container orchestration, and automated cloud cost reduction for remote startups.",
+  "description": "Senior solo infrastructure engineer with 10+ years experience building bulletproof cloud environments. Specializes in automating deployments, setting up self-healing test pipelines with coding agents, and auditing AWS/Cloudflare bills to slash unnecessary spending.",
+  "providerType": "Solo Developer",
+  "founderName": "David Vance",
+  "founderHandle": "@dvance_ops",
+  "location": "Remote / Worldwide (EST)",
+  "rateOrPricing": "$125/hr or $3,500/mo retainer",
+  "skillsAndStack": ["Cloudflare Workers", "AWS", "Docker", "Terraform", "GitHub Actions", "Next.js"],
+  "portfolioOrProofUrl": "https://seo.zyvibe.com/services/autonomous-devops-solo",
+  "contactEmailOrUrl": "https://seo.zyvibe.com/services/autonomous-devops-solo#contact",
+  "verified": true,
+  "active": true,
+  "createdAt": "2026-11-19T10:00:00Z"
+}

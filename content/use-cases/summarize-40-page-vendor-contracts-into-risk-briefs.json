@@ -1,0 +1,34 @@
+{
+  "slug": "summarize-40-page-vendor-contracts-into-risk-briefs",
+  "title": "Turn 40-Page SaaS Vendor Contracts into a 1-Page Risk Brief",
+  "oneLiner": "Instantly highlight auto-renewal traps, indemnity caps, data privacy obligations, and unilateral price increases in commercial agreements.",
+  "date": "2026-11-18",
+  "discoveredToday": true,
+  "category": "Legal & Contracts",
+  "categorySlug": "legal",
+  "role": "Founders & Operations",
+  "tool": "Claude",
+  "toolSlug": "claude",
+  "difficulty": "2 mins",
+  "problem": "Small businesses sign complex software vendor contracts without legal review because legal counsel costs $500/hour. Sneaky auto-renewal clauses (requiring 90 days written notice) and hidden price bump clauses cost thousands annually.",
+  "workflow": [
+    "Uploaded the vendor's Master Services Agreement (MSA) and Service Level Agreement (SLA) PDF.",
+    "Prompted Claude with a structured risk scorecard focused on commercial gotchas.",
+    "Used the generated negotiation counter-points to remove the automatic 10% annual price escalation before signing."
+  ],
+  "prompt": "You are a commercial contract counsel for a growing startup. Review the attached vendor contract.\n\nProduce a 1-Page Executive Risk Summary with the following sections:\n1. Commercial Summary: Term length, total fees, payment schedule, and price increase caps.\n2. Gotcha Traps: Check specifically for:\n   - Auto-renewal windows (e.g., must notify 60 or 90 days prior).\n   - Unilateral right to change terms or increase fees.\n   - Early termination penalties or fees.\n3. Liability & Indemnity: What is the vendor's liability cap? Is our liability uncapped?\n4. Data Ownership & Deletion: Can they train AI on our confidential data? How is data returned upon termination?\n5. Three Redline Suggestions: Provide exact clause replacements to push back on the riskiest terms.",
+  "promptPlaceholders": [],
+  "realityCheck": {
+    "firstTryMistake": "The agent overlooked an obscure hyperlinked terms-of-service document referenced in section 14 until the full text was pasted in.",
+    "manualCleanupTime": "5 minutes to read through the flagged redlines before emailing the vendor sales rep.",
+    "limitations": "This is commercial risk screening, not formal legal advice. High-stakes contracts ($50k+) should still be reviewed by an attorney."
+  },
+  "source": {
+    "platform": "X (Twitter)",
+    "author": "@startup_ops_exec",
+    "url": "https://x.com/startup_ops_exec/status/198421098234",
+    "verifiedDate": "2026-11-18"
+  },
+  "accountsCount": 7,
+  "votes": 58
+}

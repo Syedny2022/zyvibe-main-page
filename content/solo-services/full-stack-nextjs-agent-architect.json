@@ -1,0 +1,18 @@
+{
+  "slug": "full-stack-nextjs-agent-architect",
+  "name": "Syed M. Engineering",
+  "title": "Principal Full-Stack Next.js & Agent Directory Architect",
+  "oneLiner": "Architecting high-performance, file-based AI directories, AEO/GEO schemas, and Stripe monetization systems.",
+  "description": "Solo full-stack engineer building fast, database-free web applications and automated curation tools. Specializes in Next.js App Router, Tailwind CSS, Stripe checkout integration, Resend transactional email, and automated SEO/AEO search engine readiness.",
+  "providerType": "Solo Developer",
+  "founderName": "Syed M.",
+  "founderHandle": "@Syedny2022",
+  "location": "Remote / New York (EST)",
+  "rateOrPricing": "$4,500/complete turnkey project",
+  "skillsAndStack": ["Next.js 15", "TypeScript", "Tailwind CSS", "Cloudflare", "Stripe", "Resend"],
+  "portfolioOrProofUrl": "https://zyvibe.me",
+  "contactEmailOrUrl": "https://zyvibe.me",
+  "verified": true,
+  "active": true,
+  "createdAt": "2026-11-17T09:00:00Z"
+}

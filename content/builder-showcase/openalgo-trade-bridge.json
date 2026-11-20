@@ -1,0 +1,16 @@
+{
+  "slug": "openalgo-trade-bridge",
+  "name": "OpenAlgo Trade Bridge",
+  "tagline": "Connecting AI agents to local paper-trading brokers under strict risk rules",
+  "description": "A lightweight Python and TypeScript connector that exposes standard risk boundaries to autonomous agents, ensuring max drawdown stops and human-in-the-loop trade confirmation.",
+  "builderName": "Alex Chen",
+  "builderHandle": "@alex_algo",
+  "builderGithub": "https://github.com/Syedny2022/openalgo-trade-bridge",
+  "builderWebsite": "https://zyvibe.com",
+  "agentStack": ["OpenClaw", "Python", "FastAPI"],
+  "websiteUrl": "https://zyvibe.com/showcase/openalgo-trade-bridge",
+  "category": "Trading & Finance",
+  "metrics": "Over 2,400 simulated orders processed with 0 unhandled exceptions",
+  "featured": true,
+  "createdAt": "2026-11-18T14:30:00Z"
+}

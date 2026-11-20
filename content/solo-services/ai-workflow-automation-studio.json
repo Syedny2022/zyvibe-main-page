@@ -1,0 +1,18 @@
+{
+  "slug": "ai-workflow-automation-studio",
+  "name": "FlowCraft Solo Agency",
+  "title": "Bespoke AI Agent Workflows & Automation Architecture",
+  "oneLiner": "Turn messy operational tasks into reliable, zero-maintenance background agent routines without expensive software subscriptions.",
+  "description": "Solo automation studio run by a former Stripe engineer. Designs bespoke agent workflows that connect customer support, invoice processing, CRM updates, and team notifications into autonomous loops that run safely with human-in-the-loop approvals.",
+  "providerType": "Solo Agency",
+  "founderName": "Maya Lin",
+  "founderHandle": "@mayaflows",
+  "location": "Remote / Worldwide (PST)",
+  "rateOrPricing": "$2,800/fixed project (2-week turnaround)",
+  "skillsAndStack": ["Claude Code", "Next.js", "Python", "Stripe API", "Resend", "Webhooks"],
+  "portfolioOrProofUrl": "https://seo.zyvibe.com/services/ai-workflow-automation-studio",
+  "contactEmailOrUrl": "https://seo.zyvibe.com/services/ai-workflow-automation-studio#contact",
+  "verified": true,
+  "active": true,
+  "createdAt": "2026-11-18T16:00:00Z"
+}

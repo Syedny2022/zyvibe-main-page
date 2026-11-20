@@ -1,0 +1,36 @@
+{
+  "slug": "auto-match-invoices-to-bank-statements",
+  "title": "Auto-Match 40 Invoices to Bank Statements in Excel",
+  "oneLiner": "Extract dates, vendors, and line totals from invoice photos directly into formatted spreadsheet rows with zero manual typing.",
+  "date": "2026-11-19",
+  "discoveredToday": true,
+  "category": "Money & Finance",
+  "categorySlug": "money",
+  "role": "Operations & Finance",
+  "tool": "Claude Code",
+  "toolSlug": "claude-code",
+  "difficulty": "5 mins",
+  "problem": "Every Sunday night, the founder spent over 90 minutes manually typing vendor names, invoice numbers, tax amounts, and totals from PDF receipts and camera photos into an Excel ledger. Numbers were easily mistyped and duplicate entries were common.",
+  "workflow": [
+    "Created a dedicated folder called /receipts-inbox and dropped in 40 PDF and phone photo invoices.",
+    "Instructed the agent to read all files in the folder, extract key fields, and check totals against the credit card statement.",
+    "The agent flagged 2 suspicious double-billings and generated a clean receipts.csv ready for the accountant."
+  ],
+  "prompt": "You are a meticulous forensic bookkeeper. Examine all invoice and receipt files in the attached folder.\n\nExtract and format the output into a clean Markdown table with the following exact columns:\n- Date (YYYY-MM-DD)\n- Vendor Name\n- Invoice Number\n- Subtotal ($)\n- Tax Amount ($)\n- Total Amount ($)\n- Category (Software, Meals, Travel, Office)\n- Verification Status (Verified / Mismatch / Blurry)\n\nRules:\n1. If an invoice total does not match Subtotal + Tax, flag it in the Verification Status.\n2. Cross-reference vendor names against this list of past transactions: [PASTE YOUR RECENT BANK/CARD STATEMENT LINES HERE].\n3. Provide a one-paragraph summary of any unexpected recurring charges or duplicate vendor billings.",
+  "promptPlaceholders": [
+    "[PASTE YOUR RECENT BANK/CARD STATEMENT LINES HERE]"
+  ],
+  "realityCheck": {
+    "firstTryMistake": "The agent initially missed handwritten tip amounts on restaurant receipts until instructed to explicitly inspect margin notes.",
+    "manualCleanupTime": "About 3 minutes to verify 2 flagged blurry receipts against the physical paper copies.",
+    "limitations": "Free AI accounts can hit rate limits when uploading more than 5 images at a time. Process in batches of 10 for best performance."
+  },
+  "source": {
+    "platform": "Reddit",
+    "author": "u/operations_lead",
+    "url": "https://www.reddit.com/r/ClaudeAI/comments/invoice_automation_workflow",
+    "verifiedDate": "2026-11-19"
+  },
+  "accountsCount": 3,
+  "votes": 34
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "ship-a-tested-change-with-a-terminal-agent",
+  "title": "Ship a Tested Change With a Terminal Agent",
+  "oneLiner": "Use a terminal coding agent to generate tests, run them, and fix the failure before you read the diff yourself.",
+  "audience": "Solo developers and technical founders who review their own pull requests.",
+  "intro": "A terminal agent is only useful when it can prove its change works. This playbook keeps the loop small: one file, one test command, one reviewable diff.",
+  "requirements": [
+    "A Git repository with a working test command",
+    "A terminal coding agent installed locally — Aider, Codex CLI, Claude Code, or Goose",
+    "An API key for the model provider you want to pay for"
+  ],
+  "sections": [
+    {
+      "heading": "Start with the test command",
+      "body": "Before you prompt anything, run the project's test command yourself and confirm it passes. An agent that starts from a red suite cannot tell you whether its change broke something or was already broken."
+    },
+    {
+      "heading": "Constrain the agent to one file and one outcome",
+      "body": "Name the file, the behavior, and the test command in the same prompt. Broad prompts like 'improve this codebase' produce wide diffs you cannot review. Aider's documentation describes exactly this pattern: add a file to context, request the change, review the commit."
+    },
+    {
+      "heading": "Read the test, not just the implementation",
+      "body": "The most common failure is a test that asserts what the implementation already does instead of what the requirement says. Compare the new test to the requirement before you compare the diff to the tests."
+    },
+    {
+      "heading": "Keep the commit reversible",
+      "body": "Ask the agent to commit its change as a single commit with a descriptive message. If the review goes badly, reverting one commit returns you to a known state."
+    }
+  ],
+  "checklist": [
+    "The test command passes before the agent starts.",
+    "The agent touched only the files you named.",
+    "The failing test fails for the right reason when you revert the fix.",
+    "The commit message explains why the change exists."
+  ],
+  "useCases": [
+    "codex-cli-automated-test-generation",
+    "aider-git-repo-refactoring",
+    "claude-code-spec-driven-development",
+    "goose-automated-code-review-workflow"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "amazon-q-developer-java-version-upgrade",
+  "title": "Automated Enterprise Code Transformation and Language Upgrades",
+  "oneLiner": "Amazon Q Developer's transformation agent analyzes legacy repositories, plans dependency and syntax upgrades (such as Java 8/11 to Java 17), builds the project, and fixes compilation errors.",
+  "goal": "code-and-repo-automation",
+  "agent": "amazon-q-developer",
+  "agentName": "Amazon Q Developer",
+  "harness": "ide-extension",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 32,
+  "whatItDoes": [
+    "Amazon Q Developer's transformation agent analyzes legacy repositories, plans dependency and syntax upgrades (such as Java 8/11 to Java 17), builds the project, and fixes compilation errors."
+  ],
+  "requirements": [
+    "AWS Builder ID or IAM Identity Center",
+    "VS Code/JetBrains plugin or CLI"
+  ],
+  "steps": [
+    "Open project in IDE with Amazon Q",
+    "Select `/transform` command",
+    "Choose target language version",
+    "Review transformation diff and build verification report."
+  ],
+  "configSnippet": "\"/transform Upgrade this Maven repository from Java 11 to Java 17 and update incompatible Spring Boot dependencies.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Primary transformation workflows focus on supported enterprise stacks (.NET, Java, mainframe)",
+    "AWS account setup required."
+  ],
+  "source": {
+    "title": "Amazon Q Developer — AWS AI Coding Assistant",
+    "url": "https://aws.amazon.com/q/developer/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

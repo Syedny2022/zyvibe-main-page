@@ -1,0 +1,42 @@
+{
+  "slug": "run-untrusted-agents-inside-a-sandbox",
+  "title": "Run Untrusted Agents Inside a Sandbox",
+  "oneLiner": "Give an agent file, shell, and browser access without giving it your laptop.",
+  "audience": "Builders running agents that execute generated code, browse logged-in sites, or touch client systems.",
+  "intro": "Every capability you grant an agent is a capability you have to contain. The containers in this playbook are the practical boundary between an experiment and an incident.",
+  "requirements": [
+    "Docker with enough memory to run a small VM or container image",
+    "A throwaway API key that is separate from your production credentials",
+    "A written scope for anything the agent is allowed to test"
+  ],
+  "sections": [
+    {
+      "heading": "Separate the agent host from the work host",
+      "body": "Agent Zero documents the basic pattern: the reasoning loop runs outside the container, while file and code execution happen inside it. Copy that split instead of letting the agent operate directly on your working machine."
+    },
+    {
+      "heading": "Scope credentials to the task",
+      "body": "Use a key that can only reach the systems named in the task. Security tooling such as PentAGI is only appropriate against targets you are authorized to test, with the range defined in writing before the first run."
+    },
+    {
+      "heading": "Assume the screenshot is the attack surface",
+      "body": "Computer-use agents read whatever is on screen. Keep unrelated windows and sessions closed in the sandbox image, and do not reuse a personal browser profile for agent runs."
+    },
+    {
+      "heading": "Collect a verifiable trace",
+      "body": "Configure the harness to keep step logs or screenshots. A trace is what lets you reconstruct what happened after an unexpected action, and it is the difference between a debuggable failure and an unexplained one."
+    }
+  ],
+  "checklist": [
+    "The agent cannot read the host filesystem outside its workspace.",
+    "Credentials in the sandbox are scoped and revocable.",
+    "Every authorized target is named in writing.",
+    "Step logs or screenshots are retained for review."
+  ],
+  "useCases": [
+    "agent-zero-docker-sandboxed-automation",
+    "pentagi-autonomous-penetration-testing",
+    "cua-docker-macos-linux-computer-use",
+    "swe-agent-repository-edit-and-test"
+  ]
+}

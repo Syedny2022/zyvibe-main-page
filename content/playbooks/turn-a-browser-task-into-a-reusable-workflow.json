@@ -1,0 +1,42 @@
+{
+  "slug": "turn-a-browser-task-into-a-reusable-workflow",
+  "title": "Turn a Browser Task Into a Reusable Workflow",
+  "oneLiner": "Move from a one-off 'click through the portal' prompt to a script you can run every week.",
+  "audience": "Operators who repeat work in portals that have no API.",
+  "intro": "Browser agents are expensive per step and inconsistent between runs. The durable version of the workflow keeps the deterministic parts in code and uses the model only where the page actually changes.",
+  "requirements": [
+    "A workflow you repeat on a schedule, not a one-time task",
+    "A test account or staging copy of the target system where possible",
+    "A browser automation harness with saved step output"
+  ],
+  "sections": [
+    {
+      "heading": "Record the happy path once",
+      "body": "Run the task with an agent and save the trace. Playwright's MCP server exposes the accessibility tree, so the recorded steps map to stable roles and labels rather than pixel coordinates."
+    },
+    {
+      "heading": "Replace every step that does not need a model",
+      "body": "Navigation, login, and file downloads belong in code. Stagehand is built for that hybrid: deterministic Playwright calls for the parts you know, model-driven actions only for the parts that move."
+    },
+    {
+      "heading": "Assert the outcome, not the clicks",
+      "body": "A run is successful when the file exists, the row count matches, or the confirmation number is present. Assertions on intermediate clicks break the week the vendor redesigns a button."
+    },
+    {
+      "heading": "Alert on the first failure, not the third",
+      "body": "Vision-based runs fail slowly. Notify on the first failed assertion with the step screenshot attached, so the fix starts from evidence."
+    }
+  ],
+  "checklist": [
+    "The recorded flow includes stable selectors or accessibility roles.",
+    "Only genuinely variable steps use model inference.",
+    "Success is asserted against the output artifact.",
+    "Failures produce a screenshot and step index."
+  ],
+  "useCases": [
+    "browser-use-deterministic-web-automation",
+    "stagehand-ai-browser-automation-sdk",
+    "playwright-mcp-deterministic-e2e-testing",
+    "skyvern-vision-llm-browser-workflows"
+  ]
+}

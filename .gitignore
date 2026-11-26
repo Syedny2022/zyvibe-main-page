@@ -18,8 +18,8 @@ dist/
 .DS_Store
 *.pem
 
-# Local env files
-.env*.local
+# Local env files and secrets
+.env*
 
 # Vercel
 .vercel
@@ -27,3 +27,7 @@ dist/
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local logs
+dev.log
+prod.log

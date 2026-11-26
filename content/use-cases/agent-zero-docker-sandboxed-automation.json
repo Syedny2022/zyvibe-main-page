@@ -1,0 +1,40 @@
+{
+  "slug": "agent-zero-docker-sandboxed-automation",
+  "title": "Sandboxed Autonomous Agent for Reasoning and Code Execution",
+  "oneLiner": "Agent Zero runs autonomous agents in Docker sandboxes, allowing them to reason, use tools, manipulate files, and execute code safely without compromising the host system.",
+  "goal": "workflow-orchestration",
+  "agent": "agent-zero",
+  "agentName": "Agent Zero",
+  "harness": "docker-sandbox",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 15,
+  "whatItDoes": [
+    "Agent Zero runs autonomous agents in Docker sandboxes, allowing them to reason, use tools, manipulate files, and execute code safely without compromising the host system."
+  ],
+  "requirements": [
+    "Docker",
+    "Python",
+    "Ollama or remote LLM API"
+  ],
+  "steps": [
+    "Clone Agent Zero repository",
+    "Start the Docker environment",
+    "Configure the LLM provider",
+    "Issue a task requiring file creation and execution."
+  ],
+  "configSnippet": "\"Create a Python script to scrape this URL, save the output to a JSON file, and verify the file contents.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Steeper learning curve for users unfamiliar with Docker",
+    "performance depends heavily on the chosen local or remote model's reasoning capabilities."
+  ],
+  "source": {
+    "title": "Agent Zero — Open Source Agentic Framework",
+    "url": "https://www.agent-zero.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

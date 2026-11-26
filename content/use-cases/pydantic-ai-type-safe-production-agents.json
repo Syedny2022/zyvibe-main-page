@@ -1,0 +1,39 @@
+{
+  "slug": "pydantic-ai-type-safe-production-agents",
+  "title": "Type-Safe Python Agent Framework with Structured Validation",
+  "oneLiner": "PydanticAI brings FastAPI-style dependency injection and Pydantic schema validation to Python agents, ensuring LLM tool calls and structured outputs conform strictly to Python types.",
+  "goal": "workflow-orchestration",
+  "agent": "pydanticai",
+  "agentName": "PydanticAI",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 40,
+  "whatItDoes": [
+    "PydanticAI brings FastAPI-style dependency injection and Pydantic schema validation to Python agents, ensuring LLM tool calls and structured outputs conform strictly to Python types."
+  ],
+  "requirements": [
+    "Python 3.9+",
+    "`pydantic-ai` package",
+    "LLM API key"
+  ],
+  "steps": [
+    "Install `pydantic-ai`",
+    "Define `Agent` with `result_type` Pydantic model and `@agent.tool` functions",
+    "Inject runtime dependencies via `Deps`",
+    "Execute `agent.run()` with automatic retry validation."
+  ],
+  "configSnippet": "\"Define a SupportResponse Pydantic model and validate all customer refund eligibility checks before returning JSON.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Code-first Python library without a built-in visual workflow canvas."
+  ],
+  "source": {
+    "title": "PydanticAI — Type-Safe Python Agent Framework",
+    "url": "https://ai.pydantic.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

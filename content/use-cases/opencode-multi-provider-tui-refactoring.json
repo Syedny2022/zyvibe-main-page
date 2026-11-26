@@ -1,0 +1,42 @@
+{
+  "slug": "opencode-multi-provider-tui-refactoring",
+  "title": "Multi-Provider Terminal Coding with LSP Diagnostics",
+  "oneLiner": "OpenCode provides an interactive terminal user interface (TUI) with built-in Language Server Protocol (LSP) diagnostics, allowing developers to switch LLM providers mid-session for code edits.",
+  "goal": "code-and-repo-automation",
+  "agent": "opencode",
+  "agentName": "OpenCode",
+  "harness": "terminal-cli",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 27,
+  "whatItDoes": [
+    "OpenCode provides an interactive terminal user interface (TUI) with built-in Language Server Protocol (LSP) diagnostics, allowing developers to switch LLM providers mid-session for code edits."
+  ],
+  "requirements": [
+    "Go or prebuilt binary",
+    "API key for OpenAI",
+    "Anthropic",
+    "Google",
+    "or local Ollama"
+  ],
+  "steps": [
+    "Install OpenCode CLI",
+    "Run `opencode` inside project directory",
+    "Select model provider",
+    "Issue refactoring task and review LSP-verified diffs."
+  ],
+  "configSnippet": "\"Inspect LSP type errors across the workspace and refactor the API client types to resolve all warnings.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Plugin ecosystem is smaller than IDE extensions",
+    "terminal UI requires modern terminal emulator support."
+  ],
+  "source": {
+    "title": "OpenCode — Open Source Terminal AI Coding Agent",
+    "url": "https://opencode.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

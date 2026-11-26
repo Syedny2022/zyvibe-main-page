@@ -1,0 +1,40 @@
+{
+  "slug": "openai-agents-sdk-vertical-agent-orchestration",
+  "title": "Lightweight Code-First Orchestration for Vertical AI Agents",
+  "oneLiner": "The OpenAI Agents SDK provides a lightweight, code-first framework to build agents that plan, complete tasks using tools, and hand off work in multi-agent workflows.",
+  "goal": "workflow-orchestration",
+  "agent": "openai-agents-sdk",
+  "agentName": "OpenAI Agents SDK",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 17,
+  "whatItDoes": [
+    "The OpenAI Agents SDK provides a lightweight, code-first framework to build agents that plan, complete tasks using tools, and hand off work in multi-agent workflows."
+  ],
+  "requirements": [
+    "Python",
+    "`openai-agents` package",
+    "OpenAI API key"
+  ],
+  "steps": [
+    "Install the SDK",
+    "Define an Agent with specific instructions and tools",
+    "Use `Runner.run()` or `Runner.run_streamed()` to execute the agent",
+    "Handle the final output or handoff."
+  ],
+  "configSnippet": "\"Agent A extracts data using a search tool, then hands off the structured data to Agent B for formatting and email dispatch.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Designed for text-based workflows",
+    "complex state persistence across long-running tasks may require external orchestration (e.g., Temporal)."
+  ],
+  "source": {
+    "title": "OpenAI Agents SDK",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

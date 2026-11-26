@@ -1,0 +1,39 @@
+{
+  "slug": "playwright-mcp-deterministic-e2e-testing",
+  "title": "Accessibility-Tree Browser Automation and E2E Test Generation",
+  "oneLiner": "Microsoft's Playwright MCP server exposes structured browser accessibility snapshots to AI agents, enabling deterministic web navigation, form testing, and Playwright test script generation without vision models.",
+  "goal": "testing-and-qa",
+  "agent": "playwright-mcp",
+  "agentName": "Playwright MCP",
+  "harness": "browser-sdk",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 36,
+  "whatItDoes": [
+    "Microsoft's Playwright MCP server exposes structured browser accessibility snapshots to AI agents, enabling deterministic web navigation, form testing, and Playwright test script generation without vision models."
+  ],
+  "requirements": [
+    "Node.js",
+    "`@playwright/mcp`",
+    "MCP-compatible agent client (Claude Code, Cursor, VS Code)"
+  ],
+  "steps": [
+    "Add `@playwright/mcp` to MCP client config",
+    "Instruct agent to navigate target web app",
+    "Agent interacts via accessibility tree refs",
+    "Save recorded flow as `.spec.ts` test."
+  ],
+  "configSnippet": "\"Open https://example.com/login, test invalid password error states, and generate a Playwright TypeScript test file.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Canvas-heavy WebGL apps without semantic DOM/accessibility nodes require fallback coordinate actions."
+  ],
+  "source": {
+    "title": "Playwright — Browser Automation & Testing",
+    "url": "https://playwright.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

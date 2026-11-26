@@ -1,0 +1,42 @@
+{
+  "slug": "keep-agent-memory-across-sessions",
+  "title": "Keep Agent Memory Across Sessions",
+  "oneLiner": "Store what the agent learned outside the context window so the next run does not start from zero.",
+  "audience": "Builders running multi-day research, support, or account workflows.",
+  "intro": "Context windows are working memory, not storage. A session that ends takes everything the agent inferred with it unless you write it somewhere durable.",
+  "requirements": [
+    "A persistence layer: SQLite, Postgres, or the memory blocks your framework provides",
+    "A defined rule for what gets written and what gets discarded",
+    "A way to inspect and correct stored memory"
+  ],
+  "sections": [
+    {
+      "heading": "Decide what is worth persisting",
+      "body": "Store facts that will still be true next week: account identifiers, approved preferences, and completed steps. Do not persist raw conversation, which grows without adding durable value."
+    },
+    {
+      "heading": "Make memory readable by a human",
+      "body": "Letta splits memory into labeled blocks the agent can edit. Readable blocks let you catch a corrupted fact before it shapes ten more answers; opaque embeddings do not."
+    },
+    {
+      "heading": "Version the write path",
+      "body": "A memory update is a write to state you will later trust. Log the change, keep the previous value, and make the correction path as easy as the create path."
+    },
+    {
+      "heading": "Test recall with a fixed question set",
+      "body": "Ask the same five questions at the start of a session and compare answers over time. That is a cheaper signal than reading transcripts, and it catches silent memory drift."
+    }
+  ],
+  "checklist": [
+    "Durable facts are written outside the context window.",
+    "Each memory block or record has an owner and an update time.",
+    "A human can review and correct stored memory.",
+    "A fixed recall question set is checked after changes."
+  ],
+  "useCases": [
+    "letta-stateful-self-editing-memory-agents",
+    "langgraph-customer-service-branching",
+    "agno-high-performance-multi-agent-runtime",
+    "deerflow-long-horizon-deep-research"
+  ]
+}

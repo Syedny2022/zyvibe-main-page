@@ -1,0 +1,39 @@
+{
+  "slug": "devin-autonomous-documentation-workflows",
+  "title": "Autonomous Documentation and PR Review Engineering",
+  "oneLiner": "Devin is used by engineering teams to automate repetitive documentation tasks, generate changelogs, and perform large-scale edits or PR reviews across a codebase.",
+  "goal": "code-and-repo-automation",
+  "agent": "devin",
+  "agentName": "Devin",
+  "harness": "cloud-agent",
+  "role": "Engineers & technical founders",
+  "evidence": "Reported",
+  "evidenceDetail": "The linked source describes this workflow and its claimed results. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 13,
+  "whatItDoes": [
+    "Devin is used by engineering teams to automate repetitive documentation tasks, generate changelogs, and perform large-scale edits or PR reviews across a codebase."
+  ],
+  "requirements": [
+    "Devin platform access",
+    "repository permissions"
+  ],
+  "steps": [
+    "Assign a documentation or PR review task to Devin",
+    "Devin explores the repo and plans the changes",
+    "Devin writes and tests the code",
+    "Human reviews the submitted PR."
+  ],
+  "configSnippet": "\"Update the API documentation in the /docs folder to reflect the new endpoints added in the last sprint.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "High cost per task",
+    "best suited for well-defined, bounded tasks rather than open-ended architectural design."
+  ],
+  "source": {
+    "title": "Devin — The Autonomous AI Software Engineer",
+    "url": "https://devin.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

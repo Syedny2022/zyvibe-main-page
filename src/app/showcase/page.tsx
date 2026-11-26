@@ -1,105 +1,102 @@
-import Link from 'next/link';
-import { Metadata } from 'next';
-import { getAllBuilderShowcases } from '@/lib/data-store';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ShowcaseCard } from "@/components/ShowcaseCard";
+import { SponsorSlot } from "@/components/SponsorSlot";
+import { JsonLd } from "@/components/JsonLd";
+import { getShowcase } from "@/lib/content";
+import { PLACEMENTS, pageOpenGraph } from "@/lib/site";
+import { breadcrumbSchema, collectionPageSchema, graph } from "@/lib/jsonld";
+
+const description =
+  "The Zyvibe Builder Showcase: clearly labeled commercial placements for builder projects. Every item carries an Advertisement label beside it.";
 
 export const metadata: Metadata = {
-  title: 'Builder Showcase | Autonomous Projects & Tools | zyvibe.com',
-  description: 'Verified showcase of software, agent systems, and automated tools built by independent builders and engineers.',
-  alternates: {
-    canonical: 'https://zyvibe.com/showcase',
-  },
+  title: "Builder Showcase",
+  description,
+  alternates: { canonical: "/showcase" },
+  openGraph: pageOpenGraph({ path: "/showcase", title: "Builder Showcase", description }),
 };
 
+// Revalidated so an activated paid placement appears without a redeploy.
 export const revalidate = 60;
 
-export default function ShowcasePage() {
-  const showcases = getAllBuilderShowcases();
-
+export default async function ShowcasePage() {
+  const items = await getShowcase();
   return (
-    <div style={{ maxWidth: '960px', margin: '0 auto', padding: '16px' }}>
-      <header style={{ marginBottom: '24px', borderBottom: '1px solid #eee', paddingBottom: '16px' }}>
-        <p style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '1px', color: '#666' }}>
-          Builder Showcase • zyvibe.com
-        </p>
-        <h1>Autonomous Projects & Builder Systems</h1>
-        <p style={{ color: '#555' }}>
-          Tested projects, open-source utilities, and automated systems built with modern agent architectures.
-        </p>
-        <div style={{ marginTop: '12px', display: 'flex', gap: '12px', flexWrap: 'wrap', fontSize: '14px' }}>
-          <Link href="/promote" style={{ fontWeight: 'bold' }}>
-            + Submit Your Project ($49/week or $149 permanent)
-          </Link>
-          <span>•</span>
-          <Link href="/">AI Use Cases</Link>
-          <span>•</span>
-          <Link href="/services">Remote Solo Services</Link>
+    <>
+      <JsonLd
+        data={graph(
+          collectionPageSchema({
+            name: "Builder Showcase",
+            description,
+            path: "/showcase",
+            items: items.map((item) => ({ name: item.name, url: item.projectUrl })),
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Builder Showcase", path: "/showcase" },
+          ])
+        )}
+      />
+
+      <section className="page-head">
+        <div className="container">
+          <nav className="crumbs mono" aria-label="Breadcrumb">
+            <Link href="/">Home</Link>
+            <span aria-hidden="true">/</span>
+            <span>Builder Showcase</span>
+          </nav>
+          <p className="page-eyebrow label-caps">Commercial section · {items.length} placements</p>
+          <h1 className="page-title">Builder Showcase</h1>
+          <p className="page-lead">
+            A clearly labeled commercial section for builder projects. Every placement below carries
+            an <strong>Advertisement</strong> label before the item. Nothing here is an independent
+            editorial review, a verification, or a founder endorsement.
+          </p>
+          <p className="page-lead">
+            Failing a URL safety check does not make a placement editorial. Placements are reviewed
+            for link safety only; the claims belong to the builder.
+          </p>
         </div>
-      </header>
+      </section>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
-        {showcases.map((project) => (
-          <article
-            key={project.slug}
-            style={{
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              padding: '16px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
+      <section className="section section-tight">
+        <div className="container">
+          <div className="showcase-list">
+            <SponsorSlot />
+            {items.map((item) => (
+              <ShowcaseCard key={item.slug} item={item} />
+            ))}
+          </div>
+
+          <div className="advertise-strip">
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '12px', background: '#f0f0f0', padding: '2px 6px', borderRadius: '4px' }}>
-                  {project.category}
-                </span>
-                {project.featured && (
-                  <span style={{ fontSize: '11px', background: '#e3f2fd', color: '#0d47a1', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>
-                    ★ Featured
-                  </span>
-                )}
-              </div>
-
-              <h2 style={{ fontSize: '18px', margin: '4px 0' }}>
-                <Link href={`/showcase/${project.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  {project.name}
-                </Link>
-              </h2>
-              <p style={{ fontSize: '13px', color: '#666', marginTop: '6px', lineHeight: '1.4' }}>
-                {project.tagline}
+              <p className="label-caps">Reserve a placement</p>
+              <h2 className="advertise-title">Advertise on Zyvibe</h2>
+              <p className="advertise-body">
+                Placements are self-serve through Stripe Checkout. Choose a duration, submit the
+                project URL, and the placement is checked and activated after payment.
               </p>
-
-              {project.metrics && (
-                <p style={{ fontSize: '12px', color: '#2e7d32', marginTop: '8px', fontWeight: '600' }}>
-                  📈 {project.metrics}
-                </p>
-              )}
-
-              <div style={{ marginTop: '12px', fontSize: '12px', color: '#555' }}>
-                <p><strong>Builder:</strong> {project.builderName} ({project.builderHandle})</p>
-              </div>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '8px' }}>
-                {project.agentStack.map((tech, idx) => (
-                  <span key={idx} style={{ fontSize: '11px', border: '1px solid #eee', padding: '2px 6px', borderRadius: '4px' }}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
-
-            <div style={{ marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #eee', display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
-              <a href={project.websiteUrl} target="_blank" rel="noopener noreferrer">
-                Visit Project ↗
-              </a>
-              <Link href={`/showcase/${project.slug}`} style={{ fontWeight: 'bold' }}>
-                Details →
+            <div className="advertise-actions">
+              <Link href="/promote" className="btn-primary">
+                Advertise on Zyvibe
               </Link>
+              <p className="mono advertise-price">
+                From {PLACEMENTS[0].priceLabel} / {PLACEMENTS[0].duration}
+              </p>
             </div>
-          </article>
-        ))}
-      </div>
-    </div>
+          </div>
+
+          <div className="page-footnote">
+            <p>
+              Read the <Link href="/disclosures">disclosures</Link> for how paid placements are
+              labeled, or the <Link href="/methodology">methodology</Link> for how editorial records
+              are separated from commercial ones.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

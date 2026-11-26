@@ -1,0 +1,40 @@
+{
+  "slug": "gpt-researcher-autonomous-citation-reports",
+  "title": "Autonomous Multi-Source Web Research and Cited Report Generator",
+  "oneLiner": "GPT Researcher spawns parallel planner and execution agents to scrape, filter, and synthesize dozens of web and local sources into structured, citation-backed research reports.",
+  "goal": "research-and-data-synthesis",
+  "agent": "gpt-researcher",
+  "agentName": "GPT Researcher",
+  "harness": "python-sdk",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 47,
+  "whatItDoes": [
+    "GPT Researcher spawns parallel planner and execution agents to scrape, filter, and synthesize dozens of web and local sources into structured, citation-backed research reports."
+  ],
+  "requirements": [
+    "Python 3.11+",
+    "`gpt-researcher` package",
+    "LLM API key",
+    "Tavily/search API key"
+  ],
+  "steps": [
+    "Install `gpt-researcher`",
+    "Configure `OPENAI_API_KEY` and `TAVILY_API_KEY`",
+    "Run FastAPI web app or Python SDK",
+    "Export cited Markdown, PDF, or DOCX report."
+  ],
+  "configSnippet": "\"Conduct a deep research report on solid-state battery manufacturing bottlenecks in 2026 with inline citations.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Report quality depends heavily on search API coverage and source paywall accessibility."
+  ],
+  "source": {
+    "title": "GPT Researcher — Autonomous AI Research Agent",
+    "url": "https://gptr.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

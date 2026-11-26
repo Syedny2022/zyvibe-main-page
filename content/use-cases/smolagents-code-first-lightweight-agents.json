@@ -1,0 +1,39 @@
+{
+  "slug": "smolagents-code-first-lightweight-agents",
+  "title": "Code-Action Minimalist Agent Framework by Hugging Face",
+  "oneLiner": "Hugging Face's `smolagents` enables LLMs to express tool calls directly as executable Python code snippets (`CodeAgent`) inside sandboxed environments, reducing multi-step JSON tool-calling overhead.",
+  "goal": "workflow-orchestration",
+  "agent": "smolagents",
+  "agentName": "smolagents",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 44,
+  "whatItDoes": [
+    "Hugging Face's `smolagents` enables LLMs to express tool calls directly as executable Python code snippets (`CodeAgent`) inside sandboxed environments, reducing multi-step JSON tool-calling overhead."
+  ],
+  "requirements": [
+    "Python 3.10+",
+    "`smolagents` package",
+    "Hugging Face token or OpenAI/LiteLLM API key"
+  ],
+  "steps": [
+    "Install `smolagents`",
+    "Instantiate `CodeAgent(tools=[...], model=...)`",
+    "Configure E2B or Docker sandbox",
+    "Run `agent.run()` on data or web tasks."
+  ],
+  "configSnippet": "\"Write Python code using the provided search and calculator tools to compare 5-year GDP growth rates across G7 nations.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Executing model-generated Python requires strict E2B or Docker sandboxing in production."
+  ],
+  "source": {
+    "title": "Hugging Face smolagents",
+    "url": "https://huggingface.co/docs/smolagents/",
+    "platform": "Hugging Face documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

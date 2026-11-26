@@ -1,0 +1,40 @@
+{
+  "slug": "claude-code-spec-driven-development",
+  "title": "Spec-Driven Development and Automated Branch Management",
+  "oneLiner": "Claude Code automates ticket details retrieval from Jira, creates branches, plans changes, and updates testing notes through a spec-driven development workflow.",
+  "goal": "code-and-repo-automation",
+  "agent": "claude-code",
+  "agentName": "Claude Code",
+  "harness": "terminal-cli",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 3,
+  "whatItDoes": [
+    "Claude Code automates ticket details retrieval from Jira, creates branches, plans changes, and updates testing notes through a spec-driven development workflow."
+  ],
+  "requirements": [
+    "Claude API access",
+    "terminal environment",
+    "Jira/GitHub integration"
+  ],
+  "steps": [
+    "Start Claude Code in terminal",
+    "Describe project or link Jira ticket",
+    "Agent reads config and plans implementation",
+    "Approve automated branch creation and commit."
+  ],
+  "configSnippet": "\"Read the requirements in specs/feature.md, create a new branch, implement the feature, and update the testing notes.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires explicit user approval for destructive actions",
+    "context limits apply to massive monorepos without selective file inclusion."
+  ],
+  "source": {
+    "title": "Claude Code by Anthropic",
+    "url": "https://claude.com/product/claude-code",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

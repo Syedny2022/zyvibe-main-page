@@ -1,0 +1,39 @@
+{
+  "slug": "claude-computer-use-gui-automation",
+  "title": "API-Driven GUI Observation and Control for Complex Workflows",
+  "oneLiner": "Claude Computer Use observes the screen via screenshots and issues mouse/keyboard actions to automate complex GUI-dependent workflows that lack programmatic APIs.",
+  "goal": "browser-and-computer-use",
+  "agent": "claude-computer-use",
+  "agentName": "Claude Computer Use",
+  "harness": "api-service",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 16,
+  "whatItDoes": [
+    "Claude Computer Use observes the screen via screenshots and issues mouse/keyboard actions to automate complex GUI-dependent workflows that lack programmatic APIs."
+  ],
+  "requirements": [
+    "Anthropic API key with Computer Use beta access",
+    "environment capable of rendering and sending screenshots"
+  ],
+  "steps": [
+    "Set up the Computer Use API client",
+    "Define the target application and goal",
+    "Loop: send screenshot to Claude, receive action coordinates, execute action",
+    "Monitor for task completion."
+  ],
+  "configSnippet": "\"Open the desktop accounting app, navigate to the 'Reports' tab, and export the last month's data as a CSV.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Remains slow and error-prone on highly dynamic GUIs",
+    "requires structured error recovery patterns for production reliability."
+  ],
+  "source": {
+    "title": "Claude Computer Use — Anthropic Platform",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
+    "platform": "Anthropic documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

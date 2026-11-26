@@ -1,0 +1,40 @@
+{
+  "slug": "openhands-github-issue-resolution",
+  "title": "Autonomous GitHub Issue Resolution via Agent Canvas",
+  "oneLiner": "OpenHands triggers from GitHub issues, explores the repository for context, writes code to resolve the issue, and opens a pull request for human review.",
+  "goal": "code-and-repo-automation",
+  "agent": "openhands",
+  "agentName": "OpenHands",
+  "harness": "docker-sandbox",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 1,
+  "whatItDoes": [
+    "OpenHands triggers from GitHub issues, explores the repository for context, writes code to resolve the issue, and opens a pull request for human review."
+  ],
+  "requirements": [
+    "Docker",
+    "GitHub token",
+    "OpenHands installation"
+  ],
+  "steps": [
+    "Install OpenHands locally",
+    "Connect GitHub repository via Agent Canvas",
+    "Assign a GitHub issue to the agent",
+    "Review the auto-generated PR."
+  ],
+  "configSnippet": "\"Resolve GitHub issue #<number> by implementing the requested feature and ensuring all tests pass.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Complex multi-repo dependencies may require manual scaffolding",
+    "sandbox execution limits external network access unless explicitly configured."
+  ],
+  "source": {
+    "title": "OpenHands — Open Source AI Coding Agent Platform",
+    "url": "https://www.openhands.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "gemini-cli-mcp-codebase-migration",
+  "title": "MCP-Connected Codebase Migration and Shell Automation",
+  "oneLiner": "Google Gemini CLI connects to local repositories and Model Context Protocol (MCP) servers to perform multi-file migrations, inspect logs, and run shell diagnostics from the terminal.",
+  "goal": "code-and-repo-automation",
+  "agent": "gemini-cli",
+  "agentName": "Gemini CLI",
+  "harness": "terminal-cli",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 26,
+  "whatItDoes": [
+    "Google Gemini CLI connects to local repositories and Model Context Protocol (MCP) servers to perform multi-file migrations, inspect logs, and run shell diagnostics from the terminal."
+  ],
+  "requirements": [
+    "Node.js 18+",
+    "Google account or Gemini API key",
+    "optional MCP servers"
+  ],
+  "steps": [
+    "Run `npx @google/gemini-cli`",
+    "Authenticate with Google or API key",
+    "Configure `.gemini/settings.json` with MCP tools",
+    "Execute migration prompt in target repo."
+  ],
+  "configSnippet": "\"Migrate all CommonJS require statements in src/ to ES modules and verify the build passes.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Free-tier rate limits apply when authenticating via personal Google login without a paid API key."
+  ],
+  "source": {
+    "title": "Google Gemini CLI",
+    "url": "https://geminicli.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

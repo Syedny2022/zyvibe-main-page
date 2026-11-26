@@ -1,0 +1,42 @@
+{
+  "slug": "put-an-agent-in-ci-without-noisy-reviews",
+  "title": "Put an Agent in CI Without Noisy Reviews",
+  "oneLiner": "Add an agent to pull requests so it flags real defects instead of restating the diff.",
+  "audience": "Solo maintainers and small teams who cannot read every automated comment.",
+  "intro": "An agent in CI earns its place only if its comments change what you do. The work is mostly in the rules you give it and the files you exclude.",
+  "requirements": [
+    "A CI provider that can run a CLI step on pull requests",
+    "A rules directory the agent reads on every run",
+    "A budget ceiling for model calls per pull request"
+  ],
+  "sections": [
+    {
+      "heading": "Write the rules before the prompt",
+      "body": "Continue's CLI reads project rules from a directory in the repository. Put the checks you actually care about there — missing indexes, unvalidated input, missing tests — so the review is repeatable and versioned with the code."
+    },
+    {
+      "heading": "Review the diff, not the repository",
+      "body": "Scope the job to changed files. A repository-wide review on every pull request produces a wall of pre-existing findings that nobody reads and that hides the new defect."
+    },
+    {
+      "heading": "Cap the output",
+      "body": "Ask for a short checklist with file and line references, and fail the check only on rules you marked blocking. Advisory findings belong in a comment, not a red build."
+    },
+    {
+      "heading": "Measure the noise",
+      "body": "Track how many comments were acted on over two weeks. If the answer is close to zero, the rule set is wrong — tighten it or remove the job."
+    }
+  ],
+  "checklist": [
+    "Rules live in the repository and are reviewed like code.",
+    "Only changed files are analysed.",
+    "Blocking rules are separated from advisory notes.",
+    "Comment usefulness is reviewed on a fixed cadence."
+  ],
+  "useCases": [
+    "continue-dev-ci-headless-pr-checks",
+    "github-copilot-coding-agent-issue-to-pr",
+    "claude-code-spec-driven-development",
+    "goose-automated-code-review-workflow"
+  ]
+}

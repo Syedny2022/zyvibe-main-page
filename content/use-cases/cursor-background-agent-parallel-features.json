@@ -1,0 +1,39 @@
+{
+  "slug": "cursor-background-agent-parallel-features",
+  "title": "Parallel Cloud Background Agents for Multi-Branch Feature Delivery",
+  "oneLiner": "Cursor Background Agents spin up isolated remote environments connected to GitHub to implement features, run test suites, and open pull requests in parallel while developers work locally.",
+  "goal": "code-and-repo-automation",
+  "agent": "cursor-background-agent",
+  "agentName": "Cursor Background Agent",
+  "harness": "cloud-agent",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 29,
+  "whatItDoes": [
+    "Cursor Background Agents spin up isolated remote environments connected to GitHub to implement features, run test suites, and open pull requests in parallel while developers work locally."
+  ],
+  "requirements": [
+    "Cursor Pro/Business subscription",
+    "GitHub repository integration"
+  ],
+  "steps": [
+    "Enable Background Agents in Cursor",
+    "Connect GitHub repo and configure environment snapshot",
+    "Spawn agent task from IDE or Slack",
+    "Review remote branch diff and PR."
+  ],
+  "configSnippet": "\"Implement rate-limiting middleware on the /api/v1 routes and add integration tests in a new branch.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Usage incurs compute and token charges",
+    "requires reproducible environment setup scripts for remote containers."
+  ],
+  "source": {
+    "title": "Cursor — AI Coding Agent & Background Agents",
+    "url": "https://cursor.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

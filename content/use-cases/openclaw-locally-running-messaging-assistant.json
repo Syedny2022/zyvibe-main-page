@@ -1,0 +1,40 @@
+{
+  "slug": "openclaw-locally-running-messaging-assistant",
+  "title": "Locally-Running AI Assistant Integrated with Messaging Apps",
+  "oneLiner": "OpenClaw is an open-source, locally-running AI assistant that connects to WhatsApp, Telegram, or other chat apps to manage inboxes, calendars, and automated workflows via custom \"skills\".",
+  "goal": "workflow-orchestration",
+  "agent": "openclaw",
+  "agentName": "OpenClaw",
+  "harness": "self-hosted-assistant",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 24,
+  "whatItDoes": [
+    "OpenClaw is an open-source, locally-running AI assistant that connects to WhatsApp, Telegram, or other chat apps to manage inboxes, calendars, and automated workflows via custom \"skills\"."
+  ],
+  "requirements": [
+    "Local machine or private server",
+    "Node.js/Python",
+    "messaging app API credentials (e.g., Telegram Bot Token)"
+  ],
+  "steps": [
+    "Install OpenClaw locally",
+    "Configure a messaging app integration (e.g., Telegram)",
+    "Install or write a custom \"skill\" (e.g., calendar lookup)",
+    "Send a command via the chat app to trigger the workflow."
+  ],
+  "configSnippet": "\"Check my calendar for next week and draft a summary of my available slots, then send it to this chat.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires self-hosting and maintenance of the local environment",
+    "messaging API rate limits may apply."
+  ],
+  "source": {
+    "title": "OpenClaw — Open-Source Personal AI Assistant",
+    "url": "https://openclaw.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

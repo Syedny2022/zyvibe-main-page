@@ -1,0 +1,39 @@
+{
+  "slug": "n8n-ai-agent-workflow-automation",
+  "title": "No-Code AI Agent Workflow with External App Integrations",
+  "oneLiner": "n8n combines AI models with 2,000+ app integrations to perform tasks, make decisions, and trigger actions (e.g., reading a Gmail attachment and updating a Google Sheet via an AI Agent node).",
+  "goal": "workflow-orchestration",
+  "agent": "n8n",
+  "agentName": "n8n",
+  "harness": "no-code-builder",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 8,
+  "whatItDoes": [
+    "n8n combines AI models with 2,000+ app integrations to perform tasks, make decisions, and trigger actions (e.g., reading a Gmail attachment and updating a Google Sheet via an AI Agent node)."
+  ],
+  "requirements": [
+    "n8n instance (cloud or self-hosted)",
+    "API keys for target services"
+  ],
+  "steps": [
+    "Create a new workflow in n8n",
+    "Add an AI Agent node and configure the LLM provider",
+    "Connect tool nodes (e.g., Gmail, Google Sheets)",
+    "Activate and trigger the workflow."
+  ],
+  "configSnippet": "\"Read the latest email from <sender>, extract the invoice amount, and append it to the 'Invoices' Google Sheet.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "System prompts can become unwieldy as workflow complexity scales",
+    "requires careful modular routing."
+  ],
+  "source": {
+    "title": "n8n — AI Workflow Automation Platform",
+    "url": "https://n8n.io/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

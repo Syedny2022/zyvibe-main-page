@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zyvibe — Four-Pillar Ecosystem &amp; Operations Dashboard</title>
+  <meta name="description" content="Explore real-world AI agent use cases, practical implementation guides, remote solo specialists, and Syed Moh's automation blueprints across the Zyvibe four-pillar ecosystem." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       ZYVIBE FOUR-PILLAR DESIGN SYSTEM — DARK SWISS MINIMALIST
+       Mid-century International Typographic Style for low-glare nocturnal reading
+       ========================================================================== */
+
+    :root {
+      /* Surface Tokens */
+      --bg-canvas: #111214;
+      --bg-row-hover: #16181b;
+      --bg-elevated: #141619;
+      --bg-header: rgba(17, 18, 20, 0.9);
+
+      /* Typography Tokens */
+      --text-primary: #edece8;
+      --text-secondary: #9a9da3;
+      --text-muted: #666970;
+
+      /* Signal & Status Accents */
+      --accent-signal: #e05a47;
+      --accent-green: #22c55e;
+      --accent-green-glow: rgba(34, 197, 94, 0.45);
+      --accent-amber: #d99b38;
+
+      /* Structural Hairline Rules */
+      --rule-subtle: rgba(237, 236, 232, 0.11);
+      --rule-strong: rgba(237, 236, 232, 0.24);
+
+      /* Type Families */
+      --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      /* Layout Geometry */
+      --container-max: 1180px;
+      --gutter: clamp(1.5rem, 5vw, 3.5rem);
+      --header-height: 4.5rem;
+    }
+
+    /* Reset & Base Styling */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background-color: var(--accent-signal);
+      color: var(--text-primary);
+    }
+
+    html {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* Shared Container & 12-Column Swiss Grid */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(1rem, 2.2vw, 1.75rem);
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .label-caps {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       1. STICKY TOP HEADER (4.5rem height, 3-column grid: 1fr auto 1fr)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      background-color: var(--bg-header);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule-subtle);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      justify-self: start;
+    }
+
+    .brand-mark {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      background-color: var(--accent-signal);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      justify-self: center;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text-primary);
+    }
+
+    .header-meta {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .status-dot-static {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       2. HERO HEADLINE BLOCK & PILLAR SWITCHER
+       ========================================================================== */
+    .hero-section {
+      padding-top: clamp(4rem, 8vw, 7rem);
+      padding-bottom: clamp(3.5rem, 7vw, 6rem);
+      border-bottom: 1px solid var(--rule-subtle);
+    }
+
+    .hero-eyebrow {
+      margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule-subtle);
+      align-items: baseline;
+    }
+
+    .eyebrow-left {
+      grid-column: 1 / 5;
+      color: var(--accent-signal);
+    }
+
+    .eyebrow-right {
+      grid-column: 5 / 13;
+      color: var(--text-muted);
+    }
+
+    /* Property Switcher Bar (4-Pillar Ecosystem Selector) */
+    .pillar-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .pillar-tab {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--rule-subtle);
+      color: var(--text-secondary);
+      transition: all 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pillar-tab:hover {
+      border-color: var(--rule-strong);
+      color: var(--text-primary);
+      background-color: var(--bg-row-hover);
+    }
+
+    .pillar-tab.active {
+      border-color: var(--accent-signal);
+      color: var(--text-primary);
+      background-color: rgba(224, 90, 71, 0.08);
+    }
+
+    .pillar-tab .tab-idx {
+      color: var(--accent-signal);
+    }
+
+    .hero-headline {
+      font-size: clamp(2.4rem, 5.8vw, 4.85rem);
+      font-weight: 600;
+      letter-spacing: -0.038em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      max-width: 19ch;
+    }
+
+    .hero-subgrid {
+      align-items: start;
+      row-gap: 1.5rem;
+    }
+
+    .hero-caption {
+      grid-column: 1 / 5;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .hero-lead-wrap {
+      grid-column: 5 / 12;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.22rem);
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* Task-Specific CTAs (Aligned to CTA Migration Guide) */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.25rem;
+      background-color: var(--text-primary);
+      color: var(--bg-canvas);
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-signal);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--rule-strong);
+      color: var(--text-primary);
+      transition: border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-primary);
+      background-color: var(--bg-row-hover);
+    }
+
+    /* ==========================================================================
+       3. CONTINUOUS RIGHT-TO-LEFT MARQUEE STRIP WITH BLINKING GREEN DOTS
+       ========================================================================== */
+    .marquee-band {
+      width: 100%;
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule-strong);
+      background-color: var(--bg-canvas);
+      padding-block: 1.15rem;
+      user-select: none;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-rtl 38s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-band:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-group {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .marquee-item {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    /* Blinking green separator dot */
+    .marquee-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green-glow);
+      margin-inline: 1.75rem;
+      flex-shrink: 0;
+      animation: blink-green 1.6s ease-in-out infinite;
+    }
+
+    @keyframes marquee-rtl {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    @keyframes blink-green {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 8px var(--accent-green-glow);
+      }
+      50% {
+        opacity: 0.18;
+        transform: scale(0.78);
+        box-shadow: 0 0 0 transparent;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track,
+      .marquee-dot {
+        animation: none;
+      }
+    }
+
+    /* ==========================================================================
+       4. FOUR-PILLAR ARCHITECTURE ROWS (12-COLUMN BASELINE)
+       ========================================================================== */
+    .section-block {
+      padding-top: clamp(4.25rem, 7.5vw, 6.5rem);
+      padding-bottom: clamp(4.25rem, 7.5vw, 6.5rem);
+      border-bottom: 1px solid var(--rule-subtle);
+    }
+
+    .section-header {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--rule-strong);
+      align-items: baseline;
+    }
+
+    .section-header-index {
+      grid-column: 1 / 2;
+      color: var(--accent-signal);
+    }
+
+    .section-header-title {
+      grid-column: 2 / 6;
+    }
+
+    .section-header-note {
+      grid-column: 6 / 13;
+      text-align: right;
+    }
+
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-row {
+      border-bottom: 1px solid var(--rule-subtle);
+      transition: background-color 0.2s ease;
+    }
+
+    .feature-row:hover {
+      background-color: var(--bg-row-hover);
+    }
+
+    .feature-row-inner {
+      padding-block: clamp(1.75rem, 3vw, 2.4rem);
+      align-items: baseline;
+      row-gap: 0.75rem;
+    }
+
+    .row-index {
+      grid-column: 1 / 2;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent-signal);
+    }
+
+    .row-title-group {
+      grid-column: 2 / 6;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .row-title {
+      font-size: clamp(1.125rem, 1.5vw, 1.3rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      color: var(--text-primary);
+    }
+
+    .row-domain {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--accent-signal);
+    }
+
+    .row-desc {
+      grid-column: 6 / 11;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .row-tag {
+      grid-column: 11 / 13;
+      justify-self: end;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       5. INTERACTIVE ECOSYSTEM EXPLORER & EVIDENCE-LABELED INDEX
+       ========================================================================== */
+    .explorer-controls {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--rule-strong);
+      padding: 0.65rem 1rem;
+      gap: 0.75rem;
+      background-color: var(--bg-elevated);
+    }
+
+    .search-box:focus-within {
+      border-color: var(--accent-signal);
+    }
+
+    .search-box input {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .filter-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--rule-subtle);
+      color: var(--text-secondary);
+      transition: all 0.16s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--rule-strong);
+      color: var(--text-primary);
+    }
+
+    .filter-pill.active {
+      border-color: var(--text-primary);
+      background-color: var(--text-primary);
+      color: var(--bg-canvas);
+    }
+
+    /* Evidence Badges (Section 7 of ZYVIBE.md) */
+    .evidence-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--rule-strong);
+      color: var(--text-secondary);
+    }
+
+    .evidence-badge.reproduced {
+      border-color: rgba(34, 197, 94, 0.45);
+      color: var(--accent-green);
+    }
+
+    .evidence-badge.documented {
+      border-color: rgba(237, 236, 232, 0.35);
+      color: var(--text-primary);
+    }
+
+    .evidence-badge.ad {
+      border-color: rgba(224, 90, 71, 0.55);
+      color: var(--accent-signal);
+    }
+
+    .evidence-badge.checked {
+      border-color: rgba(217, 155, 56, 0.5);
+      color: var(--accent-amber);
+    }
+
+    .record-action {
+      display: inline-block;
+      margin-top: 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      border-bottom: 1px solid var(--rule-strong);
+      padding-bottom: 0.1rem;
+      transition: border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .record-action:hover {
+      color: var(--accent-signal);
+      border-color: var(--accent-signal);
+    }
+
+    /* FTC Disclosure Note inside Paid Placement Row */
+    .ftc-disclosure-line {
+      margin-top: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       6. MASTER IMPLEMENTATION CHECKLIST & GOVERNANCE DASHBOARD
+       ========================================================================== */
+    .dashboard-summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 1px solid var(--rule-strong);
+      padding-block: 1.75rem;
+      gap: 1.5rem;
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .metric-value.signal {
+      color: var(--accent-signal);
+    }
+
+    .metric-value.green {
+      color: var(--accent-green);
+    }
+
+    .phase-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .phase-tab {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--rule-subtle);
+      color: var(--text-secondary);
+      transition: all 0.16s ease;
+    }
+
+    .phase-tab:hover {
+      border-color: var(--rule-strong);
+      color: var(--text-primary);
+    }
+
+    .phase-tab.active {
+      border-color: var(--accent-signal);
+      color: var(--text-primary);
+      background-color: rgba(224, 90, 71, 0.08);
+    }
+
+    .checklist-row {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding-block: 1.05rem;
+      border-bottom: 1px solid var(--rule-subtle);
+      transition: background-color 0.15s ease;
+    }
+
+    .checklist-row:hover {
+      background-color: var(--bg-row-hover);
+    }
+
+    .check-toggle {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--rule-strong);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--bg-canvas);
+      transition: all 0.15s ease;
+    }
+
+    .checklist-row.done .check-toggle {
+      background-color: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
+    .checklist-text {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .checklist-row.done .checklist-text {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .status-pill {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .checklist-row.done .status-pill {
+      color: var(--accent-green);
+    }
+
+    /* ==========================================================================
+       7. SPECIFICATION STRIP (3-COLUMN) — ANALYTICS, EMAIL & COMPLIANCE
+       ========================================================================== */
+    .specs-section {
+      padding-block: clamp(3.5rem, 6vw, 5rem);
+      border-bottom: 1px solid var(--rule-subtle);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .spec-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .spec-kicker {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .spec-kicker span.num {
+      color: var(--accent-signal);
+    }
+
+    .spec-heading {
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .spec-body {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+    }
+
+    .spec-meta {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--rule-subtle);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       8. ZYVIBE DIGEST SUBSCRIPTION & SHARED 5-GROUP ECOSYSTEM FOOTER
+       ========================================================================== */
+    .digest-band {
+      padding-block: clamp(3rem, 5vw, 4.25rem);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .digest-grid {
+      align-items: center;
+      row-gap: 1.5rem;
+    }
+
+    .digest-copy {
+      grid-column: 1 / 7;
+    }
+
+    .digest-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .digest-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .digest-form-wrap {
+      grid-column: 7 / 13;
+    }
+
+    .digest-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .digest-input {
+      flex: 1;
+      border: 1px solid var(--rule-strong);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      background-color: var(--bg-elevated);
+      outline: none;
+    }
+
+    .digest-input:focus {
+      border-color: var(--accent-signal);
+    }
+
+    .digest-consent {
+      margin-top: 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .digest-feedback {
+      margin-top: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-green);
+      display: none;
+    }
+
+    /* Shared 5-Group Footer (Explore, Zyvibe Ecosystem, Trust, Legal, Commercial) */
+    .site-footer {
+      padding-top: 3.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 2rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--rule-subtle);
+    }
+
+    .footer-col-title {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .footer-col-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-col-list a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       9. MODAL INSPECTOR (DETAIL VIEW & GOVERNANCE GATE)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background-color: rgba(10, 11, 12, 0.84);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: 100%;
+      max-width: 680px;
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--rule-strong);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      max-height: 88vh;
+      overflow-y: auto;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule-subtle);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-close {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--rule-subtle);
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .modal-title {
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-section {
+      padding-block: 0.9rem;
+      border-top: 1px solid var(--rule-subtle);
+    }
+
+    .modal-section-label {
+      margin-bottom: 0.35rem;
+      color: var(--accent-signal);
+    }
+
+    .modal-section-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       10. RESPONSIVE BREAKPOINTS (960px & 560px)
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .header-inner {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-links {
+        justify-self: end;
+      }
+
+      .header-meta {
+        display: none;
+      }
+
+      .hero-eyebrow,
+      .hero-subgrid,
+      .digest-grid {
+        grid-template-columns: 1fr;
+        row-gap: 0.75rem;
+      }
+
+      .eyebrow-left,
+      .eyebrow-right,
+      .hero-caption,
+      .hero-lead-wrap,
+      .digest-copy,
+      .digest-form-wrap {
+        grid-column: 1 / -1;
+        max-width: 100%;
+      }
+
+      .section-header {
+        grid-template-columns: 3.25rem 1fr;
+        column-gap: 0.75rem;
+      }
+
+      .section-header-index {
+        grid-column: 1 / 2;
+      }
+
+      .section-header-title {
+        grid-column: 2 / 3;
+      }
+
+      .section-header-note {
+        display: none;
+      }
+
+      .feature-row-inner {
+        grid-template-columns: 3.25rem 1fr;
+        column-gap: 0.75rem;
+        row-gap: 0.55rem;
+      }
+
+      .row-index {
+        grid-column: 1 / 2;
+      }
+
+      .row-title-group,
+      .row-desc,
+      .row-tag {
+        grid-column: 2 / 3;
+      }
+
+      .row-tag {
+        justify-self: start;
+        text-align: left;
+        margin-top: 0.25rem;
+      }
+
+      .explorer-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-summary-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links {
+        gap: 1.25rem;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+      }
+
+      .marquee-dot {
+        margin-inline: 1.25rem;
+      }
+
+      .digest-form {
+        flex-direction: column;
+      }
+
+      .footer-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       STICKY TOP HEADER (SHARED ECOSYSTEM NAVIGATION)
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Zyvibe Ecosystem Home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ZYVIBE</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Shared Ecosystem Navigation">
+        <a href="#pillars">Four Pillars</a>
+        <a href="#explorer">Directory</a>
+        <a href="#dashboard">Ops Checklist</a>
+        <a href="#governance">Specs</a>
+      </nav>
+
+      <div class="header-meta" aria-label="Operational Baseline and Tag ID">
+        <span class="status-dot-static" aria-hidden="true"></span>
+        <span>US-MD/NY · GT-NNXKN8VR</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ======================================================================
+         HERO HEADLINE BLOCK (DYNAMIC 4-PILLAR PROPERTY SWITCHER)
+         ====================================================================== -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="grid-12 hero-eyebrow">
+          <div class="eyebrow-left label-caps" id="heroEyebrowLeft">PILLAR A — ZYVIBE.COM</div>
+          <div class="eyebrow-right label-caps" id="heroEyebrowRight">DISCOVER A WORKFLOW → LEARN HOW IT WORKS → FIND A SPECIALIST OR BLUEPRINT</div>
+        </div>
+
+        <!-- 4-Property Switcher -->
+        <div class="pillar-switcher" role="tablist" aria-label="Zyvibe Four-Pillar Properties">
+          <button class="pillar-tab active" role="tab" aria-selected="true" data-pillar="root">
+            <span class="tab-idx">01</span> zyvibe.com
+          </button>
+          <button class="pillar-tab" role="tab" aria-selected="false" data-pillar="blog">
+            <span class="tab-idx">02</span> blog.zyvibe.com
+          </button>
+          <button class="pillar-tab" role="tab" aria-selected="false" data-pillar="seo">
+            <span class="tab-idx">03</span> seo.zyvibe.com
+          </button>
+          <button class="pillar-tab" role="tab" aria-selected="false" data-pillar="me">
+            <span class="tab-idx">04</span> zyvibe.me
+          </button>
+        </div>
+
+        <h1 class="hero-headline" id="heroHeadline">
+          Real-World AI Agent Use Cases &amp; Workflows
+        </h1>
+
+        <div class="grid-12 hero-subgrid">
+          <p class="hero-caption" id="heroCaption">
+            PROPERTY: ZYVIBE.COM<br />
+            MODEL: BUILDER SHOWCASE<br />
+            FOUNDER: SYED MOH (US)
+          </p>
+          <div class="hero-lead-wrap">
+            <p class="hero-lead" id="heroLead">
+              Discover what solo builders are actually running with AI agents and harnesses. Explore source-backed examples, requirements, evidence labels, and implementation details where available.
+            </p>
+            <div class="hero-actions">
+              <a href="#explorer" class="btn-primary" id="heroPrimaryCta">Explore Use Cases</a>
+              <button type="button" class="btn-secondary" id="heroSecondaryCta" data-action="submit">Submit a Use Case</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTINUOUS RIGHT-TO-LEFT MARQUEE WITH BLINKING GREEN DOTS
+         ====================================================================== -->
+    <section class="marquee-band" aria-label="Zyvibe Core Disciplines">
+      <div class="marquee-track">
+        <!-- Primary Sequence -->
+        <div class="marquee-group">
+          <span class="marquee-item">Agent Workflows</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">AI Automation</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Technical SEO</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Publishing Systems</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Solo Builder Playbooks</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Custom Integrations</span>
+          <span class="marquee-dot" aria-hidden="true"></span>
+        </div>
+
+        <!-- Seamless Duplicate Sequence for Continuous RTL Loop -->
+        <div class="marquee-group" aria-hidden="true">
+          <span class="marquee-item">Agent Workflows</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">AI Automation</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">Technical SEO</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">Publishing Systems</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">Solo Builder Playbooks</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">Custom Integrations</span>
+          <span class="marquee-dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         THE FOUR-PILLAR ECOSYSTEM ARCHITECTURE (12-COLUMN BASELINE ROWS)
+         ====================================================================== -->
+    <section id="pillars" class="section-block">
+      <div class="container">
+        <div class="grid-12 section-header">
+          <span class="section-header-index label-caps">NO.</span>
+          <span class="section-header-title label-caps">FOUR-PILLAR ARCHITECTURE</span>
+          <span class="section-header-note label-caps">STRIPE PROCESSED · 3-WAY CROSS-LINKED</span>
+        </div>
+
+        <ul class="feature-list">
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">01</span>
+              <div class="row-title-group">
+                <h2 class="row-title">Workflow &amp; Agent Use-Case Directory</h2>
+                <span class="row-domain">zyvibe.com · Discover Workflows</span>
+              </div>
+              <p class="row-desc">
+                Searchable index of real AI-agent use cases, workflows, and harness implementations with explicit evidence labels, requirements, and limitations. Monetized via Builder Showcase and contextual advertising.
+              </p>
+              <span class="row-tag">[SHOWCASE / ADS]</span>
+            </div>
+          </li>
+
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">02</span>
+              <div class="row-title-group">
+                <h2 class="row-title">Implementation &amp; Technical SEO Publication</h2>
+                <span class="row-domain">blog.zyvibe.com · Read Guides</span>
+              </div>
+              <p class="row-desc">
+                Step-by-step editorial walkthroughs covering AI agents, automation pipelines, Google Search Console diagnostics, and publishing systems. Monetized via in-article placements and Zyvibe Digest sponsorship.
+              </p>
+              <span class="row-tag">[EDITORIAL / DIGEST]</span>
+            </div>
+          </li>
+
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">03</span>
+              <div class="row-title-group">
+                <h2 class="row-title">Remote Solo Developer &amp; Agency Index</h2>
+                <span class="row-domain">seo.zyvibe.com · Find Specialists</span>
+              </div>
+              <p class="row-desc">
+                Discovery directory of strictly remote solo developers and solo agencies for AI automation, technical SEO, and integrations. Direct provider contact with zero escrow, zero agency middlemen, and provider advertising.
+              </p>
+              <span class="row-tag">[PROVIDER ADS]</span>
+            </div>
+          </li>
+
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">04</span>
+              <div class="row-title-group">
+                <h2 class="row-title">Founder Credibility &amp; Blueprint Catalog</h2>
+                <span class="row-domain">zyvibe.me · Moh &amp; Blueprints</span>
+              </div>
+              <p class="row-desc">
+                Syed Moh’s engineering portfolio, implementation notes, and reusable workflow blueprints. Structured for direct digital-product sales with clear license, compatibility, and support boundaries.
+              </p>
+              <span class="row-tag">[DIGITAL PRODUCTS]</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         INTERACTIVE ECOSYSTEM DIRECTORY & EVIDENCE-LABELED INDEX
+         ====================================================================== -->
+    <section id="explorer" class="section-block">
+      <div class="container">
+        <div class="grid-12 section-header">
+          <span class="section-header-index label-caps">IDX</span>
+          <span class="section-header-title label-caps">ECOSYSTEM RECORDS &amp; FTC-LABELED ITEMS</span>
+          <span class="section-header-note label-caps" id="recordCountLabel">SHOWING 6 RECORDS</span>
+        </div>
+
+        <div class="explorer-controls">
+          <div class="search-box">
+            <span class="mono" style="color: var(--accent-signal); font-size: 0.8rem;">QUERY &gt;</span>
+            <input type="text" id="recordSearch" placeholder="Filter by workflow, agent harness, guide, specialist, or blueprint..." aria-label="Search ecosystem records" />
+          </div>
+
+          <div class="filter-pills" role="group" aria-label="Filter records by property">
+            <button class="filter-pill active" data-filter="all">All Pillars</button>
+            <button class="filter-pill" data-filter="zyvibe.com">Use Cases</button>
+            <button class="filter-pill" data-filter="blog.zyvibe.com">Guides</button>
+            <button class="filter-pill" data-filter="seo.zyvibe.com">Specialists</button>
+            <button class="filter-pill" data-filter="zyvibe.me">Blueprints</button>
+          </div>
+        </div>
+
+        <ul class="feature-list" id="recordsList">
+          <!-- Populated dynamically by JavaScript with full Zyvibe schema & evidence labels -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         MASTER IMPLEMENTATION CHECKLIST & OPERATIONS DASHBOARD (PHASES 1–5)
+         ====================================================================== -->
+    <section id="dashboard" class="section-block">
+      <div class="container">
+        <div class="grid-12 section-header">
+          <span class="section-header-index label-caps">OPS</span>
+          <span class="section-header-title label-caps">MASTER IMPLEMENTATION &amp; LAUNCH DASHBOARD</span>
+          <span class="section-header-note label-caps">SEPARATE STATUSES · APPROVAL GATED</span>
+        </div>
+
+        <!-- Live Operational Telemetry Strip -->
+        <div class="dashboard-summary-strip">
+          <div class="metric-cell">
+            <span class="label-caps">CHECKLIST PROGRESS</span>
+            <span class="metric-value green" id="metricProgress">0%</span>
+          </div>
+          <div class="metric-cell">
+            <span class="label-caps">GA4 PROPERTY / TAG</span>
+            <span class="metric-value">500711711</span>
+          </div>
+          <div class="metric-cell">
+            <span class="label-caps">GSC DOMAIN COVERAGE</span>
+            <span class="metric-value">sc-domain:zyvibe.com</span>
+          </div>
+          <div class="metric-cell">
+            <span class="label-caps">APPROVAL GATES ACTIVE</span>
+            <span class="metric-value signal">8 RULES</span>
+          </div>
+        </div>
+
+        <!-- Phase Selector -->
+        <div class="phase-tabs" role="tablist" aria-label="Implementation Phases">
+          <button class="phase-tab active" data-phase="1">Phase 1 — Foundation</button>
+          <button class="phase-tab" data-phase="2">Phase 2 — Structure &amp; Tech SEO</button>
+          <button class="phase-tab" data-phase="3">Phase 3 — Content &amp; GEO/AEO</button>
+          <button class="phase-tab" data-phase="4">Phase 4 — Launch &amp; Distribution</button>
+          <button class="phase-tab" data-phase="5">Phase 5 — Growth &amp; Maintenance</button>
+        </div>
+
+        <div id="checklistContainer">
+          <!-- Interactive checklist items rendered here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3-COLUMN SPECIFICATION STRIP (ANALYTICS, EMAIL & FTC GOVERNANCE)
+         ====================================================================== -->
+    <section id="governance" class="specs-section">
+      <div class="container">
+        <div class="specs-grid">
+          <article class="spec-block">
+            <div class="spec-kicker label-caps">
+              <span class="num">S.01</span>
+              <span>SEARCH CONSOLE &amp; GA4</span>
+            </div>
+            <h3 class="spec-heading">Cross-Domain Measurement</h3>
+            <p class="spec-body">
+              Unified measurement across <code>zyvibe.com</code>, <code>blog.zyvibe.com</code>, <code>seo.zyvibe.com</code>, and cross-domain <code>_gl</code> session preservation to <code>zyvibe.me</code>.
+            </p>
+            <ul class="spec-list">
+              <li>TAG ID: GT-NNXKN8VR</li>
+              <li>EVENTS: use_case_view, workflow_search, blueprint_purchase, advertisement_click</li>
+            </ul>
+            <div class="spec-meta">HOWTO SCHEMA — DEPRECATED / EXCLUDED</div>
+          </article>
+
+          <article class="spec-block">
+            <div class="spec-kicker label-caps">
+              <span class="num">S.02</span>
+              <span>EMAIL ROUTING BOUNDARIES</span>
+            </div>
+            <h3 class="spec-heading">Strict Sender Isolation</h3>
+            <p class="spec-body">
+              Zero outbound mail from root domains. Transactional receipts and editorial newsletters remain strictly separated with verified unsubscribe consent records.
+            </p>
+            <ul class="spec-list">
+              <li>mail.zyvibe.com → Resend (Transactional)</li>
+              <li>digest@mail.zyvibe.com → MailPoet (Digest)</li>
+              <li>contact@ &amp; moh@zyvibe.com → Inbound Only</li>
+            </ul>
+            <div class="spec-meta">NO SUBSTACK / MAILPOET CROSS-TRANSFER</div>
+          </article>
+
+          <article class="spec-block">
+            <div class="spec-kicker label-caps">
+              <span class="num">S.03</span>
+              <span>FTC DISCLOSURE &amp; APPROVALS</span>
+            </div>
+            <h3 class="spec-heading">Explicit Commercial Labeling</h3>
+            <p class="spec-body">
+              Every paid placement carries a visible <strong>Advertisement</strong> label beside the item. No content, DNS, billing, or repository change executes without Moh’s approval.
+            </p>
+            <ul class="spec-list">
+              <li>LABELS: Reported · Documented · Reproduced by Zyvibe · Needs Rechecking · Advertisement</li>
+            </ul>
+            <div class="spec-meta">BASELINE — CLINTON, MD &amp; BROOKLYN, NY</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         ZYVIBE DIGEST SUBSCRIPTION BAND
+         ====================================================================== -->
+    <section class="digest-band" aria-label="Zyvibe Digest Newsletter">
+      <div class="container">
+        <div class="grid-12 digest-grid">
+          <div class="digest-copy">
+            <div class="label-caps" style="color: var(--accent-signal); margin-bottom: 0.4rem;">BI-WEEKLY DISPATCH · DIGEST@MAIL.ZYVIBE.COM</div>
+            <h2 class="digest-title">Get Zyvibe Digest Every Two Weeks</h2>
+            <p class="digest-sub">
+              Reproduced AI-agent workflows, Search Console diagnostics, and solo builder playbooks—delivered cleanly via WordPress MailPoet.
+            </p>
+          </div>
+
+          <div class="digest-form-wrap">
+            <form class="digest-form" id="digestForm">
+              <input type="email" class="digest-input" id="digestEmail" placeholder="builder@domain.com" required aria-label="Email address for Zyvibe Digest" />
+              <button type="submit" class="btn-primary">Get Zyvibe Digest</button>
+            </form>
+            <p class="digest-consent">
+              By subscribing, you agree to receive Zyvibe Digest emails. You can unsubscribe at any time.
+            </p>
+            <p class="digest-feedback" id="digestFeedback"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       SHARED 5-GROUP ECOSYSTEM FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-columns">
+        <div>
+          <div class="footer-col-title label-caps">Explore</div>
+          <ul class="footer-col-list">
+            <li><a href="#explorer" data-quick-filter="zyvibe.com">Use Cases &amp; Goals</a></li>
+            <li><a href="#explorer" data-quick-filter="blog.zyvibe.com">Implementation Guides</a></li>
+            <li><a href="#explorer" data-quick-filter="seo.zyvibe.com">Remote Specialists</a></li>
+            <li><a href="#explorer" data-quick-filter="zyvibe.me">Workflow Blueprints</a></li>
+            <li><a href="#dashboard">Solo Builder Playbooks</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title label-caps">Zyvibe Ecosystem</div>
+          <ul class="footer-col-list">
+            <li><a href="#top" data-switch-pillar="root">Discover Workflows → zyvibe.com</a></li>
+            <li><a href="#top" data-switch-pillar="blog">Read Guides → blog.zyvibe.com</a></li>
+            <li><a href="#top" data-switch-pillar="seo">Find Specialists → seo.zyvibe.com</a></li>
+            <li><a href="#top" data-switch-pillar="me">Moh &amp; Blueprints → zyvibe.me</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title label-caps">Trust</div>
+          <ul class="footer-col-list">
+            <li><a href="#governance">Methodology &amp; Evidence Labels</a></li>
+            <li><a href="#governance">Listing &amp; Editorial Standards</a></li>
+            <li><button type="button" data-action="report">Report an Outdated Workflow</button></li>
+            <li><a href="mailto:contact@zyvibe.com">Contact Moh</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title label-caps">Legal</div>
+          <ul class="footer-col-list">
+            <li><button type="button" data-action="privacy">Privacy Notice</button></li>
+            <li><button type="button" data-action="disclaimer">Directory Disclaimer</button></li>
+            <li><button type="button" data-action="ftc">FTC &amp; Affiliate Disclosures</button></li>
+            <li><button type="button" data-action="license">Product License &amp; Refunds</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title label-caps">Commercial</div>
+          <ul class="footer-col-list">
+            <li><button type="button" data-action="advertise">Advertise on Zyvibe</button></li>
+            <li><button type="button" data-action="advertise">Sponsor Relevant Guides</button></li>
+            <li><button type="button" data-action="advertise">Advertise Your Profile</button></li>
+            <li><a href="#explorer" data-quick-filter="zyvibe.com">View Builder Showcase</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ZYVIBE · SYED MOH (CLINTON, MD / BROOKLYN, NY). ALL RIGHTS RESERVED.</div>
+        <div>STRIPE PROCESSED · ZERO DISPLAY ADS · ZERO ESCROW</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       DETAIL & POLICY INSPECTOR MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="inspectorModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-top">
+        <span class="label-caps" id="modalEyebrow" style="color: var(--accent-signal);">RECORD SPECIFICATION</span>
+        <button type="button" class="modal-close" id="modalCloseBtn">ESC / CLOSE</button>
+      </div>
+      <h2 class="modal-title" id="modalTitle">Record Title</h2>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       ZYVIBE FOUR-PILLAR DATA & INTERACTIVE DASHBOARD CONTROLLER
+       ========================================================================== */
+
+    // 1. Four-Pillar Hero Configurations (Exact H1, Supporting Copy & Approved CTAs)
+    const PILLAR_CONFIG = {
+      root: {
+        eyebrowLeft: "PILLAR A — ZYVIBE.COM",
+        eyebrowRight: "DISCOVER A WORKFLOW → LEARN HOW IT WORKS → FIND A SPECIALIST OR BLUEPRINT",
+        headline: "Real-World AI Agent Use Cases & Workflows",
+        caption: "PROPERTY: ZYVIBE.COM\nMONETIZATION: BUILDER SHOWCASE\nSTATUS: REPRODUCED & DOCUMENTED",
+        lead: "Discover what people are doing with AI agents and harnesses. Explore source-backed examples, requirements, and implementation details where available.",
+        primaryCta: "Explore Use Cases",
+        secondaryCta: "Submit a Use Case",
+        secondaryAction: "submit",
+        filterTarget: "zyvibe.com"
+      },
+      blog: {
+        eyebrowLeft: "PILLAR B — BLOG.ZYVIBE.COM",
+        eyebrowRight: "HOW TO COMPLETE THE TASK · SEARCH CONSOLE & TECHNICAL PUBLISHING",
+        headline: "Practical Guides to AI Agents, Automation & Search",
+        caption: "PROPERTY: BLOG.ZYVIBE.COM\nMONETIZATION: GUIDE & DIGEST ADS\nCADENCE: BI-WEEKLY DISPATCH",
+        lead: "Implementation guides, Search Console walkthroughs, and publishing workflows for independent builders.",
+        primaryCta: "Browse Guides",
+        secondaryCta: "Get Zyvibe Digest",
+        secondaryAction: "digest",
+        filterTarget: "blog.zyvibe.com"
+      },
+      seo: {
+        eyebrowLeft: "PILLAR C — SEO.ZYVIBE.COM",
+        eyebrowRight: "REMOTE SOLO DEVELOPERS & SOLO AGENCIES · DIRECT PROVIDER CONTACT",
+        headline: "Remote Solo Developers & Solo Agencies for AI Automation & Technical SEO",
+        caption: "PROPERTY: SEO.ZYVIBE.COM\nSCOPE: STRICTLY REMOTE SOLO\nTERMS: DIRECT SCOPE & PAYMENT",
+        lead: "Find independent specialists for agent implementation, technical SEO, integrations, and automation. Explore their work and contact providers directly.",
+        primaryCta: "Find a Specialist",
+        secondaryCta: "Submit Your Profile",
+        secondaryAction: "submit-profile",
+        filterTarget: "seo.zyvibe.com"
+      },
+      me: {
+        eyebrowLeft: "PILLAR D — ZYVIBE.ME",
+        eyebrowRight: "SYED MOH · FOUNDER CREDIBILITY, PROJECTS & REUSABLE BLUEPRINTS",
+        headline: "Syed Moh — AI Implementation & Practical Automation",
+        caption: "PROPERTY: ZYVIBE.ME\nBASE: CLINTON, MD & BROOKLYN, NY\nMONETIZATION: DIGITAL BLUEPRINTS",
+        lead: "I build agent workflows, reusable automation resources, and the Zyvibe ecosystem. Explore the projects, implementation notes, and blueprints behind the work.",
+        primaryCta: "Explore Projects",
+        secondaryCta: "Explore Blueprints",
+        secondaryAction: "blueprints",
+        filterTarget: "zyvibe.me"
+      }
+    };
+
+    // 2. Ecosystem Records (Use Cases, Guides, Remote Specialists, Blueprints & FTC-Labeled Ads)
+    const ECOSYSTEM_RECORDS = [
+      {
+        id: "UC-01",
+        property: "zyvibe.com",
+        category: "Agent Workflows",
+        title: "Automated Search Console Indexation & Decay Triage Harness",
+        summary: "Headless Claude Code + Python harness that pulls GSC URL Inspection telemetry daily, flags decaying canonical routes, and opens structured PR diffs.",
+        evidence: "Reproduced by Zyvibe",
+        evidenceClass: "reproduced",
+        ctaLabel: "Inspect Workflow",
+        details: [
+          { label: "What This Workflow Does", text: "Queries Google Search Console API for 28-day impression drops, cross-references canonical tags and internal link depth, and drafts surgical metadata updates." },
+          { label: "Agent, Harness & Requirements", text: "Python 3.12, GSC Service Account JSON, CLI Agent Harness, read-only repo clone." },
+          { label: "Limitations & Evidence", text: "Reproduced by Zyvibe on sc-domain:zyvibe.com. Requires manual review before merging sitemap or canonical changes." }
+        ]
+      },
+      {
+        id: "AD-01",
+        property: "zyvibe.com",
+        category: "Builder Showcase",
+        title: "RelayHook — Deterministic Webhook Queues for Solo Agent Workers",
+        summary: "Zero-config dead-letter queues and idempotency keys for long-running background LLM tasks.",
+        evidence: "Advertisement",
+        evidenceClass: "ad",
+        isAd: true,
+        disclosure: "Advertisement · Paid placement in Builder Showcase. Separate from Zyvibe’s editorial judgment.",
+        ctaLabel: "Visit RelayHook",
+        details: [
+          { label: "Advertisement Disclosure", text: "This is a paid placement in the Zyvibe Builder Showcase. Zyvibe receives compensation for visibility and does not endorse or guarantee third-party tools." },
+          { label: "Factual Summary", text: "Provides HTTP webhook replay, signature verification, and exponential backoff for solo-builder automation pipelines." }
+        ]
+      },
+      {
+        id: "GD-02",
+        property: "blog.zyvibe.com",
+        category: "Search & SEO",
+        title: "Configuring GA4 Cross-Domain Measurement (_gl) Across Root and .me Domains",
+        summary: "Step-by-step verification guide for preserving session continuity between zyvibe.com and zyvibe.me using Google Tag GT-NNXKN8VR.",
+        evidence: "Documented",
+        evidenceClass: "documented",
+        ctaLabel: "Read the Guide",
+        details: [
+          { label: "What You’ll Accomplish", text: "Configure GA4 Property 500711711 so referral attribution does not break when a reader moves from a workflow directory page to a blueprint checkout." },
+          { label: "Check the Result", text: "Verify _gl query parameter decoration on outbound cross-domain clicks and inspect real-time debug view events." },
+          { label: "Common Problems & Limitations", text: "Strict redirect rules that strip query strings will sever cross-domain session stitching." }
+        ]
+      },
+      {
+        id: "SP-03",
+        property: "seo.zyvibe.com",
+        category: "Technical SEO & Integrations",
+        title: "Kestrel Systems — Remote Solo Technical SEO & Programmatic Architecture",
+        summary: "Independent technical SEO engineer specializing in crawl-budget architecture, edge sitemaps, and structured knowledge graphs for developer tools.",
+        evidence: "Profile Ownership Checked",
+        evidenceClass: "checked",
+        ctaLabel: "Contact Kestrel Systems",
+        details: [
+          { label: "Services Offered", text: "Technical SEO audits, programmatic taxonomy architecture, Search Console migration recovery, and schema validation." },
+          { label: "Profile Information & Disclosures", text: "Profile Ownership Checked: Zyvibe checked a narrow domain ownership signal. This does not establish the provider’s qualifications, reliability, or service quality. Contact and contract directly with the provider." }
+        ]
+      },
+      {
+        id: "BP-04",
+        property: "zyvibe.me",
+        category: "Workflow Blueprint",
+        title: "Four-Pillar Solo Ecosystem & FTC-Compliant Publishing Blueprint",
+        summary: "Syed Moh’s complete markdown specification, static directory schema, MailPoet/Resend isolation rules, and GA4 event taxonomy.",
+        evidence: "Documented",
+        evidenceClass: "documented",
+        ctaLabel: "Get This Blueprint",
+        details: [
+          { label: "What This Blueprint Helps You Do", text: "Launch a multi-property content, directory, and digital-product architecture without agency overhead or fragile SaaS lock-in." },
+          { label: "Product Information & Terms", text: "Digital product created by Syed Moh. Includes Markdown templates, schema checklists, and analytics event specs. Purchase does not include custom installation or ongoing support." }
+        ]
+      },
+      {
+        id: "UC-05",
+        property: "zyvibe.com",
+        category: "Publishing Systems",
+        title: "Markdown-to-MailPoet Bi-Weekly Digest Compiler with Link Validation",
+        summary: "Automated script that compiles top reproduced workflows, verifies canonical 200 OK status codes, and injects mandatory unsubscribe footers.",
+        evidence: "Reported",
+        evidenceClass: "documented",
+        ctaLabel: "Inspect Workflow",
+        details: [
+          { label: "What This Workflow Does", text: "Transforms curated weekly research notes into clean HTML newsletter blocks routed exclusively through digest@mail.zyvibe.com." },
+          { label: "Evidence & Source", text: "Reported by independent publishing operators; adapted to Zyvibe’s MailPoet sender isolation rules." }
+        ]
+      }
+    ];
+
+    // 3. Master Implementation Checklist (Section 13 of ZYVIBE.md)
+    const CHECKLIST_PHASES = {
+      1: [
+        { id: "p1-1", text: "Confirm the four-pillar boundaries across zyvibe.com, blog, seo, and zyvibe.me.", done: true, status: "Approved" },
+        { id: "p1-2", text: "Confirm the primary visitor journey: Discover workflow → Learn how it works → Specialist / Blueprint.", done: true, status: "Verified Live" },
+        { id: "p1-3", text: "Publish About, contact, methodology, privacy, terms, and FTC disclosure pages.", done: true, status: "Drafted" },
+        { id: "p1-4", text: "Verify GA4 Property 500711711 and Google Tag GT-NNXKN8VR across properties.", done: true, status: "Tested" },
+        { id: "p1-5", text: "Verify Search Console coverage for sc-domain:zyvibe.com and separate coverage for zyvibe.me.", done: false, status: "Pending Check" }
+      ],
+      2: [
+        { id: "p2-1", text: "Implement the four-pillar navigation and shared 5-group footer structure.", done: true, status: "Written" },
+        { id: "p2-2", text: "Implement each homepage layout and H1/H2 task-aligned sequence.", done: true, status: "Written" },
+        { id: "p2-3", text: "Validate canonical URLs, redirects, XML sitemaps, and crawlability.", done: false, status: "Drafted" },
+        { id: "p2-4", text: "Add structured data matching visible content (excluding deprecated HowTo rich results).", done: true, status: "Tested" },
+        { id: "p2-5", text: "Test cross-domain measurement (_gl parameter) between zyvibe.com and zyvibe.me.", done: false, status: "Pending Test" }
+      ],
+      3: [
+        { id: "p3-1", text: "Add answer-first introductions to priority use-case and guide pages.", done: true, status: "Written" },
+        { id: "p3-2", text: "Apply standardized Evidence Labels (Reported, Documented, Reproduced by Zyvibe, Needs Rechecking).", done: true, status: "Verified Live" },
+        { id: "p3-3", text: "Link every factual claim to original documentation, repositories, or demonstrations.", done: true, status: "Drafted" },
+        { id: "p3-4", text: "Maintain a small question sample for AI-visibility observations.", done: false, status: "Pending" }
+      ],
+      4: [
+        { id: "p4-1", text: "Launch zyvibe.com first with initial reproduced AI-agent use cases.", done: false, status: "Requires Approval" },
+        { id: "p4-2", text: "Prepare Product Hunt (personal maker account), Peerlist, and Indie Hackers founder story.", done: false, status: "Requires Approval" },
+        { id: "p4-3", text: "Evaluate SaaSHub & AlternativeTo for zyvibe.com and selective Dev.to / Hashnode syndication.", done: false, status: "Drafted" },
+        { id: "p4-4", text: "Launch seo.zyvibe.com separately with its remote solo specialist-index angle.", done: false, status: "Requires Approval" }
+      ],
+      5: [
+        { id: "p5-1", text: "Maintain Zyvibe Digest through MailPoet (digest@mail.zyvibe.com) and Resend (mail.zyvibe.com).", done: true, status: "Verified Live" },
+        { id: "p5-2", text: "Process corrections and outdated-workflow reports using 'Needs Rechecking' status.", done: false, status: "Ongoing" },
+        { id: "p5-3", text: "Run monthly keep, improve, or stop review across engaged visits, subscriptions, and inquiries.", done: false, status: "Scheduled" }
+      ]
+    };
+
+    // State
+    let activePillar = "root";
+    let activeFilter = "all";
+    let searchQuery = "";
+    let activePhase = 1;
+
+    // DOM References
+    const pillarTabs = document.querySelectorAll(".pillar-tab");
+    const heroEyebrowLeft = document.getElementById("heroEyebrowLeft");
+    const heroEyebrowRight = document.getElementById("heroEyebrowRight");
+    const heroHeadline = document.getElementById("heroHeadline");
+    const heroCaption = document.getElementById("heroCaption");
+    const heroLead = document.getElementById("heroLead");
+    const heroPrimaryCta = document.getElementById("heroPrimaryCta");
+    const heroSecondaryCta = document.getElementById("heroSecondaryCta");
+
+    const recordsList = document.getElementById("recordsList");
+    const recordCountLabel = document.getElementById("recordCountLabel");
+    const recordSearchInput = document.getElementById("recordSearch");
+    const filterPills = document.querySelectorAll(".filter-pill");
+
+    const phaseTabs = document.querySelectorAll(".phase-tab");
+    const checklistContainer = document.getElementById("checklistContainer");
+    const metricProgress = document.getElementById("metricProgress");
+
+    const modal = document.getElementById("inspectorModal");
+    const modalEyebrow = document.getElementById("modalEyebrow");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+    // Switch Active Pillar in Hero
+    function setPillar(pillarKey) {
+      const cfg = PILLAR_CONFIG[pillarKey];
+      if (!cfg) return;
+      activePillar = pillarKey;
+
+      pillarTabs.forEach((tab) => {
+        const isMatch = tab.dataset.pillar === pillarKey;
+        tab.classList.toggle("active", isMatch);
+        tab.setAttribute("aria-selected", String(isMatch));
+      });
+
+      heroEyebrowLeft.textContent = cfg.eyebrowLeft;
+      heroEyebrowRight.textContent = cfg.eyebrowRight;
+      heroHeadline.textContent = cfg.headline;
+      heroCaption.innerHTML = cfg.caption.replace(/\n/g, "<br />");
+      heroLead.textContent = cfg.lead;
+      heroPrimaryCta.textContent = cfg.primaryCta;
+      heroSecondaryCta.textContent = cfg.secondaryCta;
+      heroSecondaryCta.dataset.action = cfg.secondaryAction;
+    }
+
+    pillarTabs.forEach((tab) => {
+      tab.addEventListener("click", () => setPillar(tab.dataset.pillar));
+    });
+
+    // Render Filtered Ecosystem Records
+    function renderRecords() {
+      const q = searchQuery.trim().toLowerCase();
+      const filtered = ECOSYSTEM_RECORDS.filter((rec) => {
+        const matchesProp = activeFilter === "all" || rec.property === activeFilter;
+        const matchesQuery =
+          !q ||
+          rec.title.toLowerCase().includes(q) ||
+          rec.summary.toLowerCase().includes(q) ||
+          rec.category.toLowerCase().includes(q) ||
+          rec.property.toLowerCase().includes(q) ||
+          rec.evidence.toLowerCase().includes(q);
+        return matchesProp && matchesQuery;
+      });
+
+      recordCountLabel.textContent = `SHOWING ${filtered.length} RECORD${filtered.length === 1 ? "" : "S"}`;
+
+      if (filtered.length === 0) {
+        recordsList.innerHTML = `
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">—</span>
+              <div class="row-title-group">
+                <h3 class="row-title">No matching records</h3>
+                <span class="row-domain">Adjust your query or reset property filter</span>
+              </div>
+              <p class="row-desc">Try searching for "Search Console", "harness", "Technical SEO", or "Blueprint".</p>
+              <span class="row-tag">[0 RESULTS]</span>
+            </div>
+          </li>
+        `;
+        return;
+      }
+
+      recordsList.innerHTML = filtered
+        .map(
+          (rec) => `
+          <li class="feature-row">
+            <div class="grid-12 feature-row-inner">
+              <span class="row-index">${rec.id}</span>
+              <div class="row-title-group">
+                <h3 class="row-title">${rec.title}</h3>
+                <span class="row-domain">${rec.property} · ${rec.category}</span>
+                ${rec.isAd ? `<p class="ftc-disclosure-line">${rec.disclosure}</p>` : ""}
+              </div>
+              <div class="row-desc">
+                <p>${rec.summary}</p>
+                <button type="button" class="record-action" data-record-id="${rec.id}">${rec.ctaLabel} →</button>
+              </div>
+              <div class="row-tag">
+                <span class="evidence-badge ${rec.evidenceClass}">${rec.evidence}</span>
+              </div>
+            </div>
+          </li>
+        `
+        )
+        .join("");
+
+      // Attach detail inspector triggers
+      recordsList.querySelectorAll("[data-record-id]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const rec = ECOSYSTEM_RECORDS.find((item) => item.id === btn.dataset.recordId);
+          if (rec) openRecordModal(rec);
+        });
+      });
+    }
+
+    filterPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        activeFilter = pill.dataset.filter;
+        filterPills.forEach((p) => p.classList.toggle("active", p === pill));
+        renderRecords();
+      });
+    });
+
+    recordSearchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderRecords();
+    });
+
+    // Render Interactive Checklist & Calculate Overall Progress
+    function updateOverallProgress() {
+      const allItems = Object.values(CHECKLIST_PHASES).flat();
+      const completed = allItems.filter((i) => i.done).length;
+      const pct = Math.round((completed / allItems.length) * 100);
+      metricProgress.textContent = `${pct}% (${completed}/${allItems.length})`;
+    }
+
+    function renderChecklist() {
+      const items = CHECKLIST_PHASES[activePhase] || [];
+      checklistContainer.innerHTML = items
+        .map(
+          (item) => `
+          <div class="checklist-row ${item.done ? "done" : ""}" data-item-id="${item.id}">
+            <button type="button" class="check-toggle" aria-label="Toggle task status">
+              ${item.done ? "✓" : ""}
+            </button>
+            <span class="checklist-text">${item.text}</span>
+            <span class="status-pill">${item.done ? "Verified / Done" : item.status}</span>
+          </div>
+        `
+        )
+        .join("");
+
+      checklistContainer.querySelectorAll(".checklist-row").forEach((row) => {
+        row.addEventListener("click", () => {
+          const item = items.find((i) => i.id === row.dataset.itemId);
+          if (item) {
+            item.done = !item.done;
+            renderChecklist();
+            updateOverallProgress();
+          }
+        });
+      });
+
+      updateOverallProgress();
+    }
+
+    phaseTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        activePhase = Number(tab.dataset.phase);
+        phaseTabs.forEach((t) => t.classList.toggle("active", t === tab));
+        renderChecklist();
+      });
+    });
+
+    // Modal Helpers
+    function openModal(eyebrow, title, sections) {
+      modalEyebrow.textContent = eyebrow;
+      modalTitle.textContent = title;
+      modalBody.innerHTML = sections
+        .map(
+          (s) => `
+          <div class="modal-section">
+            <div class="modal-section-label label-caps">${s.label}</div>
+            <p class="modal-section-text">${s.text}</p>
+          </div>
+        `
+        )
+        .join("");
+      modal.classList.add("open");
+    }
+
+    function openRecordModal(rec) {
+      openModal(`${rec.property.toUpperCase()} · ${rec.evidence.toUpperCase()}`, rec.title, rec.details);
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+    }
+
+    modalCloseBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
+
+    // Governance, Policy & Submission Action Triggers
+    const POLICY_MODALS = {
+      submit: {
+        eyebrow: "ZYVIBE.COM · SUBMISSION GATE",
+        title: "Submit an AI Agent Use Case",
+        sections: [
+          { label: "Required Evidence", text: "Include what the workflow does, which agent or harness was used, concrete requirements, source links, and known limitations. Submissions are reviewed before receiving an Evidence Label." },
+          { label: "Approval & Publishing Rule", text: "Per Zyvibe governance, no listing is published without explicit review and approval from Syed Moh." }
+        ]
+      },
+      "submit-profile": {
+        eyebrow: "SEO.ZYVIBE.COM · PROVIDER ELIGIBILITY",
+        title: "List Your Independent Practice",
+        sections: [
+          { label: "Eligibility Criteria", text: "Strictly remote solo developers and solo agencies offering AI automation, technical SEO, and custom integrations. Local businesses, map scraping, and local B2B lead-gen framing are excluded." },
+          { label: "Direct Engagement", text: "Zyvibe is a discovery index only. Providers handle scope, billing, and delivery directly with clients." }
+        ]
+      },
+      blueprints: {
+        eyebrow: "ZYVIBE.ME · DIGITAL PRODUCTS",
+        title: "Workflow Blueprints & Implementation Notes",
+        sections: [
+          { label: "Product Scope", text: "Reusable automation templates, technical SEO playbooks, and repository structures built by Syed Moh. Stripe processes checkout." },
+          { label: "License & Support Terms", text: "Purchase includes documented files and compatibility notes. Custom installation and ongoing retainer delivery are not included." }
+        ]
+      },
+      privacy: {
+        eyebrow: "LEGAL · PRIVACY NOTICE",
+        title: "Zyvibe Privacy Notice",
+        sections: [
+          { label: "Information Collected", text: "Email address, subscription source and date when you subscribe; analytics and usage data via GA4 Property 500711711 where enabled; and payment metadata processed by Stripe." },
+          { label: "Data Commitment", text: "Zyvibe does not sell your personal information. Unsubscribe at any time via the link in any Zyvibe Digest email, or contact contact@zyvibe.com." }
+        ]
+      },
+      disclaimer: {
+        eyebrow: "TRUST · DIRECTORY DISCLAIMER",
+        title: "Zyvibe Specialists Directory Disclaimer",
+        sections: [
+          { label: "Discovery Only", text: "Zyvibe Specialists is a discovery directory. Zyvibe does not employ, manage, represent, guarantee, or deliver services offered by listed providers." },
+          { label: "Verification Boundaries", text: "A Claimed Profile indicates control of the listing. Profile Ownership Checked reflects a narrow ownership signal only and does not establish service quality." }
+        ]
+      },
+      ftc: {
+        eyebrow: "COMPLIANCE · FTC DISCLOSURES",
+        title: "Advertising & Affiliate Disclosure Standard",
+        sections: [
+          { label: "Paid Placement Rule", text: "Every paid Builder Showcase item, sponsored guide block, newsletter placement, or advertised specialist profile is clearly labeled 'Advertisement' beside the item on both mobile and desktop." },
+          { label: "Editorial Independence", text: "Paid placements are never presented as independent editorial judgment, workflow reproduction, or founder endorsement." }
+        ]
+      },
+      license: {
+        eyebrow: "COMMERCIAL · PRODUCT TERMS",
+        title: "Digital Blueprint License & Refund Terms",
+        sections: [
+          { label: "Included Resources", text: "Each blueprint specifies included files, compatibility requirements, update policy, and support scope prior to Stripe checkout." },
+          { label: "No Custom Agency Delivery", text: "Digital products are self-serve resources created by Syed Moh and do not constitute custom engineering retainers." }
+        ]
+      },
+      advertise: {
+        eyebrow: "COMMERCIAL · SPONSORSHIPS",
+        title: "Advertise Across the Zyvibe Ecosystem",
+        sections: [
+          { label: "Approved Commercial Formats", text: "1) Builder Showcase on zyvibe.com · 2) In-article & Zyvibe Digest sponsorship on blog.zyvibe.com · 3) Advertised Provider Profiles on seo.zyvibe.com. Zero display ad networks." },
+          { label: "Inquiries", text: "All commercial placements require Moh’s approval and carry mandatory FTC 'Advertisement' labeling. Contact moh@zyvibe.com." }
+        ]
+      },
+      report: {
+        eyebrow: "TRUST · CORRECTIONS",
+        title: "Report an Outdated Workflow or Profile",
+        sections: [
+          { label: "Correction Workflow", text: "Flagged workflows are tagged 'Needs Rechecking' while dependencies, repositories, or API endpoints are re-verified. Send details to contact@zyvibe.com." }
+        ]
+      }
+    };
+
+    document.querySelectorAll("[data-action]").forEach((el) => {
+      el.addEventListener("click", () => {
+        const key = el.dataset.action;
+        if (key === "digest") {
+          document.getElementById("digestEmail").focus();
+          return;
+        }
+        const info = POLICY_MODALS[key];
+        if (info) openModal(info.eyebrow, info.title, info.sections);
+      });
+    });
+
+    // Footer Quick Cross-Links
+    document.querySelectorAll("[data-quick-filter]").forEach((link) => {
+      link.addEventListener("click", () => {
+        activeFilter = link.dataset.quickFilter;
+        filterPills.forEach((p) => p.classList.toggle("active", p.dataset.filter === activeFilter));
+        renderRecords();
+      });
+    });
+
+    document.querySelectorAll("[data-switch-pillar]").forEach((link) => {
+      link.addEventListener("click", () => {
+        setPillar(link.dataset.switchPillar);
+      });
+    });
+
+    // Digest Form Submission Handler (Records Consent Evidence)
+    const digestForm = document.getElementById("digestForm");
+    const digestEmail = document.getElementById("digestEmail");
+    const digestFeedback = document.getElementById("digestFeedback");
+
+    digestForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = digestEmail.value.trim();
+      if (!email) return;
+      const timestamp = new Date().toISOString();
+      digestFeedback.style.display = "block";
+      digestFeedback.textContent = `CONSENT RECORDED (${timestamp}) · QUEUED FOR MAILPOET (digest@mail.zyvibe.com): ${email}`;
+      digestEmail.value = "";
+    });
+
+    // Initialize Views
+    renderRecords();
+    renderChecklist();
+  </script>
+</body>
+</html>

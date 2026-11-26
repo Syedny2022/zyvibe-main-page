@@ -1,0 +1,40 @@
+{
+  "slug": "open-interpreter-local-code-execution",
+  "title": "Local Code Execution and Interface Testing Agent",
+  "oneLiner": "Open Interpreter runs locally to execute code, control web apps in a real browser, and operate system interfaces, acting as a desktop agent for tasks between applications.",
+  "goal": "browser-and-computer-use",
+  "agent": "open-interpreter",
+  "agentName": "Open Interpreter",
+  "harness": "desktop-app",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 11,
+  "whatItDoes": [
+    "Open Interpreter runs locally to execute code, control web apps in a real browser, and operate system interfaces, acting as a desktop agent for tasks between applications."
+  ],
+  "requirements": [
+    "Python",
+    "`open-interpreter` package",
+    "local environment permissions"
+  ],
+  "steps": [
+    "Install via pip",
+    "Run `interpreter` in terminal",
+    "Grant permission for code execution",
+    "Provide a task like \"Analyze this CSV and plot a chart\"."
+  ],
+  "configSnippet": "\"Read the source document, write a Python script to extract the data, execute it, and display the result.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Runs in interactive sessions (not 24/7 autonomous by default)",
+    "requires careful sandboxing to prevent destructive local commands."
+  ],
+  "source": {
+    "title": "Open Interpreter — Local AI Coding & Desktop Agent",
+    "url": "https://www.openinterpreter.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

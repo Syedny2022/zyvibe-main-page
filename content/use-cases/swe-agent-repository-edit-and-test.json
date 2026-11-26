@@ -1,0 +1,41 @@
+{
+  "slug": "swe-agent-repository-edit-and-test",
+  "title": "Automated Software Engineering for Repository Edits and Tests",
+  "oneLiner": "SWE-agent autonomously uses tools to fix GitHub issues or perform custom tasks by interacting with a sandboxed Agent-Computer Interface (ACI) to run tests and apply patches.",
+  "goal": "testing-and-qa",
+  "agent": "swe-agent",
+  "agentName": "SWE-agent",
+  "harness": "terminal-cli",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 2,
+  "whatItDoes": [
+    "SWE-agent autonomously uses tools to fix GitHub issues or perform custom tasks by interacting with a sandboxed Agent-Computer Interface (ACI) to run tests and apply patches."
+  ],
+  "requirements": [
+    "Python",
+    "Docker",
+    "SWE-bench compatible repository",
+    "API key"
+  ],
+  "steps": [
+    "Clone SWE-agent repo",
+    "Configure environment with LLM API key",
+    "Run `python run.py --model <model> --instance <github_issue>`",
+    "Evaluate patch against repository test suite."
+  ],
+  "configSnippet": "\"Fix the failing test in <file> by analyzing the traceback and applying a minimal patch.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Struggles with highly dynamic GUI tasks",
+    "optimized primarily for text-based code repositories and SWE-bench evaluation."
+  ],
+  "source": {
+    "title": "SWE-agent — Autonomous Software Engineering Agent",
+    "url": "https://swe-agent.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "continue-dev-ci-headless-pr-checks",
+  "title": "Headless CLI Coding Agent for Automated CI/CD PR Checks",
+  "oneLiner": "Continue runs both in IDEs and as a headless CLI agent (`cn`) inside CI pipelines to enforce custom engineering rules, audit pull requests, and propose inline fixes.",
+  "goal": "testing-and-qa",
+  "agent": "continue-cli",
+  "agentName": "Continue CLI",
+  "harness": "terminal-cli",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 35,
+  "whatItDoes": [
+    "Continue runs both in IDEs and as a headless CLI agent (`cn`) inside CI pipelines to enforce custom engineering rules, audit pull requests, and propose inline fixes."
+  ],
+  "requirements": [
+    "Node.js",
+    "Continue CLI (`@continuedev/cli`)",
+    "LLM API key"
+  ],
+  "steps": [
+    "Install Continue CLI",
+    "Define rules in `.continue/rules/`",
+    "Run `cn -p` in GitHub Actions on pull requests",
+    "Post automated review comments."
+  ],
+  "configSnippet": "\"cn -p 'Check this diff for missing database indexes or unvalidated user inputs and output a markdown checklist.'\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires thoughtful rule scoping in CI to avoid noisy comments on large refactoring PRs."
+  ],
+  "source": {
+    "title": "Continue — Open-Source AI Code Agents",
+    "url": "https://www.continue.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

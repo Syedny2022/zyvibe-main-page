@@ -1,0 +1,40 @@
+{
+  "slug": "flowise-visual-llm-workflow-builder",
+  "title": "Visual Drag-and-Drop AI Agent and LLM Workflow Builder",
+  "oneLiner": "Flowise provides a visual, no-code/low-code interface to build agentic systems, connecting LLMs, APIs, and vector databases through modular drag-and-drop nodes.",
+  "goal": "workflow-orchestration",
+  "agent": "flowise",
+  "agentName": "Flowise",
+  "harness": "no-code-builder",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 12,
+  "whatItDoes": [
+    "Flowise provides a visual, no-code/low-code interface to build agentic systems, connecting LLMs, APIs, and vector databases through modular drag-and-drop nodes."
+  ],
+  "requirements": [
+    "Node.js",
+    "npm",
+    "Flowise installation"
+  ],
+  "steps": [
+    "Install and start Flowise",
+    "Open the web UI",
+    "Drag and drop nodes (e.g., Chat Model, Vector Store, Agent)",
+    "Connect nodes and test the chat interface."
+  ],
+  "configSnippet": "\"Use a Conversational Retrieval QA chain with a PDF loader to answer questions based on the uploaded document.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Visual workflows can become cluttered for highly complex logic",
+    "custom tool creation requires JavaScript/TypeScript knowledge."
+  ],
+  "source": {
+    "title": "Flowise — Visual AI Agent & LLM Workflow Builder",
+    "url": "https://flowiseai.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

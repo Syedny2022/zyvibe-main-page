@@ -1,0 +1,40 @@
+{
+  "slug": "mastra-typescript-agent-workflows",
+  "title": "TypeScript-Native AI Agent and Durable Workflow Framework",
+  "oneLiner": "Mastra provides a TypeScript framework for building agents with typed tools, RAG pipelines, suspend-and-resume workflows, and built-in evals designed for modern Next.js and Node.js stacks.",
+  "goal": "workflow-orchestration",
+  "agent": "mastra",
+  "agentName": "Mastra",
+  "harness": "typescript-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 41,
+  "whatItDoes": [
+    "Mastra provides a TypeScript framework for building agents with typed tools, RAG pipelines, suspend-and-resume workflows, and built-in evals designed for modern Next.js and Node.js stacks."
+  ],
+  "requirements": [
+    "Node.js 20+",
+    "TypeScript",
+    "`mastra` CLI/SDK",
+    "LLM API key"
+  ],
+  "steps": [
+    "Run `npx create-mastra@latest`",
+    "Define agents, tools, and workflow steps in TypeScript",
+    "Test in local Mastra Playground UI",
+    "Deploy to serverless or Node server."
+  ],
+  "configSnippet": "\"Create a workflow that drafts a newsletter, suspends for human approval via webhook, and publishes upon confirmation.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Focused exclusively on the TypeScript/JavaScript ecosystem rather than Python."
+  ],
+  "source": {
+    "title": "Mastra — TypeScript AI Agent Framework",
+    "url": "https://mastra.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

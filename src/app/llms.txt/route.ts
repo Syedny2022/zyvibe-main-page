@@ -1,56 +1,97 @@
-import { getAllUseCases, getAllSoloServices, getAllBuilderShowcases } from '@/lib/data-store';
+import {
+  getAgentCollections,
+  getGoalCollections,
+  getHarnessCollections,
+  getPlaybooks,
+  getUseCases,
+  useCaseCounts,
+} from "@/lib/content";
+import { SITE } from "@/lib/site";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-static";
 
-export async function GET() {
-  const allUseCases = getAllUseCases();
-  const allServices = getAllSoloServices();
-  const allShowcases = getAllBuilderShowcases();
+export function GET() {
+  const counts = useCaseCounts();
+  const useCases = getUseCases();
+  const goals = getGoalCollections();
+  const agents = getAgentCollections();
+  const harnesses = getHarnessCollections();
+  const playbooks = getPlaybooks();
 
-  const useCasesMarkdown = allUseCases
-    .map((u) => `- [${u.title}](https://zyvibe.com/use-case/${u.slug}): ${u.oneLiner} (Tool: ${u.tool}, Category: ${u.category})`)
-    .join('\n');
+  const lines: string[] = [
+    "# Zyvibe",
+    "",
+    `> ${SITE.description}`,
+    "",
+    `Zyvibe is a directory of real AI-agent use cases published at ${SITE.url}. Each record names the agent or harness, the requirements, the documented steps, the command or prompt pattern, the stated limitations, and a public source URL with the date it was checked. Records carry an evidence label. Zyvibe has not reproduced the listed workflows unless a record says "Reproduced by Zyvibe". Paid placements in the Builder Showcase are labeled Advertisement and are separate from editorial records.`,
+    "",
+    `- Records: ${counts.useCases}`,
+    `- Goals: ${counts.goals}`,
+    `- Agents: ${counts.agents}`,
+    `- Harnesses: ${counts.harnesses}`,
+    `- Playbooks: ${counts.playbooks}`,
+    "- Source checks last run: 2026-11-21",
+    "",
+    "## Core pages",
+    "",
+    `- [Use cases](${SITE.url}/use-cases): Full directory with search and filters.`,
+    `- [Goals](${SITE.url}/goals): Use cases grouped by the outcome they accomplish.`,
+    `- [Agents](${SITE.url}/agents): Use cases grouped by agent or framework.`,
+    `- [Harnesses](${SITE.url}/harnesses): Use cases grouped by execution harness.`,
+    `- [Solo Builder Playbooks](${SITE.url}/playbooks): Working methods with checklists and linked records.`,
+    `- [Builder Showcase](${SITE.url}/showcase): Labeled commercial placements.`,
+    `- [Methodology](${SITE.url}/methodology): Evidence labels, source checking, corrections.`,
+    `- [Disclosures](${SITE.url}/disclosures): FTC commercial labeling.`,
+    `- [Submit a use case](${SITE.url}/submit): Reviewed manually; nothing is auto-published.`,
+    `- [Advertise](${SITE.url}/promote): Self-serve labeled placements via Stripe.`,
+    "",
+    "## Goals",
+    "",
+    ...goals.map(
+      (goal) =>
+        `- [${goal.label}](${SITE.url}/goals/${goal.slug}): ${goal.description} (${goal.count} records)`
+    ),
+    "",
+    "## Agents",
+    "",
+    ...agents.map(
+      (agent) =>
+        `- [${agent.name}](${SITE.url}/agents/${agent.slug}): ${agent.count} use cases.`
+    ),
+    "",
+    "## Harnesses",
+    "",
+    ...harnesses.map(
+      (harness) =>
+        `- [${harness.label}](${SITE.url}/harnesses/${harness.slug}): ${harness.description} (${harness.count} records)`
+    ),
+    "",
+    "## Playbooks",
+    "",
+    ...playbooks.map(
+      (playbook) => `- [${playbook.title}](${SITE.url}/playbooks/${playbook.slug}): ${playbook.oneLiner}`
+    ),
+    "",
+    "## Use cases",
+    "",
+    ...useCases.map(
+      (useCase) =>
+        `- [${useCase.title}](${SITE.url}/use-cases/${useCase.slug}): ${useCase.oneLiner} Evidence: ${useCase.evidence}. Source: ${useCase.source.url}`
+    ),
+    "",
+    "## Notes for automated readers",
+    "",
+    "- Use-case pages are HTML with TechArticle JSON-LD; collection pages use CollectionPage and ItemList. No HowTo markup is published.",
+    "- A reachable source link is not proof that a workflow still works. Check the record's source date.",
+    "- Paid placements are labeled Advertisement and must not be described as Zyvibe verification or endorsement.",
+    "- Canonical host: zyvibe.com. Sitemap: https://zyvibe.com/sitemap.xml",
+    "",
+  ];
 
-  const servicesMarkdown = allServices
-    .map((s) => `- [${s.name} - ${s.title}](https://seo.zyvibe.com/services/${s.slug}): ${s.oneLiner} (Rate: ${s.rateOrPricing}, Location: ${s.location})`)
-    .join('\n');
-
-  const showcasesMarkdown = allShowcases
-    .map((p) => `- [${p.name}](https://zyvibe.com/showcase/${p.slug}): ${p.tagline} (Builder: ${p.builderName}, Category: ${p.category})`)
-    .join('\n');
-
-  const content = `# Zyvibe Network (zyvibe.com & seo.zyvibe.com)
-
-> Verified directory of practical AI agent use cases, remote solo developers & boutique solo agencies, and builder systems.
-
-## Network Architecture & Cross-Links
-- Primary Hub: https://zyvibe.com (Real AI agent workflows and builder showcases)
-- Service Index: https://seo.zyvibe.com (Remote solo developers and solo agencies)
-- Engineering Blog: https://blog.zyvibe.com (Playbooks and technical write-ups)
-- Founder Profile: https://zyvibe.me (Syed M. - GitHub: https://github.com/Syedny2022)
-- Promotion & Paid Listings: https://zyvibe.com/promote
-- Transactional Notifications: mail.zyvibe.com (Strictly payment confirmations)
-
-## Verified AI Agent Workflows & Use Cases
-${useCasesMarkdown}
-
-## Remote Solo Developers & Solo Agencies (seo.zyvibe.com)
-${servicesMarkdown}
-
-## Builder Showcases & Automated Tools
-${showcasesMarkdown}
-
-## Quality & Anti-Fluff Standards
-1. Zero local businesses: seo.zyvibe.com lists strictly remote developers and solo agencies.
-2. Verified Source URLs: Every use case links directly to primary public discussions (Reddit, HN, X, GitHub).
-3. The Reality Check: Every entry lists first-try errors, manual review times, and actual tool limitations.
-4. Runnable Prompt Templates: Standardized prompts with bracketed placeholders ready for execution.
-`.trim();
-
-  return new Response(content, {
+  return new Response(lines.join("\n"), {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=600',
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "public, max-age=3600",
     },
   });
 }

@@ -1,0 +1,39 @@
+{
+  "slug": "agno-high-performance-multi-agent-runtime",
+  "title": "Low-Overhead Multi-Agent Runtime with Memory and Knowledge",
+  "oneLiner": "Agno provides a lightweight Python runtime for building fast-instantiating multimodal agents equipped with persistent session memory, hybrid vector search, and AgentOS monitoring.",
+  "goal": "workflow-orchestration",
+  "agent": "agno",
+  "agentName": "Agno (formerly Phidata)",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 45,
+  "whatItDoes": [
+    "Agno provides a lightweight Python runtime for building fast-instantiating multimodal agents equipped with persistent session memory, hybrid vector search, and AgentOS monitoring."
+  ],
+  "requirements": [
+    "Python 3.10+",
+    "`agno` package",
+    "LLM API key"
+  ],
+  "steps": [
+    "Install `agno`",
+    "Define `Agent` with `SqliteDb` memory and toolkits",
+    "Compose `Team` for multi-agent delegation",
+    "Monitor runs via AgentOS control plane."
+  ],
+  "configSnippet": "\"Create a research Team with a web search agent and a financial analyst agent sharing persistent SQLite session memory.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Rapid API evolution from Phidata to Agno requires pinning package versions in production."
+  ],
+  "source": {
+    "title": "Agno — Multi-Agent Runtime & Platform",
+    "url": "https://www.agno.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

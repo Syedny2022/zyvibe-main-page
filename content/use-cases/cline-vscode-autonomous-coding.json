@@ -1,0 +1,39 @@
+{
+  "slug": "cline-vscode-autonomous-coding",
+  "title": "VS Code Autonomous Coding with Step-by-Step Approval",
+  "oneLiner": "Cline operates as an autonomous coding agent within VS Code, providing transparency and step-by-step control for precision work, file creation, and terminal command execution.",
+  "goal": "code-and-repo-automation",
+  "agent": "cline",
+  "agentName": "Cline",
+  "harness": "ide-extension",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 4,
+  "whatItDoes": [
+    "Cline operates as an autonomous coding agent within VS Code, providing transparency and step-by-step control for precision work, file creation, and terminal command execution."
+  ],
+  "requirements": [
+    "VS Code",
+    "Cline extension",
+    "LLM API key (e.g., OpenRouter, Anthropic)"
+  ],
+  "steps": [
+    "Install Cline extension in VS Code",
+    "Provide a high-level task description",
+    "Review and approve each proposed file edit or terminal command",
+    "Agent executes approved steps sequentially."
+  ],
+  "configSnippet": "\"Create a new React component for a data table, write the corresponding CSS, and add it to the main dashboard file.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Context management and multi-file operations can be constrained by the underlying model's token limits."
+  ],
+  "source": {
+    "title": "Cline — Open Source AI Coding Agent",
+    "url": "https://cline.bot/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

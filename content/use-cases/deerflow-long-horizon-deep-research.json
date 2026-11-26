@@ -1,0 +1,40 @@
+{
+  "slug": "deerflow-long-horizon-deep-research",
+  "title": "Long-Horizon Autonomous Deep Research and Code Execution",
+  "oneLiner": "DeerFlow orchestrates sub-agents, memory, and sandboxes to perform long-horizon, iterative research tasks, including writing and executing code to verify findings autonomously.",
+  "goal": "research-and-data-synthesis",
+  "agent": "deerflow",
+  "agentName": "DeerFlow",
+  "harness": "python-sdk",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 21,
+  "whatItDoes": [
+    "DeerFlow orchestrates sub-agents, memory, and sandboxes to perform long-horizon, iterative research tasks, including writing and executing code to verify findings autonomously."
+  ],
+  "requirements": [
+    "Python",
+    "access to DeerFlow repository or hosted API",
+    "LLM configuration"
+  ],
+  "steps": [
+    "Initialize a DeerFlow session",
+    "Submit a complex research query (e.g., \"Compare the performance of three ML models on dataset X\")",
+    "Monitor sub-agent execution and sandboxed code runs",
+    "Retrieve the final synthesized report."
+  ],
+  "configSnippet": "\"Research the latest advancements in X, write a script to validate the claims using public data, and compile a summary report.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Long-running tasks may hit API timeout limits if not properly polled or streamed",
+    "sandboxed environments restrict access to certain external networks."
+  ],
+  "source": {
+    "title": "DeerFlow — Open-Source SuperAgent Harness",
+    "url": "https://deerflow.tech/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

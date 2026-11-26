@@ -1,0 +1,40 @@
+{
+  "slug": "langgraph-customer-service-branching",
+  "title": "Stateful Customer Service Chatbot with Branching Logic",
+  "oneLiner": "LangGraph orchestrates complex, multi-turn conversations with memory, branching, and tool use, ideal for retail or customer service workflows requiring durable execution.",
+  "goal": "workflow-orchestration",
+  "agent": "langgraph",
+  "agentName": "LangGraph",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 7,
+  "whatItDoes": [
+    "LangGraph orchestrates complex, multi-turn conversations with memory, branching, and tool use, ideal for retail or customer service workflows requiring durable execution."
+  ],
+  "requirements": [
+    "Python",
+    "`langgraph` package",
+    "LangChain setup"
+  ],
+  "steps": [
+    "Define graph nodes (e.g., router, tool_caller, responder)",
+    "Set up conditional edges based on LLM output",
+    "Compile the graph",
+    "Invoke with a user query and stream the response."
+  ],
+  "configSnippet": "\"If user asks for order status, route to 'check_order' node; else, route to 'general_qa' node.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Steeper learning curve due to low-level primitives",
+    "requires manual management of graph state schema."
+  ],
+  "source": {
+    "title": "LangGraph by LangChain",
+    "url": "https://www.langchain.com/langgraph",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

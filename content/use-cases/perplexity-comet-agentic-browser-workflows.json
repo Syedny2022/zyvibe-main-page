@@ -1,0 +1,39 @@
+{
+  "slug": "perplexity-comet-agentic-browser-workflows",
+  "title": "Agentic Browser Assistant for Multi-Tab Research and Web Actions",
+  "oneLiner": "Perplexity Comet embeds an autonomous assistant directly inside a Chromium-based browser to summarize open tabs, compare products across pages, and execute multi-step web tasks.",
+  "goal": "research-and-data-synthesis",
+  "agent": "perplexity-comet",
+  "agentName": "Perplexity Comet",
+  "harness": "desktop-app",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 48,
+  "whatItDoes": [
+    "Perplexity Comet embeds an autonomous assistant directly inside a Chromium-based browser to summarize open tabs, compare products across pages, and execute multi-step web tasks."
+  ],
+  "requirements": [
+    "Perplexity account",
+    "Comet browser desktop installation"
+  ],
+  "steps": [
+    "Install and sign into Comet browser",
+    "Open target research tabs",
+    "Invoke Comet assistant sidebar",
+    "Delegate cross-tab comparison or form navigation."
+  ],
+  "configSnippet": "\"Compare specs, pricing, and return policies across all 4 open laptop tabs and build a ranked comparison table.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Bound to browser session context",
+    "complex authenticated workflows may pause for user confirmation."
+  ],
+  "source": {
+    "title": "Perplexity Comet — Agentic AI Browser",
+    "url": "https://www.perplexity.ai/comet",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

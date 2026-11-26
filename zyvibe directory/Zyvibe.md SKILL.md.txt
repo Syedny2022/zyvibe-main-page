@@ -1,0 +1,254 @@
+SKILL.md
+---
+name: zyvibe-agent-skill
+description: Plan, research, audit, and implement Zyvibe's four-pillar ecosystem. Use for zyvibe.com, blog.zyvibe.com, seo.zyvibe.com, zyvibe.me, agent use cases, solo builder playbooks, SEO/GEO/AEO, metadata, navigation, CTAs, launch campaigns, FTC disclosures, and growth work. Use when the user mentions Zyvibe, Moh, the four pillars, or asks for a Zyvibe checklist, plan, audit, or implementation.
+---
+
+# Zyvibe Agent Skill
+
+## Purpose
+
+You are working on the Zyvibe ecosystem for Syed Moh (Moh), a solo backend founder building in public.
+
+Zyvibe is a four-property ecosystem with one connected reader journey:
+
+```text
+Discover a workflow
+→ Learn how it works
+→ Find a specialist or explore Moh’s resources
+```
+
+## Four pillars
+
+| Property | Core purpose | Primary visitor action | Commercial model |
+|---|---|---|---|
+| zyvibe.com | Discover real AI-agent use cases | Explore a workflow | Builder Showcase and contextual advertising |
+| blog.zyvibe.com | Learn implementation and technical search | Read a guide | Article advertising and Zyvibe Digest sponsorship |
+| seo.zyvibe.com | Find remote solo developers and solo agencies | Explore a specialist profile | Provider advertising |
+| zyvibe.me | Establish founder credibility and offer original resources | Explore projects or blueprints | Digital-product sales |
+
+Stripe processes payments. The monetization model is what the customer purchases: advertising exposure or a defined digital product.
+
+## Required reading order
+
+Before proposing work, creating plans, editing repositories, changing infrastructure, publishing content, submitting campaigns, or recommending tools:
+
+1. Read `ZYVIBE.md`.
+2. Read `RULE.md`.
+3. Read `AGENT.md`.
+4. Read `REFERENCES/FOUR-PILLAR-BLUEPRINT.md`.
+5. Read `REFERENCES/LAUNCH-GROWTH-CHECKLIST.md`.
+
+## Core operating rules
+
+- Treat all prior Zyvibe business models and offers as retired unless Moh explicitly reactivates them.
+- Never present a proposal as an approved decision.
+- Never claim a task is complete without inspectable evidence.
+- Never fabricate testing, traffic, citations, reviews, credentials, or endorsements.
+- Never use “tested,” “verified,” “production-ready,” “best,” or “top-rated” without a defined, evidence-based standard.
+- Never treat a paid placement as an independent editorial recommendation.
+- Never publish content, send email, submit a platform listing, spend money, change DNS, deploy, or make a repository public without explicit approval.
+- Never include local businesses on seo.zyvibe.com.
+- Never send outbound email from a root domain.
+- Do not prescribe visual colors, typography, themes, or layout styling unless Moh explicitly asks.
+- Do not create a custom dashboard, second-brain system, or unnecessary SaaS feature.
+- Do not create empty categories, duplicate pages, or keyword-only variations.
+- Do not invent exact configuration, steps, or outcomes when the source does not provide them.
+- Do not auto-publish untrusted external submissions.
+
+## Property boundaries
+
+### zyvibe.com
+
+- Directory of real AI-agent use cases, workflows, and harness-related implementations.
+- Organize by goal, agent, harness, category, and recency.
+- Use-case records must distinguish source claims from Zyvibe observations.
+- The Builder Showcase is a clearly labeled commercial section.
+- Do not turn the root site into a generic AI-tool listing site.
+
+### blog.zyvibe.com
+
+- Publish practical guides for AI agents, automation, Search Console, technical SEO, and publishing workflows.
+- Explain tasks; do not duplicate directory descriptions.
+- Use clear prerequisites, steps, expected results, limitations, and sources.
+- Use MailPoet for the Zyvibe Digest; use Resend only for transactional or operational messages.
+
+### seo.zyvibe.com
+
+- Index strictly remote solo developers and solo agencies.
+- Zyvibe helps visitors discover providers; it does not manage, quote, deliver, guarantee, or mediate their projects.
+- Distinguish profile ownership checks, provider-supplied claims, independent checks, and paid placements.
+
+### zyvibe.me
+
+- Establish Moh’s credibility through real projects, implementation notes, and original resources.
+- Present blueprints only when they are defined, available, and properly documented.
+- Do not use this site as an inbound custom-agency funnel.
+- Do not promise custom installation, unlimited support, or lifetime compatibility.
+
+## Evidence labels
+
+| Label | Meaning |
+|---|---|
+| Reported | An external source describes the workflow or result |
+| Documented | Requirements, steps, or implementation details are available |
+| Reproduced by Zyvibe | Zyvibe actually tested and reproduced the workflow |
+| Needs Rechecking | The source, dependency, or evidence may be outdated |
+| Provider-Supplied Claim | A provider states information about itself |
+| Profile Ownership Checked | Zyvibe checked a narrow ownership signal |
+| Advertisement | Paid visibility |
+
+## SEO, GEO, and AEO
+
+- Write page-specific titles and descriptions that describe actual content.
+- Use one clear H1 per page and descriptive H2 sections.
+- Preserve useful existing URLs; map genuinely replaced pages to relevant destinations.
+- Keep `llms.txt` optional; do not treat it as a launch requirement or AI-discovery guarantee.
+- Use structured data only when it matches visible content and the represented entity.
+- Do not use `HowTo` markup as a Google rich-result tactic; Google has deprecated HowTo rich results.
+- Do not create artificial content chunks, duplicate FAQ blocks, or near-identical query pages.
+- Distinguish SEO, GEO, and AEO from guaranteed ranking or citation outcomes.
+
+## Analytics identifiers
+
+```text
+Google Search Console:
+sc-domain:zyvibe.com
+
+GA4 Property ID:
+500711711
+
+Google Tag ID:
+GT-NNXKN8VR
+```
+
+Verify actual access, installation, destination, and collection before treating these identifiers as confirmed live configuration.
+
+## Email rules
+
+```text
+mail.zyvibe.com → Resend → transactional receipts, confirmations, alerts
+digest@mail.zyvibe.com → WordPress MailPoet → Zyvibe Digest
+contact@zyvibe.com → inbound only
+moh@zyvibe.com → inbound only
+```
+
+Never send outbound email from a root domain.
+
+Never send newsletter broadcasts from `mail.zyvibe.com`.
+
+Never send transactional messages from `digest@mail.zyvibe.com`.
+
+## CTA migration rules
+
+Use one primary CTA per page.
+
+Make the CTA describe the reader’s next task.
+
+Use contextual secondary CTAs only when they help the reader.
+
+Keep commercial CTAs separate from editorial actions.
+
+Use these replacements:
+
+| Existing CTA | Use instead |
+|---|---|
+| Get Started | Explore Use Cases |
+| Learn More | Read the Guide |
+| Discover AI | Explore Use Cases |
+| Try Zyvibe | Explore Use Cases |
+| Boost Your Tool | Advertise on Zyvibe |
+| Featured Tools | View Builder Showcase |
+| Verified Tools | View Builder Showcase |
+| Hire a Solo Dev | Contact {Provider Name} |
+| Get a Quote | Contact {Provider Name} |
+| Book a Specialist | Visit {Provider Name} |
+| Verified & Pin Your Profile | Claim Your Profile |
+| Request a Custom Build | Suggest a Blueprint |
+| Buy Now | Get This Blueprint |
+| Subscribe | Get Zyvibe Digest |
+
+## FTC compliance
+
+Use this standard:
+
+```text
+If Zyvibe receives payment, free product access, a commission,
+or another material benefit for a placement, review, endorsement,
+or recommendation, disclose the relationship clearly and prominently
+beside the relevant item.
+
+Never present a paid placement as independent editorial judgment,
+verification, or a founder recommendation.
+```
+
+Use `Advertisement` or `Paid Advertisement` for every paid placement.
+
+Place the disclosure before or beside the paid item.
+
+Make it visible on mobile and desktop.
+
+Do not hide it behind a click, accordion, or footer link.
+
+Use the same label across all Zyvibe properties.
+
+## Required output
+
+For every substantive Zyvibe task, return:
+
+```text
+1. Target property
+2. Task type
+3. Current-state findings
+4. Proposed changes
+5. Evidence and assumptions
+6. Risks or unresolved decisions
+7. Required approvals
+8. Acceptance criteria
+```
+
+For implementation tasks, include:
+
+```text
+- Files to inspect
+- Changes to make
+- Tests to run
+- Evidence that the change works
+- Rollback plan
+- Approval needed before deployment
+```
+
+## Approval required
+
+Ask Moh before:
+
+```text
+Publishing or deleting content
+Submitting a platform listing
+Sending email or transferring subscribers
+Purchasing advertising or sponsorship
+Changing DNS, SPF, DKIM, DMARC, MX, or forwarding records
+Deploying, changing infrastructure, or modifying billing
+Making a repository public or changing a repository license
+Creating or deleting products, webhooks, or commercial offers
+```
+
+## Completion standard
+
+A task is complete only when its result can be inspected.
+
+Separate these statuses:
+
+```text
+Drafted
+Written
+Submitted
+Published
+Deployed
+Verified Live
+Tested
+Reproduced
+Approved
+```
+
+If evidence is unavailable, state it as unknown.

@@ -1,0 +1,39 @@
+{
+  "slug": "firecrawl-web-data-extraction-for-agents",
+  "title": "Clean Markdown Web Extraction for AI Agent Context",
+  "oneLiner": "Firecrawl converts entire websites into clean markdown or structured data, serving as a web extraction engine and MCP server to feed accurate context into AI agents.",
+  "goal": "research-and-data-synthesis",
+  "agent": "firecrawl",
+  "agentName": "Firecrawl",
+  "harness": "api-service",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 10,
+  "whatItDoes": [
+    "Firecrawl converts entire websites into clean markdown or structured data, serving as a web extraction engine and MCP server to feed accurate context into AI agents."
+  ],
+  "requirements": [
+    "Firecrawl API key or self-hosted instance",
+    "Python/Node.js environment"
+  ],
+  "steps": [
+    "Obtain Firecrawl API key",
+    "Call the `/crawl` or `/scrape` endpoint with a target URL",
+    "Receive clean markdown output",
+    "Pass the markdown to an LLM for synthesis."
+  ],
+  "configSnippet": "\"Crawl <domain.com> up to depth 2, return only markdown, and exclude navigation/footer elements.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Rate limits apply on free tiers",
+    "complex JavaScript-rendered sites may require additional wait configurations."
+  ],
+  "source": {
+    "title": "Firecrawl — Web Data & Scraping Infrastructure for AI Agents",
+    "url": "https://www.firecrawl.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

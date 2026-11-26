@@ -1,0 +1,40 @@
+{
+  "slug": "crewai-content-creator-flow",
+  "title": "Durable Multi-Agent Content Creation with State Management",
+  "oneLiner": "CrewAI Flows coordinate multiple specialized agents (e.g., researcher, writer, editor) in a stateful, sequential workflow to produce and refine long-form content.",
+  "goal": "seo-and-content-ops",
+  "agent": "crewai",
+  "agentName": "CrewAI",
+  "harness": "python-sdk",
+  "role": "Content & SEO operators",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 6,
+  "whatItDoes": [
+    "CrewAI Flows coordinate multiple specialized agents (e.g., researcher, writer, editor) in a stateful, sequential workflow to produce and refine long-form content."
+  ],
+  "requirements": [
+    "Python",
+    "`crewai` package",
+    "LLM API key"
+  ],
+  "steps": [
+    "Define Crew roles and tasks",
+    "Chain tasks using CrewAI Flows for state management",
+    "Execute the flow",
+    "Review the final aggregated output."
+  ],
+  "configSnippet": "\"Researcher gathers 5 sources on topic X, Writer drafts an 800-word article, Editor checks for SEO keywords and readability.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires explicit definition of agent roles and task dependencies",
+    "complex state management can increase debugging time."
+  ],
+  "source": {
+    "title": "CrewAI — Multi-Agent Orchestration Platform",
+    "url": "https://www.crewai.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

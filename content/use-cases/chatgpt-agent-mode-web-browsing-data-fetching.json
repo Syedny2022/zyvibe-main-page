@@ -1,0 +1,39 @@
+{
+  "slug": "chatgpt-agent-mode-web-browsing-data-fetching",
+  "title": "Multi-Step Task Execution with Built-in Web Browsing and Python",
+  "oneLiner": "ChatGPT Agent Mode (ChatGPT Work) autonomously executes multi-step tasks by combining web browsing, Python code execution, and file processing within a single session.",
+  "goal": "research-and-data-synthesis",
+  "agent": "chatgpt-agent-mode",
+  "agentName": "ChatGPT Agent Mode",
+  "harness": "cloud-agent",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 23,
+  "whatItDoes": [
+    "ChatGPT Agent Mode (ChatGPT Work) autonomously executes multi-step tasks by combining web browsing, Python code execution, and file processing within a single session."
+  ],
+  "requirements": [
+    "ChatGPT Plus/Team/Enterprise subscription",
+    "enabled Agent Mode features"
+  ],
+  "steps": [
+    "Enable Agent Mode in ChatGPT settings",
+    "Provide a multi-step prompt (e.g., \"Research X, write a Python script to analyze the data, and save the chart\")",
+    "Approve any requested actions or tool uses",
+    "Review the final output."
+  ],
+  "configSnippet": "\"Search the web for the top 5 open-source AI frameworks, write a Python script to compare their GitHub stars, and generate a summary table.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Subject to platform usage limits",
+    "cannot access local file systems or private internal networks without specific enterprise configurations."
+  ],
+  "source": {
+    "title": "ChatGPT — OpenAI",
+    "url": "https://chatgpt.com/",
+    "platform": "OpenAI product site",
+    "checkedOn": "2026-11-21"
+  }
+}

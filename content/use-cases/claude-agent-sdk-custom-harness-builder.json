@@ -1,0 +1,39 @@
+{
+  "slug": "claude-agent-sdk-custom-harness-builder",
+  "title": "Programmatic Harness for Building Custom Claude Code-Style Agents",
+  "oneLiner": "The Claude Agent SDK (formerly Claude Code SDK) exposes Anthropic's agent loop, file editing, bash execution, sub-agents, and MCP connectors as a programmable Python/TypeScript library.",
+  "goal": "workflow-orchestration",
+  "agent": "claude-agent-sdk",
+  "agentName": "Claude Agent SDK",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 43,
+  "whatItDoes": [
+    "The Claude Agent SDK (formerly Claude Code SDK) exposes Anthropic's agent loop, file editing, bash execution, sub-agents, and MCP connectors as a programmable Python/TypeScript library."
+  ],
+  "requirements": [
+    "Python 3.10+ or Node.js",
+    "`claude-agent-sdk`",
+    "Anthropic API key"
+  ],
+  "steps": [
+    "Install `claude-agent-sdk`",
+    "Configure `ClaudeAgentOptions` with allowed tools and MCP servers",
+    "Stream messages via `query()`",
+    "Enforce custom `PreToolUse` permission hooks."
+  ],
+  "configSnippet": "\"Build a compliance audit agent that reads repository configs with Read/Grep tools while blocking Write/Bash mutations.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Tied to Anthropic's Claude models and API billing."
+  ],
+  "source": {
+    "title": "Claude Agent SDK — Anthropic Platform",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/overview",
+    "platform": "Anthropic documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

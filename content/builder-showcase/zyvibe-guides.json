@@ -1,0 +1,15 @@
+{
+  "slug": "zyvibe-guides",
+  "name": "Zyvibe Guides",
+  "tagline": "Implementation guides published at blog.zyvibe.com",
+  "description": "Long-form walkthroughs for agent setup, Search Console, and publishing workflows. The guides explain how to complete a task; this directory shows what people have actually done with it.",
+  "builderName": "Syed Moh",
+  "builderUrl": "https://zyvibe.me",
+  "projectUrl": "https://blog.zyvibe.com",
+  "projectLabel": "Visit blog.zyvibe.com",
+  "stack": [],
+  "category": "Guides & Publishing",
+  "placement": "house",
+  "disclosure": "Advertisement · Zyvibe house placement. This is Zyvibe's own property, not a paid third-party placement and not an independent editorial endorsement.",
+  "addedOn": "2026-11-21"
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "zyvibe-directory",
+  "name": "Zyvibe Directory",
+  "tagline": "The AI agent use-case directory you are reading",
+  "description": "Fifty source-checked AI agent workflows organized by goal, agent, and harness, each with requirements, steps, stated limitations, and a link to the original source. Listed as a house placement so the showcase format is visible before any outside builder advertises.",
+  "builderName": "Syed Moh",
+  "builderUrl": "https://zyvibe.me",
+  "projectUrl": "https://zyvibe.com",
+  "projectLabel": "Visit zyvibe.com",
+  "stack": ["Next.js", "TypeScript"],
+  "category": "Directory & Publishing",
+  "placement": "house",
+  "disclosure": "Advertisement · Zyvibe house placement. This is Zyvibe's own property, not a paid third-party placement and not an independent editorial endorsement.",
+  "addedOn": "2026-11-21"
+}

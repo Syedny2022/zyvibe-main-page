@@ -1,0 +1,40 @@
+{
+  "slug": "kilo-code-autonomous-debugging-and-mcp",
+  "title": "Unified VS Code Autonomous Coding with Built-In MCP Marketplace",
+  "oneLiner": "Kilo Code combines multi-mode autonomous code generation, automated error recovery, and one-click Model Context Protocol (MCP) server installation directly inside VS Code.",
+  "goal": "code-and-repo-automation",
+  "agent": "kilo-code",
+  "agentName": "Kilo Code",
+  "harness": "ide-extension",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 34,
+  "whatItDoes": [
+    "Kilo Code combines multi-mode autonomous code generation, automated error recovery, and one-click Model Context Protocol (MCP) server installation directly inside VS Code."
+  ],
+  "requirements": [
+    "VS Code",
+    "Kilo Code extension",
+    "LLM API provider"
+  ],
+  "steps": [
+    "Install Kilo Code extension",
+    "Connect MCP servers via built-in marketplace",
+    "Run task in Code or Debug mode",
+    "Verify automated test and lint fixes."
+  ],
+  "configSnippet": "\"Connect the Postgres MCP server, inspect the orders table schema, and write a type-safe repository query layer.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Rapidly evolving open-source fork",
+    "heavy MCP tool schemas can increase prompt token overhead."
+  ],
+  "source": {
+    "title": "Kilo Code — Open Source AI Coding Agent",
+    "url": "https://kilo.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

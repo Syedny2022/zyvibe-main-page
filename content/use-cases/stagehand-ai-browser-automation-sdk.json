@@ -1,0 +1,40 @@
+{
+  "slug": "stagehand-ai-browser-automation-sdk",
+  "title": "Hybrid Code-and-AI Web Automation with Self-Healing Selectors",
+  "oneLiner": "Stagehand by Browserbase extends Playwright with atomic AI primitives (`act`, `extract`, `observe`) so developers can mix deterministic code with self-healing natural language browser actions.",
+  "goal": "browser-and-computer-use",
+  "agent": "stagehand",
+  "agentName": "Stagehand",
+  "harness": "browser-sdk",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 37,
+  "whatItDoes": [
+    "Stagehand by Browserbase extends Playwright with atomic AI primitives (`act`, `extract`, `observe`) so developers can mix deterministic code with self-healing natural language browser actions."
+  ],
+  "requirements": [
+    "Node.js/Python",
+    "`@browserbasehq/stagehand`",
+    "LLM API key",
+    "optional Browserbase account"
+  ],
+  "steps": [
+    "Initialize Stagehand project",
+    "Write hybrid script combining `page.goto()` with `stagehand.act()`",
+    "Use `stagehand.extract()` with Zod schemas",
+    "Run locally or on Browserbase."
+  ],
+  "configSnippet": "\"await stagehand.act('Click the Export CSV button'); const rows = await stagehand.extract('Extract table rows', schema);\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "LLM inference on every `act` step adds latency compared to pure cached Playwright selectors."
+  ],
+  "source": {
+    "title": "Stagehand by Browserbase — AI Browser Automation SDK",
+    "url": "https://www.stagehand.dev/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

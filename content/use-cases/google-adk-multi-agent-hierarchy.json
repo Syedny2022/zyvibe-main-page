@@ -1,0 +1,39 @@
+{
+  "slug": "google-adk-multi-agent-hierarchy",
+  "title": "Modular Multi-Agent Hierarchy and Tool Orchestration SDK",
+  "oneLiner": "Google's open-source Agent Development Kit (ADK) enables developers to compose hierarchical agents (`SequentialAgent`, `ParallelAgent`, `LoopAgent`) with built-in dev UI and Vertex AI deployment.",
+  "goal": "workflow-orchestration",
+  "agent": "google-agent-development-kit",
+  "agentName": "Google Agent Development Kit (ADK)",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 42,
+  "whatItDoes": [
+    "Google's open-source Agent Development Kit (ADK) enables developers to compose hierarchical agents (`SequentialAgent`, `ParallelAgent`, `LoopAgent`) with built-in dev UI and Vertex AI deployment."
+  ],
+  "requirements": [
+    "Python 3.10+",
+    "`google-adk` package",
+    "Gemini API key or Google Cloud project"
+  ],
+  "steps": [
+    "Install `google-adk`",
+    "Define root and sub-agents in `agent.py`",
+    "Launch `adk web` to inspect event traces",
+    "Deploy to Cloud Run or Vertex AI Agent Engine."
+  ],
+  "configSnippet": "\"Coordinate a ParallelAgent to gather market news and SEC filings simultaneously, then pass results to a SynthesisAgent.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Optimized primarily for Gemini models and Google Cloud deployment patterns, though LiteLLM adapters exist."
+  ],
+  "source": {
+    "title": "Google Agent Development Kit (ADK)",
+    "url": "https://google.github.io/adk-docs/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

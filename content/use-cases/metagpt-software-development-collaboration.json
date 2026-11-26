@@ -1,0 +1,40 @@
+{
+  "slug": "metagpt-software-development-collaboration",
+  "title": "Multi-Agent Collaborative Software Development Simulation",
+  "oneLiner": "MetaGPT assigns different roles (Product Manager, Architect, Engineer) to LLMs, simulating a collaborative software entity that transforms a one-line requirement into a full software application.",
+  "goal": "code-and-repo-automation",
+  "agent": "metagpt",
+  "agentName": "MetaGPT",
+  "harness": "python-sdk",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 19,
+  "whatItDoes": [
+    "MetaGPT assigns different roles (Product Manager, Architect, Engineer) to LLMs, simulating a collaborative software entity that transforms a one-line requirement into a full software application."
+  ],
+  "requirements": [
+    "Python",
+    "`metagpt` package",
+    "LLM API key"
+  ],
+  "steps": [
+    "Install MetaGPT",
+    "Run `metagpt \"Create a 2048 game\"` via CLI",
+    "Observe the sequential generation of requirements, design, and code",
+    "Review the output in the workspace directory."
+  ],
+  "configSnippet": "\"Develop a Python-based web scraper that extracts job listings and saves them to a database, following standard software engineering SOPs.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Can be token-intensive due to the multi-step, multi-role generation process",
+    "less suitable for modifying existing, highly complex legacy codebases."
+  ],
+  "source": {
+    "title": "MetaGPT — Multi-Agent Software Framework",
+    "url": "https://www.deepwisdom.ai/metagpt",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

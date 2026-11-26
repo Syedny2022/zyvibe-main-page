@@ -1,0 +1,40 @@
+{
+  "slug": "cua-docker-macos-linux-computer-use",
+  "title": "Sandboxed Virtual Desktop Infrastructure for Computer-Use Agents",
+  "oneLiner": "Cua provides lightweight macOS and Linux virtual machine sandboxes paired with a Python SDK so vision-language agents can safely control full desktop applications via mouse and keyboard.",
+  "goal": "browser-and-computer-use",
+  "agent": "cua",
+  "agentName": "Cua (Computer-Use Agent)",
+  "harness": "docker-sandbox",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 39,
+  "whatItDoes": [
+    "Cua provides lightweight macOS and Linux virtual machine sandboxes paired with a Python SDK so vision-language agents can safely control full desktop applications via mouse and keyboard."
+  ],
+  "requirements": [
+    "macOS Apple Silicon or Linux host",
+    "Python 3.10+",
+    "Cua SDK (`cua-agent`)"
+  ],
+  "steps": [
+    "Install `cua-computer` and `cua-agent`",
+    "Launch sandboxed VM container",
+    "Initialize `ComputerAgent` with vision model",
+    "Run multi-app desktop GUI workflow."
+  ],
+  "configSnippet": "\"Open LibreOffice Calc in the sandbox, import sales.csv, create a pivot summary, and export as PDF.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "macOS virtualization requires Apple Silicon hardware",
+    "GUI loop latency depends on screenshot resolution."
+  ],
+  "source": {
+    "title": "Cua — Sandboxed Infrastructure for Computer-Use Agents",
+    "url": "https://cua.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

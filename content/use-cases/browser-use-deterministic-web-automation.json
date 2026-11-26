@@ -1,0 +1,40 @@
+{
+  "slug": "browser-use-deterministic-web-automation",
+  "title": "Deterministic, Self-Healing Browser Automation (RPA 2.0)",
+  "oneLiner": "Browser Use enables AI agents to operate a real browser (click, type, navigate) for web tasks that lack APIs, with Workflow Use providing deterministic fallbacks if a step fails.",
+  "goal": "browser-and-computer-use",
+  "agent": "browser-use",
+  "agentName": "Browser Use",
+  "harness": "browser-sdk",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 9,
+  "whatItDoes": [
+    "Browser Use enables AI agents to operate a real browser (click, type, navigate) for web tasks that lack APIs, with Workflow Use providing deterministic fallbacks if a step fails."
+  ],
+  "requirements": [
+    "Python",
+    "`browser-use` library",
+    "local or cloud browser environment"
+  ],
+  "steps": [
+    "Install browser-use",
+    "Define a natural language task (e.g., \"Log in and download the monthly report\")",
+    "Execute the script",
+    "Review the agent's step-by-step browser actions."
+  ],
+  "configSnippet": "\"Navigate to <URL>, click the 'Download' button, and save the file to the local directory.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Can be slow and error-prone on highly dynamic or CAPTCHA-protected websites",
+    "requires careful handling of asynchronous page loads."
+  ],
+  "source": {
+    "title": "Browser Use — Browser Agents and Cloud Browsers",
+    "url": "https://browser-use.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

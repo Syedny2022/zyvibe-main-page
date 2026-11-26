@@ -1,0 +1,39 @@
+{
+  "slug": "jules-asynchronous-github-bug-fixing",
+  "title": "Asynchronous Cloud VM Bug Fixing and Dependency Upgrades",
+  "oneLiner": "Google Jules clones GitHub repositories into isolated cloud virtual machines, runs setup scripts, fixes bugs or upgrades dependencies asynchronously, and submits ready-to-review pull requests.",
+  "goal": "code-and-repo-automation",
+  "agent": "jules",
+  "agentName": "Jules",
+  "harness": "cloud-agent",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 28,
+  "whatItDoes": [
+    "Google Jules clones GitHub repositories into isolated cloud virtual machines, runs setup scripts, fixes bugs or upgrades dependencies asynchronously, and submits ready-to-review pull requests."
+  ],
+  "requirements": [
+    "Google account",
+    "GitHub repository authorization"
+  ],
+  "steps": [
+    "Open `jules.google.com`",
+    "Connect GitHub repository and select branch",
+    "Describe bug fix or dependency upgrade",
+    "Review execution plan and merge generated PR."
+  ],
+  "configSnippet": "\"Upgrade React from v18 to v19, update deprecated lifecycle APIs, and ensure all Jest tests pass.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires GitHub-hosted repositories",
+    "asynchronous cloud VM model is not designed for sub-second local autocomplete."
+  ],
+  "source": {
+    "title": "Google Jules — Asynchronous Coding Agent",
+    "url": "https://jules.google.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

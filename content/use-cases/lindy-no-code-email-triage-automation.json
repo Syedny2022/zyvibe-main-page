@@ -1,0 +1,38 @@
+{
+  "slug": "lindy-no-code-email-triage-automation",
+  "title": "No-Code AI Virtual Agent for Email Triage and Scheduling",
+  "oneLiner": "Lindy allows users to create custom, no-code AI virtual agents (\"Lindies\") that automate multi-step business workflows like email triage, lead enrichment, and meeting scheduling.",
+  "goal": "workflow-orchestration",
+  "agent": "lindy",
+  "agentName": "Lindy",
+  "harness": "no-code-builder",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Reported",
+  "evidenceDetail": "The linked source describes this workflow and its claimed results. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 22,
+  "whatItDoes": [
+    "Lindy allows users to create custom, no-code AI virtual agents (\"Lindies\") that automate multi-step business workflows like email triage, lead enrichment, and meeting scheduling."
+  ],
+  "requirements": [
+    "Lindy account",
+    "connected email/calendar APIs (e.g., Gmail, Google Calendar)"
+  ],
+  "steps": [
+    "Create a new \"Lindy\" in the dashboard",
+    "Define its goal (e.g., \"Schedule meetings from inbound emails\")",
+    "Connect necessary tools (Gmail, Calendar)",
+    "Activate and monitor the agent's actions."
+  ],
+  "configSnippet": "\"When an email contains a meeting request, check my calendar availability, draft a reply with 3 time slots, and wait for my approval before sending.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "No-code abstraction limits highly customized, complex logical branching compared to code-first frameworks like LangGraph."
+  ],
+  "source": {
+    "title": "Lindy — No-Code AI Employees & Workflow Agents",
+    "url": "https://www.lindy.ai/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

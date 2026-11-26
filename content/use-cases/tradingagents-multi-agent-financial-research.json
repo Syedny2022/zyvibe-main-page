@@ -1,0 +1,40 @@
+{
+  "slug": "tradingagents-multi-agent-financial-research",
+  "title": "Multi-Agent LLM Framework for Financial Trading Research",
+  "oneLiner": "TradingAgents orchestrates specialized LLM-powered agents (e.g., market analyst, risk reviewer, bull/bear debaters) to collaboratively research and formulate stock trading strategies.",
+  "goal": "research-and-data-synthesis",
+  "agent": "tradingagents",
+  "agentName": "TradingAgents",
+  "harness": "python-sdk",
+  "role": "Researchers & analysts",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 20,
+  "whatItDoes": [
+    "TradingAgents orchestrates specialized LLM-powered agents (e.g., market analyst, risk reviewer, bull/bear debaters) to collaboratively research and formulate stock trading strategies."
+  ],
+  "requirements": [
+    "Python",
+    "`tradingagents` package",
+    "financial data API access (e.g., Yahoo Finance)"
+  ],
+  "steps": [
+    "Install the framework",
+    "Define the target ticker and alpha benchmark",
+    "Run the multi-agent debate and analysis workflow",
+    "Review the generated trading plan and risk assessment."
+  ],
+  "configSnippet": "\"Analyze ticker AAPL, gather recent news and fundamentals, run a bull/bear debate, and output a risk-adjusted trading recommendation.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Outputs are for research and informational purposes",
+    "not a guaranteed financial advisory tool and requires careful human oversight."
+  ],
+  "source": {
+    "title": "TradingAgents — Multi-Agent Financial Trading Framework",
+    "url": "https://github.com/TauricResearch/TradingAgents",
+    "platform": "GitHub",
+    "checkedOn": "2026-11-21"
+  }
+}

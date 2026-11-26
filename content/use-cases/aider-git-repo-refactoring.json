@@ -1,0 +1,40 @@
+{
+  "slug": "aider-git-repo-refactoring",
+  "title": "AI Pair Programming for Git-Backed Codebase Refactoring",
+  "oneLiner": "Aider acts as an AI pair programmer in the terminal, automatically identifying and adding relevant files to context using Tree-sitter repository maps to execute refactoring or bug fixes with commit-friendly workflows.",
+  "goal": "code-and-repo-automation",
+  "agent": "aider",
+  "agentName": "Aider",
+  "harness": "terminal-cli",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 0,
+  "whatItDoes": [
+    "Aider acts as an AI pair programmer in the terminal, automatically identifying and adding relevant files to context using Tree-sitter repository maps to execute refactoring or bug fixes with commit-friendly workflows."
+  ],
+  "requirements": [
+    "Python environment",
+    "Git repository",
+    "LLM API key (e.g., OpenAI, Anthropic)"
+  ],
+  "steps": [
+    "Install aider via pip",
+    "Navigate to local Git repo",
+    "Run `aider <file>` with a refactoring prompt",
+    "Review and approve generated Git commits."
+  ],
+  "configSnippet": "\"Refactor this module to use dependency injection, update tests, and commit with a descriptive message.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires local Git setup",
+    "performance depends on model's context window and Tree-sitter parsing accuracy."
+  ],
+  "source": {
+    "title": "Aider — AI Pair Programming in Your Terminal",
+    "url": "https://aider.chat/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

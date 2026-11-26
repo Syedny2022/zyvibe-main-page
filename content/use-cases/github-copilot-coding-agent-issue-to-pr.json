@@ -1,0 +1,41 @@
+{
+  "slug": "github-copilot-coding-agent-issue-to-pr",
+  "title": "Native GitHub Actions-Powered Issue-to-PR Autonomous Agent",
+  "oneLiner": "Assigned directly to a GitHub issue, Copilot Coding Agent boots a secure GitHub Actions environment, explores the codebase, commits changes to a draft PR, and iterates on review comments.",
+  "goal": "code-and-repo-automation",
+  "agent": "github-copilot-coding-agent",
+  "agentName": "GitHub Copilot Coding Agent",
+  "harness": "cloud-agent",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 31,
+  "whatItDoes": [
+    "Assigned directly to a GitHub issue, Copilot Coding Agent boots a secure GitHub Actions environment, explores the codebase, commits changes to a draft PR, and iterates on review comments."
+  ],
+  "requirements": [
+    "GitHub Copilot Pro+",
+    "Business",
+    "or Enterprise plan",
+    "GitHub Actions enabled"
+  ],
+  "steps": [
+    "Assign `@copilot` to a GitHub issue",
+    "Monitor agent session logs in the draft pull request",
+    "Leave review comments for follow-up fixes",
+    "Approve and merge PR."
+  ],
+  "configSnippet": "\"@copilot Implement pagination on the /users endpoint and add unit tests matching existing controller patterns.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Consumes GitHub Actions minutes and Copilot premium requests",
+    "restricted to repositories on GitHub."
+  ],
+  "source": {
+    "title": "GitHub Copilot — AI Coding Agent",
+    "url": "https://github.com/features/copilot",
+    "platform": "GitHub",
+    "checkedOn": "2026-11-21"
+  }
+}

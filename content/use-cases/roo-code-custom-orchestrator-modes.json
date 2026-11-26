@@ -1,0 +1,39 @@
+{
+  "slug": "roo-code-custom-orchestrator-modes",
+  "title": "Role-Specialized VS Code Agent Modes (Architect, Code, Debug)",
+  "oneLiner": "Roo Code extends VS Code with customizable agent modes (Architect, Code, Ask, Debug, Orchestrator) that delegate subtasks with tailored tool permissions and model selections.",
+  "goal": "code-and-repo-automation",
+  "agent": "roo-code",
+  "agentName": "Roo Code",
+  "harness": "ide-extension",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 33,
+  "whatItDoes": [
+    "Roo Code extends VS Code with customizable agent modes (Architect, Code, Ask, Debug, Orchestrator) that delegate subtasks with tailored tool permissions and model selections."
+  ],
+  "requirements": [
+    "VS Code",
+    "Roo Code extension",
+    "LLM API key or local Ollama"
+  ],
+  "steps": [
+    "Install Roo Code in VS Code",
+    "Select Orchestrator or Architect mode",
+    "Define custom mode rules in `.roomodes`",
+    "Execute multi-step build with mode handoffs."
+  ],
+  "configSnippet": "\"Use Architect mode to design the database schema in docs/schema.md, then switch to Code mode to generate Prisma migrations.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Complex custom mode routing requires careful prompt and permission configuration to prevent redundant loops."
+  ],
+  "source": {
+    "title": "Roo Code — Open-Source VS Code AI Coding Agent",
+    "url": "https://roocode.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

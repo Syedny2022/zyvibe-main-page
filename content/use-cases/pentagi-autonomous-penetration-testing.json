@@ -1,0 +1,41 @@
+{
+  "slug": "pentagi-autonomous-penetration-testing",
+  "title": "Sandboxed Multi-Agent Penetration Testing and Recon Orchestrator",
+  "oneLiner": "PentAGI orchestrates specialized security agents inside isolated Docker containers equipped with standard reconnaissance and exploitation tools to run authorized vulnerability assessments.",
+  "goal": "testing-and-qa",
+  "agent": "pentagi",
+  "agentName": "PentAGI",
+  "harness": "docker-sandbox",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 49,
+  "whatItDoes": [
+    "PentAGI orchestrates specialized security agents inside isolated Docker containers equipped with standard reconnaissance and exploitation tools to run authorized vulnerability assessments."
+  ],
+  "requirements": [
+    "Docker",
+    "Docker Compose",
+    "LLM API key",
+    "written authorization for target scope"
+  ],
+  "steps": [
+    "Clone `vxcontrol/pentagi`",
+    "Configure `.env` with LLM and search keys",
+    "Launch stack with `docker compose up -d`",
+    "Define authorized target scope and review findings report."
+  ],
+  "configSnippet": "\"Perform authorized reconnaissance and OWASP Top 10 vulnerability scanning against staging.example.internal.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Strictly for authorized security testing",
+    "requires strict network isolation and human verification of findings."
+  ],
+  "source": {
+    "title": "PentAGI — Autonomous AI Penetration Testing System",
+    "url": "https://pentagi.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

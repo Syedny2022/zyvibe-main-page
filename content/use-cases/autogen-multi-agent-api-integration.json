@@ -1,0 +1,39 @@
+{
+  "slug": "autogen-multi-agent-api-integration",
+  "title": "Multi-Agent API Integration and Orchestration",
+  "oneLiner": "AutoGen orchestrates multi-agent workflows where specialized agents (e.g., coder, reviewer) converse to complete complex tasks, with support for directed graph execution (GraphFlow).",
+  "goal": "workflow-orchestration",
+  "agent": "autogen",
+  "agentName": "AutoGen",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 5,
+  "whatItDoes": [
+    "AutoGen orchestrates multi-agent workflows where specialized agents (e.g., coder, reviewer) converse to complete complex tasks, with support for directed graph execution (GraphFlow)."
+  ],
+  "requirements": [
+    "Python",
+    "`pyautogen` package",
+    "LLM API configuration"
+  ],
+  "steps": [
+    "Define agent roles (e.g., UserProxy, Assistant)",
+    "Specify conversation topology using GraphFlow",
+    "Initiate task with a seed message",
+    "Monitor agent chat for task completion."
+  ],
+  "configSnippet": "\"Agent A writes a Python script to fetch data, Agent B reviews it for security, and Agent C executes it if approved.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Managing shared state across multi-agent conversations requires careful design to avoid infinite loops or context loss."
+  ],
+  "source": {
+    "title": "Microsoft AutoGen — Multi-Agent Framework",
+    "url": "https://microsoft.github.io/autogen/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

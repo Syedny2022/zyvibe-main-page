@@ -1,0 +1,15 @@
+{
+  "slug": "syed-moh-portfolio",
+  "name": "Syed Moh Portfolio",
+  "tagline": "Projects, implementation notes, and blueprints at zyvibe.me",
+  "description": "The personal site for Syed Moh, founder and full-stack engineer at Zyvibe: shipped projects, implementation notes, and the digital blueprint catalog with license and support terms stated on each product.",
+  "builderName": "Syed Moh",
+  "builderUrl": "https://zyvibe.me",
+  "projectUrl": "https://zyvibe.me",
+  "projectLabel": "Visit zyvibe.me",
+  "stack": ["HTML", "Cloudflare Pages"],
+  "category": "Portfolios",
+  "placement": "house",
+  "disclosure": "Advertisement · Zyvibe house placement. This is Moh's own project, not a paid third-party placement and not an independent editorial endorsement.",
+  "addedOn": "2026-11-21"
+}

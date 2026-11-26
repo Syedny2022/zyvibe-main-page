@@ -1,0 +1,39 @@
+{
+  "slug": "skyvern-vision-llm-browser-workflows",
+  "title": "Vision-LLM Browser Automation for Unseen Web Portals",
+  "oneLiner": "Skyvern uses vision LLMs and DOM parsing to automate complex multi-step browser workflows—such as invoice downloads, government filings, and procurement forms—across unfamiliar websites without brittle XPaths.",
+  "goal": "browser-and-computer-use",
+  "agent": "skyvern",
+  "agentName": "Skyvern",
+  "harness": "docker-sandbox",
+  "role": "Operations, research & back-office teams",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 38,
+  "whatItDoes": [
+    "Skyvern uses vision LLMs and DOM parsing to automate complex multi-step browser workflows—such as invoice downloads, government filings, and procurement forms—across unfamiliar websites without brittle XPaths."
+  ],
+  "requirements": [
+    "Python",
+    "Docker or Skyvern Cloud account",
+    "LLM API key"
+  ],
+  "steps": [
+    "Deploy Skyvern via Docker or sign in to Skyvern Cloud",
+    "Create workflow with target URL and navigation goal",
+    "Configure TOTP/credential vault",
+    "Run and inspect step screenshots."
+  ],
+  "configSnippet": "\"Log into the supplier portal, navigate to Billing History, and download all PDF invoices from last month.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Vision-based multi-step execution is slower and consumes more tokens than API or DOM-only scrapers."
+  ],
+  "source": {
+    "title": "Skyvern — AI-Powered Browser Workflow Automation",
+    "url": "https://www.skyvern.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

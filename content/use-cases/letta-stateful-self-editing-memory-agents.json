@@ -1,0 +1,39 @@
+{
+  "slug": "letta-stateful-self-editing-memory-agents",
+  "title": "Long-Term Stateful Agents with Self-Editing Core and Archival Memory",
+  "oneLiner": "Letta implements OS-inspired virtual context management, allowing agents to actively read, append, and replace their own core memory blocks and query archival storage across infinite sessions.",
+  "goal": "workflow-orchestration",
+  "agent": "letta",
+  "agentName": "Letta (MemGPT)",
+  "harness": "python-sdk",
+  "role": "Solo builders & automation engineers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 46,
+  "whatItDoes": [
+    "Letta implements OS-inspired virtual context management, allowing agents to actively read, append, and replace their own core memory blocks and query archival storage across infinite sessions."
+  ],
+  "requirements": [
+    "Python 3.10+ or Docker",
+    "`letta` package",
+    "LLM API key"
+  ],
+  "steps": [
+    "Run `letta server` via Docker or pip",
+    "Create agent via Letta ADE or Python SDK",
+    "Configure core memory blocks (`human`, `persona`)",
+    "Interact across multi-day persistent sessions."
+  ],
+  "configSnippet": "\"Remember user preferences in core memory blocks and archive completed project notes for semantic recall later.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Requires models with strong tool-calling reliability to manage memory updates without corrupting state."
+  ],
+  "source": {
+    "title": "Letta — Stateful Agents with Long-Term Memory",
+    "url": "https://www.letta.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

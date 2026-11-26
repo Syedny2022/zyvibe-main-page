@@ -1,0 +1,40 @@
+{
+  "slug": "goose-automated-code-review-workflow",
+  "title": "Local, Extensible AI Agent for Automated Code Review",
+  "oneLiner": "Goose runs locally as a general-purpose AI agent, configured via prompts and workflows to analyze code changes, identify bugs, and suggest improvements during the review process.",
+  "goal": "testing-and-qa",
+  "agent": "goose",
+  "agentName": "Goose",
+  "harness": "terminal-cli",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 18,
+  "whatItDoes": [
+    "Goose runs locally as a general-purpose AI agent, configured via prompts and workflows to analyze code changes, identify bugs, and suggest improvements during the review process."
+  ],
+  "requirements": [
+    "Local machine",
+    "Goose installation",
+    "access to a code repository"
+  ],
+  "steps": [
+    "Install Goose",
+    "Configure it with code review guidelines",
+    "Point it to a specific PR or directory",
+    "Review the generated feedback and suggested patches."
+  ],
+  "configSnippet": "\"Review the changes in this PR for security vulnerabilities, adherence to our style guide, and potential performance bottlenecks.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Local execution limits access to heavy compute resources",
+    "effectiveness depends on the quality of the provided review guidelines."
+  ],
+  "source": {
+    "title": "Goose by Block — Open Source AI Agent",
+    "url": "https://block.github.io/goose/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

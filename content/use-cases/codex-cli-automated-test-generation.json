@@ -1,0 +1,40 @@
+{
+  "slug": "codex-cli-automated-test-generation",
+  "title": "Terminal-Native Automated Test Suite Generation and Execution",
+  "oneLiner": "OpenAI Codex CLI runs locally in the terminal to inspect source files, generate unit and integration tests, execute test runners, and iteratively fix failures in a sandboxed environment.",
+  "goal": "testing-and-qa",
+  "agent": "codex-cli",
+  "agentName": "Codex CLI",
+  "harness": "terminal-cli",
+  "role": "Engineers & QA reviewers",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 25,
+  "whatItDoes": [
+    "OpenAI Codex CLI runs locally in the terminal to inspect source files, generate unit and integration tests, execute test runners, and iteratively fix failures in a sandboxed environment."
+  ],
+  "requirements": [
+    "Node.js 22+",
+    "OpenAI API key",
+    "local Git repository"
+  ],
+  "steps": [
+    "Install `@openai/codex` globally",
+    "Export `OPENAI_API_KEY`",
+    "Run `codex` in project root",
+    "Prompt test generation and approve sandboxed test execution."
+  ],
+  "configSnippet": "\"Generate pytest unit tests for src/billing.py covering edge cases, run the suite, and fix any failures.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Sandboxing behavior differs across macOS Seatbelt and Linux containers",
+    "requires active API billing."
+  ],
+  "source": {
+    "title": "OpenAI Codex CLI",
+    "url": "https://developers.openai.com/codex/cli",
+    "platform": "OpenAI documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

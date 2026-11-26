@@ -1,0 +1,39 @@
+{
+  "slug": "windsurf-cascade-multi-file-synthesis",
+  "title": "Context-Aware Multi-File Synthesis and Terminal Command Execution",
+  "oneLiner": "Windsurf Cascade combines deep codebase indexing with real-time awareness of user edits and terminal outputs to plan and execute multi-file changes autonomously.",
+  "goal": "code-and-repo-automation",
+  "agent": "windsurf-cascade",
+  "agentName": "Windsurf Cascade",
+  "harness": "ide-extension",
+  "role": "Engineers & technical founders",
+  "evidence": "Documented",
+  "evidenceDetail": "The provider's own documentation describes this workflow, its requirements, and its setup steps. Zyvibe checked the linked source on 2026-11-21 and has not reproduced the workflow.",
+  "addedOn": "2026-11-21",
+  "order": 30,
+  "whatItDoes": [
+    "Windsurf Cascade combines deep codebase indexing with real-time awareness of user edits and terminal outputs to plan and execute multi-file changes autonomously."
+  ],
+  "requirements": [
+    "Windsurf IDE",
+    "Windsurf account"
+  ],
+  "steps": [
+    "Open project in Windsurf",
+    "Switch Cascade to Write mode",
+    "Describe feature or bug across multiple files",
+    "Review inline diffs and terminal command execution."
+  ],
+  "configSnippet": "\"Add dark mode theme support across the Tailwind config, theme provider, and navigation header.\"",
+  "configLabel": "Command or prompt pattern",
+  "limitations": [
+    "Proprietary IDE lock-in",
+    "heavy multi-file sweeps consume prompt credits rapidly."
+  ],
+  "source": {
+    "title": "Windsurf — Agentic AI IDE & Cascade",
+    "url": "https://windsurf.com/",
+    "platform": "Official documentation",
+    "checkedOn": "2026-11-21"
+  }
+}

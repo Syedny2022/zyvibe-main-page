@@ -5,7 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/lib/site";
-import { getSearchIndex } from "@/lib/content";
+import type { SearchEntry } from "@/lib/content";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const searchIndex = getSearchIndex();
+  const searchIndex: SearchEntry[] = [];
   const tagId = SITE.analytics.googleTagId;
   const linkerDomains = SITE.analytics.crossDomains.map((domain) => `'${domain}'`).join(",");
   return (

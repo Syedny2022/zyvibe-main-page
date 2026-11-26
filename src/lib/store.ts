@@ -1,5 +1,5 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import fs from "fs/promises";
+import path from "path";
 
 const DATA_DIR = path.join(process.cwd(), "content", "data");
 

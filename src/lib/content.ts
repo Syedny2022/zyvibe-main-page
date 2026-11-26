@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
+import fs from "fs";
+import path from "path";
 import { GOALS, HARNESSES, goalBySlug, harnessBySlug } from "./taxonomy";
 import { placementById } from "./site";
 import { readRecords, type PlacementRecord } from "./store";

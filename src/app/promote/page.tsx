@@ -43,6 +43,11 @@ export default function PromotePage() {
             is labeled <strong>Advertisement</strong> on the homepage and on the showcase page,
             beside the item, on mobile and desktop.
           </p>
+          <p className="page-lead">
+            Paid placement separate from editorial content. Choose a self-serve Builder Showcase or
+            Category Sponsor slot below; there are no retainers, agency services, or live-support
+            commitments.
+          </p>
         </div>
       </section>
 

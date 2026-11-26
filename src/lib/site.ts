@@ -75,6 +75,11 @@ export type Placement = {
   includes: string[];
 };
 
+export const COMMERCIAL_PRICING = {
+  short: "$49 / 30 days",
+  long: "$149 / 90 days",
+} as const;
+
 export const PLACEMENTS: Placement[] = [
   {
     id: "showcase-30",
@@ -106,6 +111,22 @@ export const PLACEMENTS: Placement[] = [
       "Everything in the 30-day placement for 90 days",
       "One placement update per month, such as a new project URL or tagline",
       "Placement record and activation receipt kept on file",
+    ],
+  },
+  {
+    id: "category-sponsor-90",
+    name: "Category Sponsor, 90 days",
+    duration: "90 days",
+    durationDays: 90,
+    priceLabel: "$149",
+    amount: 14900,
+    currency: "usd",
+    summary:
+      "A clearly labeled Category Sponsor placement in the relevant discovery context, separate from editorial records.",
+    includes: [
+      "One Category Sponsor card with an Advertisement label",
+      "One outbound link to your project URL, safety-checked before activation",
+      "Editorial ranking and evidence labels remain unchanged",
     ],
   },
 ];

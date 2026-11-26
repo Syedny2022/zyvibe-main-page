@@ -97,6 +97,13 @@ export default function SubmitPage() {
                   <Link href="/contact">contact page</Link> instead of resubmitting.
                 </p>
               </div>
+              <div className="aside-box">
+                <p className="aside-title label-caps">Optional paid feature</p>
+                <p>
+                  Want additional commercial visibility after review? Keep the submission editorial,
+                  then choose a labeled featured upgrade on the <Link href="/promote">promotion page</Link>.
+                </p>
+              </div>
             </aside>
           </div>
         </div>

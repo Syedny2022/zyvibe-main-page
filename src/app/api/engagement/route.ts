@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "edge";
 import { getUseCase } from "@/lib/content";
 import { appendRecord } from "@/lib/store";
 

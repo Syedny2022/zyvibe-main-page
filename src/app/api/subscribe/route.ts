@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "edge";
 import { appendRecord, findSubscriber, type Subscriber } from "@/lib/store";
 import { cleanText, isEmail } from "@/lib/validate";
 
-export const runtime = "nodejs";
 
 const CONSENT_TEXT =
   "By subscribing, you agree to receive Zyvibe Digest emails. You can unsubscribe at any time.";

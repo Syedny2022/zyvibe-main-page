@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "edge";
 import { randomUUID } from "node:crypto";
 import { appendRecord, type Submission } from "@/lib/store";
 import { cleanLines, cleanText, isEmail, normalisePublicUrl, ValidationError } from "@/lib/validate";
@@ -7,7 +9,6 @@ import { sendTransactionalEmail } from "@/lib/email";
 import { SITE } from "@/lib/site";
 import { escapeHtml } from "@/lib/email";
 
-export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;

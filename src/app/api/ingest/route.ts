@@ -1,11 +1,12 @@
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
+
+export const runtime = "edge";
 import { getUseCases } from "@/lib/content";
 import { goalBySlug, harnessBySlug } from "@/lib/taxonomy";
 import { appendRecord, readRecords } from "@/lib/store";
 import { cleanText, normalisePublicUrl, ValidationError } from "@/lib/validate";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 type IngestionRecord = {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
+export const runtime = "edge";
 import { pageOpenGraph } from "@/lib/site";
 
 export const metadata: Metadata = {

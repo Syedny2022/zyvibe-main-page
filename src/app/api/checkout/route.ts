@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+
+export const runtime = "edge";
 import Stripe from "stripe";
 import { placementById, SITE } from "@/lib/site";
 import { cleanText, isEmail, normalisePublicUrl, ValidationError } from "@/lib/validate";
 
-export const runtime = "nodejs";
 
 const ALLOWED_ORIGINS = new Set([
   "https://zyvibe.com",

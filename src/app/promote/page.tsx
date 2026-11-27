@@ -4,10 +4,10 @@ import { PromoteCheckout } from "@/components/PromoteCheckout";
 import { AdLabel } from "@/components/EvidenceBadge";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbSchema, graph, webPageSchema } from "@/lib/jsonld";
-import { PLACEMENTS, pageOpenGraph } from "@/lib/site";
+import { COMMERCIAL_PRICING, PLACEMENTS, pageOpenGraph } from "@/lib/site";
 
 const description =
-  "Reserve a labeled Builder Showcase placement on zyvibe.com. Self-serve Stripe Checkout, automatic link safety check, and a visible Advertisement label on every placement.";
+  "Reserve one of two labeled monthly Builder Showcase sponsor slots on zyvibe.com with self-serve Stripe Checkout and manual approval.";
 
 export const metadata: Metadata = {
   title: "Advertise on Zyvibe",
@@ -36,17 +36,16 @@ export default function PromotePage() {
             <span aria-hidden="true">/</span>
             <span>Advertise</span>
           </nav>
-          <p className="page-eyebrow label-caps">Commercial placements · Stripe Checkout</p>
-          <h1 className="page-title">Advertise on Zyvibe</h1>
+          <p className="page-eyebrow label-caps">Advertisement · 2 slots max · Stripe Checkout</p>
+          <h1 className="page-title">One Monthly Sponsor Plan</h1>
           <p className="page-lead">
-            Builder Showcase placements are paid visibility for a project you built. Every placement
-            is labeled <strong>Advertisement</strong> on the homepage and on the showcase page,
-            beside the item, on mobile and desktop.
+            Reserve a Builder Showcase sponsor slot for {COMMERCIAL_PRICING.monthly}. Every approved
+            placement is labeled <strong>Advertisement</strong> on the homepage and showcase page.
           </p>
           <p className="page-lead">
-            Paid placement separate from editorial content. Choose a self-serve Builder Showcase or
-            Category Sponsor slot below; there are no retainers, agency services, or live-support
-            commitments.
+            Paid placement separate from editorial content. There are {COMMERCIAL_PRICING.activeCap};
+            monthly renewal and cancellation are handled by Stripe. Manual approval is required
+            before the placement goes live, and automated publishing never overwrites it.
           </p>
         </div>
       </section>

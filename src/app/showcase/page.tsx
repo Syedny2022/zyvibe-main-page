@@ -4,7 +4,7 @@ import { ShowcaseCard } from "@/components/ShowcaseCard";
 import { SponsorSlot } from "@/components/SponsorSlot";
 import { JsonLd } from "@/components/JsonLd";
 import { getShowcase } from "@/lib/content";
-import { PLACEMENTS, pageOpenGraph } from "@/lib/site";
+import { pageOpenGraph } from "@/lib/site";
 import { breadcrumbSchema, collectionPageSchema, graph } from "@/lib/jsonld";
 
 const description =
@@ -74,8 +74,8 @@ export default async function ShowcasePage() {
               <p className="label-caps">Reserve a placement</p>
               <h2 className="advertise-title">Advertise on Zyvibe</h2>
               <p className="advertise-body">
-                Placements are self-serve through Stripe Checkout. Choose a duration, submit the
-                project URL, and the placement is checked and activated after payment.
+                The single sponsor plan is $49/month with 2 slots max. Submit the project URL at
+                checkout; manual approval is required before any placement goes live.
               </p>
             </div>
             <div className="advertise-actions">
@@ -83,7 +83,7 @@ export default async function ShowcasePage() {
                 Advertise on Zyvibe
               </Link>
               <p className="mono advertise-price">
-                From {PLACEMENTS[0].priceLabel} / {PLACEMENTS[0].duration}
+                $49/month · 2 slots max
               </p>
             </div>
           </div>

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { PLACEMENTS } from "@/lib/site";
+import { COMMERCIAL_PRICING } from "@/lib/site";
 import { AdLabel } from "./EvidenceBadge";
 
 export function SponsorSlot() {
-  const entry = PLACEMENTS[0];
   return (
     <article className="showcase-item sponsor-slot">
       <AdLabel />
@@ -19,7 +18,7 @@ export function SponsorSlot() {
             Advertise on Zyvibe
           </Link>
           <span className="sponsor-price mono">
-            From {entry.priceLabel} / {entry.duration}
+            {COMMERCIAL_PRICING.monthly} · {COMMERCIAL_PRICING.activeCap}
           </span>
         </div>
         <p className="showcase-disclosure">

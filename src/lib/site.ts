@@ -76,57 +76,26 @@ export type Placement = {
 };
 
 export const COMMERCIAL_PRICING = {
-  short: "$49 / 30 days",
-  long: "$149 / 90 days",
+  monthly: "$49/month",
+  paymentLink: "https://buy.stripe.com/3cIcN435fgg1axf1JWdZ602",
+  activeCap: "2 slots max",
 } as const;
 
 export const PLACEMENTS: Placement[] = [
   {
-    id: "showcase-30",
-    name: "Builder Showcase, 30 days",
-    duration: "30 days",
+    id: "showcase-monthly",
+    name: "Builder Showcase Sponsor",
+    duration: "Monthly",
     durationDays: 30,
     priceLabel: "$49",
     amount: 4900,
     currency: "usd",
     summary:
-      "One listed builder project in the Builder Showcase with an Advertisement label and one outbound link.",
+      "One listed builder project in the Builder Showcase with an Advertisement label and one sponsored outbound link.",
     includes: [
-      "One project card on /showcase with a visible Advertisement label",
-      "One outbound link to your project URL, safety-checked before activation",
-      "Relisted in digest mentions when relevant placements are discussed",
-    ],
-  },
-  {
-    id: "showcase-90",
-    name: "Builder Showcase, 90 days",
-    duration: "90 days",
-    durationDays: 90,
-    priceLabel: "$149",
-    amount: 14900,
-    currency: "usd",
-    summary:
-      "The 30-day showcase placement held for a full quarter at a lower monthly rate.",
-    includes: [
-      "Everything in the 30-day placement for 90 days",
-      "One placement update per month, such as a new project URL or tagline",
-      "Placement record and activation receipt kept on file",
-    ],
-  },
-  {
-    id: "category-sponsor-90",
-    name: "Category Sponsor, 90 days",
-    duration: "90 days",
-    durationDays: 90,
-    priceLabel: "$149",
-    amount: 14900,
-    currency: "usd",
-    summary:
-      "A clearly labeled Category Sponsor placement in the relevant discovery context, separate from editorial records.",
-    includes: [
-      "One Category Sponsor card with an Advertisement label",
-      "One outbound link to your project URL, safety-checked before activation",
-      "Editorial ranking and evidence labels remain unchanged",
+      "One of 2 active sponsor slots",
+      "Monthly renewal; cancel before the next billing date",
+      "Manual approval and URL review before the placement goes live",
     ],
   },
 ];
